@@ -21,12 +21,7 @@ export const NavSidebar = () => {
         }`}
       />
 
-      <div className="absolute right-0">
-        <a href="https://github.com/abhijithvijayan/react-minimal-side-navigation">
-          View on GitHub
-        </a>
-      </div>
-
+      
       <div>
         <button
           className="btn-menu"
@@ -63,13 +58,13 @@ export const NavSidebar = () => {
               elemBefore: () => <Icon name="coffee" />
             },
             {
-              title: "About",
-              itemId: "/about",
+              title: "Property Setting",
+              itemId: "/property",
               elemBefore: () => <Icon name="user" />,
               subNav: [
                 {
-                  title: "Projects",
-                  itemId: "/about/projects",
+                  title: "Properties",
+                  itemId: "/property/list",
                   // Optional
                   elemBefore: () => <Icon name="cloud-snow" />
                 },
@@ -80,20 +75,26 @@ export const NavSidebar = () => {
                 }
               ]
             },
+
             {
-              title: "Another Tab",
-              itemId: "/another",
+              title: "Authentication",
+              itemId: "/auth",
               subNav: [
                 {
-                  title: "Teams",
-                  itemId: "/another/teams"
+                  title: "Login",
+                  itemId: "/auth/login"
                   // Optional
                   // elemBefore: () => <Icon name="calendar" />
                 }
               ]
             }
           ]}
+
+
         />
+
+
+
 
         <div className="absolute bottom-0 w-full my-8">
           <Navigation
