@@ -30,6 +30,10 @@ return (
 		<Route path="/settings">
 		<SettingsPage />
 		</Route>
+
+		<Route path="/logout">
+		</Route>
+
 		<Route path="/">
 		<HomePage />
 		</Route>

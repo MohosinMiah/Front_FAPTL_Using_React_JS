@@ -1,5 +1,6 @@
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Container } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -46,9 +47,9 @@ const Login = () => {
 				console.log("SET VALUE STORAGE");
 				localStorage.setItem('myName', "MOHOSIN");
 
-			localStorage.setItem('access_token', response['access_token']);
-			localStorage.setItem('first_name', JSON.stringify(response['first_name']));
-			window.location.href = "/profile";
+				localStorage.setItem('access_token', response['access_token']);
+				localStorage.setItem('first_name', JSON.stringify(response['first_name']));
+				window.location.href = "/home";
 			});
 		}
 		else
@@ -59,11 +60,14 @@ const Login = () => {
 			
 	return (
 		<DashboardLayout>
+
+			<Container maxWidth="sm">
+
 				<Grid container >
 				<CssBaseline />
-				<Grid item xs={false} md={7}  />
-				<Grid item xs={12} md={12} component={Paper} elevation={6} square>
-					<div xs={12} md={12} >
+				<Grid item xs={false} md={12}  />
+				<Grid item xs={12} md={12} component={Paper}  square>
+					<div xs={8} md={8} >
 					<Avatar >
 						<LockOutlinedIcon />
 					</Avatar>
@@ -105,6 +109,7 @@ const Login = () => {
 					</div>
 				</Grid>
 				</Grid>
+			</Container>
 		</DashboardLayout>
 	)
 }
