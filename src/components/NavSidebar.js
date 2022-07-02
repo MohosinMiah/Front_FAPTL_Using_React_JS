@@ -69,8 +69,8 @@ export const NavSidebar = () => {
                   elemBefore: () => <Icon name="cloud-snow" />
                 },
                 {
-                  title: "Members",
-                  itemId: "/about/members",
+                  title: "Add New",
+                  itemId: "/property/add",
                   elemBefore: () => <Icon name="coffee" />
                 }
               ]

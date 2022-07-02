@@ -4,6 +4,7 @@ import Login from "./auth/Login";
 import HomePage from "./home";
 import MembersPage from "./members";
 import Netflix from "./netflix";
+import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyList from "./property/PropertyList";
 import SettingsPage from "./settings";
 const Routes = () => {
@@ -16,12 +17,15 @@ return (
 		<Route path="/about/netflix">
 		<Netflix />
 		</Route>
+
+
 		<Route path="/property/list">
 			<PropertyList />
 		</Route>
-		<Route path="/property">
-			<PropertyList />
+		<Route path="/property/add">
+			<PropertyAdd />
 		</Route>
+		
 
 		<Route path="/auth/login">
 		<Login />
