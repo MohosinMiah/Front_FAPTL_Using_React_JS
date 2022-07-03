@@ -1,13 +1,17 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import './PropertyEdit';
 
-const PropertyAdd = () => {
+const PropertyEdit = () => {
 
 
+    const [property,setProperty] = useState([]);
+	let { id } = useParams();
 
     const [formValue, setformValue] = useState({
         name: '',
@@ -40,8 +44,8 @@ const PropertyAdd = () => {
 		try {
 		  // make axios post request
 		  const response = await axios({
-			method: 'POST',
-			url: 'https://faptl.americanbestit.com/api/v1/properties',
+			method: 'GET',
+			url: 'https://faptl.americanbestit.com/api/v1/properties'+id,
 			data: loginFormData,
 			headers: { 'Content-Type': 'multipart/form-data' , 'Authorization' : `Bearer ${token}` },
 		  });
@@ -67,39 +71,27 @@ const PropertyAdd = () => {
       }
 
 
-    //   const addProduct = () => {
+	  useEffect(() => {
+		  fetchProperty();
+		}, []);
+		const fetchProperty = () => {
+		  const api = 'https://faptl.americanbestit.com/api/v1/properties/'+id; 
+		  const token = localStorage.getItem('access_token');
+		  axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		  .then(res => {
+			setProperty(res.data);
+			console.log(res.data);
+		 
+		  }).catch((error) => {
+			console.log(error);
+		});
+  
+	  }
 
-    //     const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
-    //     const token = localStorage.getItem('access_token');
-    //     axios({
-    //         method: 'post',
-    //         url: api,
-    //         data: {
-    //             name: 'Fred',
-    //             code: '444',
-    //             type: 'residentila',
-    //             address: 'residentila',
-    //             city: 'residentila',
-    //             state: 'residentila',
-    //             zip: 123,
-    //             note: 'residentila',
-    //             rent_amount: 2565,
-    //             size: 111,
-    //         },
-    //         headers: {"Authorization" : `Bearer ${token}`}
-    //       })
-    //     .then(res => {
-    //       console.log(res.data);
-       
-    //     }).catch((error) => {
-    //       console.log(error);
-    //   });
-
-    // }
 
   return (
     <DashboardLayout>
-      <h2>Property Add</h2>
+      <h2>Property ID = {id}</h2>
 			<form
 			noValidate
 			onSubmit={handleSubmit}
@@ -112,7 +104,7 @@ const PropertyAdd = () => {
 					id="name"
 					name="name"
 					type="text"
-					label="Property Name"
+					value={property.name}
 					onChange={handleChange}
 				/>
 
@@ -256,4 +248,4 @@ const PropertyAdd = () => {
   )
 }
 
-export default PropertyAdd;
+export default PropertyEdit;

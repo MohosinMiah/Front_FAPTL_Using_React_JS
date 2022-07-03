@@ -5,6 +5,7 @@ import HomePage from "./home";
 import MembersPage from "./members";
 import Netflix from "./netflix";
 import PropertyAdd from "./property/add/PropertyAdd";
+import PropertyEdit from "./property/edit/PropertyEdit";
 import PropertyList from "./property/PropertyList";
 import SettingsPage from "./settings";
 const Routes = () => {
@@ -26,6 +27,11 @@ return (
 			<PropertyAdd />
 		</Route>
 		
+		
+		<Route path="/property/:id">
+			<PropertyEdit />
+		</Route>
+
 
 		<Route path="/auth/login">
 		<Login />
@@ -37,7 +43,7 @@ return (
 
 		<Route path="/logout">
 		</Route>
-
+		
 		<Route path="/">
 		<HomePage />
 		</Route>

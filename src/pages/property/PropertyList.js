@@ -1,12 +1,13 @@
 
+import Button from '@mui/material/Button';
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
 import './PropertyList.css';
 
-import Button from '@mui/material/Button';
     
   const TextField = styled.input`
   	height: 32px;
@@ -61,22 +62,41 @@ import Button from '@mui/material/Button';
 
     const [properties, setProperties] = useState([]);
 
+	const editPropertyHandler = (event) => {
+		event.preventDefault();
+        window.location.href = "/product";
+	}
+
   const columns = [
     {
-        name: 'Title',
-        selector: row => row.name,
+        name: 'ID',
+        selector: row => row.id,
     },
-    {
-        name: 'Year',
-        selector: row => row.code,
+	{
+		name: 'Name',
+		selector: row =>  row.code,
+		
+	},
+	{
+		name: 'Reant Amount',
+		selector: row =>  row.rent_amount,
+	},
+	{
+		name: 'State',
+		selector: row => row.state,
+		
     },
+	{
+		name: "Actions",
+		selector: row => <Link to={"/property/" + row.id} >Edit</Link>
+	  }
 ];
 
 const data = properties;
     useEffect(() => {
-        fetchProducts();
+        fetchProperty();
       }, []);
-      const fetchProducts = () => {
+      const fetchProperty = () => {
         const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
@@ -117,7 +137,6 @@ const data = properties;
   			paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
   			subHeader
   			subHeaderComponent={subHeaderComponentMemo}
-  			selectableRows
   			persistTableHead
   		/>
       </DashboardLayout>
