@@ -96,6 +96,7 @@ const PropertyEdit = () => {
 			noValidate
 			onSubmit={handleSubmit}
 			>
+				<lable>Name</lable>
 				<TextField
 					variant="outlined"
 					margin="normal"
@@ -116,6 +117,8 @@ const PropertyEdit = () => {
 					id="code"
 					name="code"
 					label="code"
+					type="text"
+					value={property.code}
 					onChange={handleChange}
 				/>
 
@@ -128,7 +131,7 @@ const PropertyEdit = () => {
 					id="type"
 					name="type"
 					label="type"
-					type="text"
+					value={property.type}
 					onChange={handleChange}
 				/>
 
@@ -141,6 +144,7 @@ const PropertyEdit = () => {
 					name="address"
 					label="address"
 					type="text"
+					value={property.address}
 					onChange={handleChange}
 				/>
 
@@ -154,6 +158,7 @@ const PropertyEdit = () => {
 					name="city"
 					label="city"
 					type="text"
+					value={property.city}
 					onChange={handleChange}
 				/>
 
@@ -167,6 +172,7 @@ const PropertyEdit = () => {
 					name="state"
 					label="state"
 					type="text"
+					value={property.state}
 					onChange={handleChange}
 				/>
 
@@ -179,6 +185,7 @@ const PropertyEdit = () => {
 					name="zip"
 					label="zip"
 					type="text"
+					value={property.zip}
 					onChange={handleChange}
 				/>
 
@@ -192,6 +199,7 @@ const PropertyEdit = () => {
 					name="note"
 					label="note"
 					type="text"
+					value={property.note}
 					onChange={handleChange}
 				/>
 
@@ -206,6 +214,7 @@ const PropertyEdit = () => {
 					name="rent_amount"
 					label="rent_amount"
 					type="number"
+					value={property.rent_amount}
 					onChange={handleChange}
 				/>
 				<TextField
@@ -217,6 +226,7 @@ const PropertyEdit = () => {
 					name="size"
 					label="size"
 					type="number"
+					value={property.size}
 					onChange={handleChange}
 				/>
 
@@ -230,6 +240,7 @@ const PropertyEdit = () => {
 					name="link"
 					label="link"
 					type="text"
+					value={property.link}
 					onChange={handleChange}
 				/>
 
