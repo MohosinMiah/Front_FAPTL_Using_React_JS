@@ -88,7 +88,9 @@ import './PropertyList.css';
     },
 	{
 		name: "Actions",
-		selector: row => <Link to={"/property/" + row.id} >Edit</Link>
+		selector: row =>{
+			return <div><Link to={"/property/" + row.id} >Edit</Link>  || <Link to={"/property/delete/" + row.id} >Delete</Link></div>
+		}
 	  }
 ];
 
