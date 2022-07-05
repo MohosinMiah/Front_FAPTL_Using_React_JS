@@ -5,97 +5,83 @@ import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 
-const PropertyAdd = () => {
+const PropertyAdd =  () => {
 
 
+	const [ name, setName ] = useState('');
+	const [ code, setCode ] = useState('');
+	const [ type, setType ] = useState('');
+	const [ address, setAddress ] = useState('');
+	const [ city, setCity ] = useState('');
+	const [ state, setState ] = useState('');
+	const [ zip, setZip ] = useState('');
+	const [ note, setNote ] = useState('');
+	const [ rent_amount, setRentAmount ] = useState('');
+	const [ size, setSize ] = useState('');
+	const [ link, setLink ] = useState('');
+	const [ has_parking, setHasParking ] = useState( 0 );
+	const [ has_security_gard, setSecurityGard ] = useState( 0 );
+	const [ isActive, setActive ] = useState( 1 );
 
-    const [formValue, setformValue] = useState({
-        name: '',
-        code: '',
-        type: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        note: '',
-        rent_amount: '',
-        size: '',
-        link: '',
-        has_parking: '',
-        has_security_gard: '',
-        isActive: '',
-      });
+
 
 	  const handleSubmit = async(e) => {
 		// store the states in the form data
 		e.preventDefault();
-		const loginFormData = new FormData();
-		loginFormData.append("name", formValue.name)
-		loginFormData.append("code", formValue.code)
-		loginFormData.append("rent_amount", formValue.rent_amount)
-		loginFormData.append("size", formValue.size)
-		
-		const token = localStorage.getItem('access_token');
-		let errors = null;
+
 		try {
-		  // make axios post request
-		  const response = await axios({
-			method: 'POST',
-			url: 'https://faptl.americanbestit.com/api/v1/properties',
-			data: loginFormData,
-			headers: { 'Content-Type': 'multipart/form-data' , 'Authorization' : `Bearer ${token}` },
-		  });
-		 console.log( response );
-			swal("Success", "Property Added Successfully", "success", {
-				buttons: false,
-				timer: 20454500,
-				});
+			 addProperty();
 
 		} catch(error) {
 			
-			swal("Failed", "Please Enter Required Field Data, Code name would be Unique", "error");
-		  console.log(error);
-		 
 		}
+	
+		
 	  }
     
-      const handleChange = (event) => {
-        setformValue({
-          ...formValue,
-          [event.target.name]: event.target.value
-        });
-      }
 
+      const addProperty = () => {
 
-    //   const addProduct = () => {
+        const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+        const token = localStorage.getItem('access_token');
+        axios({
+            method: 'post',
+            url: api,
+            data: {
+                name: name,
+                code: code,
+                type: type,
+                address: address,
+                city: city,
+                state: state,
+                zip: zip,
+                note: note,
+                rent_amount: rent_amount,
+				size: size,
+				link: link,
+				has_parking: has_parking,
+				has_security_gard: has_security_gard,
+				isActive: isActive,
+            },
+            headers: {"Authorization" : `Bearer ${token}`}
+          })
+        .then(res => {
+          console.log(res.data);
+		  swal("Success", "New Property Added", "success", {
+			buttons: false,
+			timer: 2000,
+			})
+        }).catch((error) => {
 
-    //     const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
-    //     const token = localStorage.getItem('access_token');
-    //     axios({
-    //         method: 'post',
-    //         url: api,
-    //         data: {
-    //             name: 'Fred',
-    //             code: '444',
-    //             type: 'residentila',
-    //             address: 'residentila',
-    //             city: 'residentila',
-    //             state: 'residentila',
-    //             zip: 123,
-    //             note: 'residentila',
-    //             rent_amount: 2565,
-    //             size: 111,
-    //         },
-    //         headers: {"Authorization" : `Bearer ${token}`}
-    //       })
-    //     .then(res => {
-    //       console.log(res.data);
-       
-    //     }).catch((error) => {
-    //       console.log(error);
-    //   });
+				swal("Failed", "Please Enter Required Field Data, Code name would be Unique", "error");
 
-    // }
+			console.log(error.response.data.errors);
+
+			console.log(error.response.status);
+			console.log(error.response.headers);
+      });
+
+    }
 
   return (
     <DashboardLayout>
@@ -113,7 +99,7 @@ const PropertyAdd = () => {
 					name="name"
 					type="text"
 					label="Property Name"
-					onChange={handleChange}
+					onChange={e => setName(e.target.value)}
 				/>
 
 				<TextField
@@ -124,7 +110,7 @@ const PropertyAdd = () => {
 					id="code"
 					name="code"
 					label="code"
-					onChange={handleChange}
+					onChange={e => setCode(e.target.value)}
 				/>
 
 
@@ -137,7 +123,7 @@ const PropertyAdd = () => {
 					name="type"
 					label="type"
 					type="text"
-					onChange={handleChange}
+					onChange={e => setType(e.target.value)}
 				/>
 
 				<TextField
@@ -149,7 +135,7 @@ const PropertyAdd = () => {
 					name="address"
 					label="address"
 					type="text"
-					onChange={handleChange}
+					onChange={e => setAddress(e.target.value)}
 				/>
 
 
@@ -162,7 +148,7 @@ const PropertyAdd = () => {
 					name="city"
 					label="city"
 					type="text"
-					onChange={handleChange}
+					onChange={e => setCity(e.target.value)}
 				/>
 
 
@@ -175,10 +161,10 @@ const PropertyAdd = () => {
 					name="state"
 					label="state"
 					type="text"
-					onChange={handleChange}
+					onChange={e => setState(e.target.value)}
 				/>
 
-				<TextField
+				 <TextField
 					variant="outlined"
 					margin="normal"
 					required
@@ -187,7 +173,7 @@ const PropertyAdd = () => {
 					name="zip"
 					label="zip"
 					type="text"
-					onChange={handleChange}
+					onChange={e => setZip(e.target.value)}
 				/>
 
 
@@ -200,7 +186,7 @@ const PropertyAdd = () => {
 					name="note"
 					label="note"
 					type="text"
-					onChange={handleChange}
+					onChange={e => setNote(e.target.value)}
 				/>
 
 
@@ -214,7 +200,7 @@ const PropertyAdd = () => {
 					name="rent_amount"
 					label="rent_amount"
 					type="number"
-					onChange={handleChange}
+					onChange={e => setRentAmount(e.target.value)}
 				/>
 				<TextField
 					variant="outlined"
@@ -225,7 +211,7 @@ const PropertyAdd = () => {
 					name="size"
 					label="size"
 					type="number"
-					onChange={handleChange}
+					onChange={e => setSize(e.target.value)}
 				/>
 
 
@@ -238,8 +224,9 @@ const PropertyAdd = () => {
 					name="link"
 					label="link"
 					type="text"
-					onChange={handleChange}
-				/>
+					onChange={e => setLink(e.target.value)}
+				/> 
+
 
 				<Button
 					type="submit"

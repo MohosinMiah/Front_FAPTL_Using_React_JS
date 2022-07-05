@@ -14,20 +14,20 @@ const PropertyEdit = () => {
 	let { id } = useParams();
 
     const [formValue, setformValue] = useState({
-        name: '',
-        code: '',
-        type: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        note: '',
-        rent_amount: '',
-        size: '',
-        link: '',
-        has_parking: '',
-        has_security_gard: '',
-        isActive: '',
+        name: property.name,
+        code: property.code,
+        type: property.type,
+        address: property.address,
+        city: property.city,
+        state: property.state,
+        // zip: ,
+        // note: '',
+        // rent_amount: '',
+        // size: '',
+        // link: '',
+        // has_parking: '',
+        // has_security_gard: '',
+        // isActive: '',
       });
 
 	  const handleSubmit = async(e) => {
@@ -44,14 +44,14 @@ const PropertyEdit = () => {
 		try {
 		  // make axios post request
 		  const response = await axios({
-			method: 'GET',
-			url: 'https://faptl.americanbestit.com/api/v1/properties'+id,
+			method: 'POST',
+			url: 'https://faptl.americanbestit.com/api/v1/property/update/'+id,
 			data: loginFormData,
 			headers: { 'Content-Type': 'multipart/form-data' , 'Authorization' : `Bearer ${token}` },
 		  });
 		 console.log( response );
 			swal("Success", "Property Added Successfully", "success", {
-				buttons: false,
+				buttons: "",
 				timer: 20454500,
 				});
 
@@ -96,7 +96,6 @@ const PropertyEdit = () => {
 			noValidate
 			onSubmit={handleSubmit}
 			>
-				<lable>Name</lable>
 				<TextField
 					variant="outlined"
 					margin="normal"
@@ -105,7 +104,7 @@ const PropertyEdit = () => {
 					id="name"
 					name="name"
 					type="text"
-					value={property.name}
+					value={formValue.name || property.name}
 					onChange={handleChange}
 				/>
 
@@ -119,9 +118,8 @@ const PropertyEdit = () => {
 					label="code"
 					type="text"
 					value={property.code}
-					onChange={handleChange}
+					onChange={handleChange  || ""}
 				/>
-
 
 				<TextField
 					variant="outlined"
@@ -131,7 +129,7 @@ const PropertyEdit = () => {
 					id="type"
 					name="type"
 					label="type"
-					value={property.type}
+					value={property.type  || ""}
 					onChange={handleChange}
 				/>
 
@@ -144,10 +142,9 @@ const PropertyEdit = () => {
 					name="address"
 					label="address"
 					type="text"
-					value={property.address}
+					value={property.address  || ""}
 					onChange={handleChange}
 				/>
-
 
 				<TextField
 					variant="outlined"
@@ -158,10 +155,9 @@ const PropertyEdit = () => {
 					name="city"
 					label="city"
 					type="text"
-					value={property.city}
+					value={property.city  || ""}
 					onChange={handleChange}
 				/>
-
 
 				<TextField
 					variant="outlined"
@@ -172,20 +168,19 @@ const PropertyEdit = () => {
 					name="state"
 					label="state"
 					type="text"
-					value={property.state}
+					value={property.state  || ""}
 					onChange={handleChange}
 				/>
 
 				<TextField
 					variant="outlined"
 					margin="normal"
-					required
 					fullWidth
 					id="zip"
 					name="zip"
 					label="zip"
 					type="text"
-					value={property.zip}
+					value={property.zip  || ""}
 					onChange={handleChange}
 				/>
 
@@ -193,18 +188,15 @@ const PropertyEdit = () => {
 				<TextField
 					variant="outlined"
 					margin="normal"
-					required
 					fullWidth
 					id="note"
 					name="note"
 					label="note"
 					type="text"
-					value={property.note}
+					value={property.note  || ""}
 					onChange={handleChange}
 				/>
 
-
-				
 				<TextField
 					variant="outlined"
 					margin="normal"
@@ -214,10 +206,11 @@ const PropertyEdit = () => {
 					name="rent_amount"
 					label="rent_amount"
 					type="number"
-					value={property.rent_amount}
+					value={property.rent_amount  || ""}
 					onChange={handleChange}
 				/>
-				<TextField
+
+				{/* <TextField
 					variant="outlined"
 					margin="normal"
 					required
@@ -230,11 +223,9 @@ const PropertyEdit = () => {
 					onChange={handleChange}
 				/>
 
-
 				<TextField
 					variant="outlined"
 					margin="normal"
-					required
 					fullWidth
 					id="link"
 					name="link"
@@ -242,7 +233,7 @@ const PropertyEdit = () => {
 					type="text"
 					value={property.link}
 					onChange={handleChange}
-				/>
+				/> */}
 
 				<Button
 					type="submit"
