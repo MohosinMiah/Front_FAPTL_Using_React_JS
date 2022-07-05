@@ -13,74 +13,63 @@ const PropertyEdit = () => {
     const [property,setProperty] = useState([]);
 	let { id } = useParams();
 
-    const [formValue, setformValue] = useState({
-        name: property.name,
-        code: property.code,
-        type: property.type,
-        address: property.address,
-        city: property.city,
-        state: property.state,
-        // zip: ,
-        // note: '',
-        // rent_amount: '',
-        // size: '',
-        // link: '',
-        // has_parking: '',
-        // has_security_gard: '',
-        // isActive: '',
-      });
-
+   
+	const [ name, setName ] = useState( );
+	const [ code, setCode ] = useState('');
+	const [ type, setType ] = useState('');
+	const [ address, setAddress ] = useState('');
+	const [ city, setCity ] = useState('');
+	const [ state, setState ] = useState('');
+	const [ zip, setZip ] = useState('');
+	const [ note, setNote ] = useState('');
+	const [ rent_amount, setRentAmount ] = useState('');
+	const [ size, setSize ] = useState('');
+	const [ link, setLink ] = useState('');
+	const [ has_parking, setHasParking ] = useState( 0 );
+	const [ has_security_gard, setHasSecurityGard ] = useState( 0 );
+	const [ isActive, setActive ] = useState( 1 );
+	
 	  const handleSubmit = async(e) => {
 		// store the states in the form data
 		e.preventDefault();
-		const loginFormData = new FormData();
-		loginFormData.append("name", formValue.name)
-		loginFormData.append("code", formValue.code)
-		loginFormData.append("rent_amount", formValue.rent_amount)
-		loginFormData.append("size", formValue.size)
 		
-		const token = localStorage.getItem('access_token');
-		let errors = null;
 		try {
-		  // make axios post request
-		  const response = await axios({
-			method: 'POST',
-			url: 'https://faptl.americanbestit.com/api/v1/property/update/'+id,
-			data: loginFormData,
-			headers: { 'Content-Type': 'multipart/form-data' , 'Authorization' : `Bearer ${token}` },
-		  });
-		 console.log( response );
-			swal("Success", "Property Added Successfully", "success", {
-				buttons: "",
-				timer: 20454500,
-				});
-
+		
+			updateProperty();
 		} catch(error) {
 			
-			swal("Failed", "Please Enter Required Field Data, Code name would be Unique", "error");
 		  console.log(error);
 		 
 		}
+
 	  }
-    
-      const handleChange = (event) => {
-        setformValue({
-          ...formValue,
-          [event.target.name]: event.target.value
-        });
-      }
 
 
 	  useEffect(() => {
 		  fetchProperty();
 		}, []);
-		const fetchProperty = () => {
+		const fetchProperty = async () => {
 		  const api = 'https://faptl.americanbestit.com/api/v1/properties/'+id; 
 		  const token = localStorage.getItem('access_token');
-		  axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		  await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		  .then(res => {
 			setProperty(res.data);
 			console.log(res.data);
+			// Set Initial Data In States
+			setName( res.data.name );
+			setCode( res.data.code );
+			setType( res.data.type );
+			setAddress( res.data.address );
+			setCity( res.data.city );
+			setState( res.data.state );
+			setZip( res.data.zip );
+			setNote( res.data.note );
+			setRentAmount( res.data.rent_amount );
+			setSize( res.data.size );
+			setLink( res.data.link );
+			setHasParking( res.data.has_parking );
+			setHasSecurityGard( res.data.has_security_gard );
+			setActive( res.data.active );
 		 
 		  }).catch((error) => {
 			console.log(error);
@@ -89,10 +78,58 @@ const PropertyEdit = () => {
 	  }
 
 
+	  
+      const updateProperty = () => {
+
+        const api = 'https://faptl.americanbestit.com/api/v1/property/update/' + id;
+        const token = localStorage.getItem('access_token');
+        axios({
+            method: 'post',
+            url: api,
+            data: {
+                name: name,
+                code: code,
+                type: type,
+                address: address,
+                city: city,
+                state: state,
+                zip: zip,
+                note: note,
+                rent_amount: rent_amount,
+				size: size,
+				link: link,
+				has_parking: has_parking,
+				has_security_gard: has_security_gard,
+				isActive: isActive,
+            },
+            headers: {"Authorization" : `Bearer ${token}`}
+          })
+        .then(res => {
+          console.log(res.data);
+		  swal("Success", "New Property Added", "success", {
+			buttons: false,
+			timer: 2000,
+			})
+        }).catch((error) => {
+
+				swal("Failed", "Please Enter Required Field Data, Code name would be Unique", "error");
+
+			console.log(error.response.data.errors);
+
+			console.log(error.response.status);
+			console.log(error.response.headers);
+      });
+
+    }
+
+
+
   return (
     <DashboardLayout>
       <h2>Property ID = {id}</h2>
-			<form
+	  { console.log("Name "+ name)}
+
+	  <form
 			noValidate
 			onSubmit={handleSubmit}
 			>
@@ -104,8 +141,9 @@ const PropertyEdit = () => {
 					id="name"
 					name="name"
 					type="text"
-					value={formValue.name || property.name}
-					onChange={handleChange}
+					label="Name"
+					value={name}
+					onChange={e => setName(e.target.value)}
 				/>
 
 				<TextField
@@ -116,10 +154,10 @@ const PropertyEdit = () => {
 					id="code"
 					name="code"
 					label="code"
-					type="text"
-					value={property.code}
-					onChange={handleChange  || ""}
+					value={code}
+					onChange={e => setCode(e.target.value)}
 				/>
+
 
 				<TextField
 					variant="outlined"
@@ -129,8 +167,9 @@ const PropertyEdit = () => {
 					id="type"
 					name="type"
 					label="type"
-					value={property.type  || ""}
-					onChange={handleChange}
+					type="text"
+					value={type}
+					onChange={e => setType(e.target.value)}
 				/>
 
 				<TextField
@@ -142,9 +181,10 @@ const PropertyEdit = () => {
 					name="address"
 					label="address"
 					type="text"
-					value={property.address  || ""}
-					onChange={handleChange}
+					value={address}
+					onChange={e => setAddress(e.target.value)}
 				/>
+
 
 				<TextField
 					variant="outlined"
@@ -155,9 +195,10 @@ const PropertyEdit = () => {
 					name="city"
 					label="city"
 					type="text"
-					value={property.city  || ""}
-					onChange={handleChange}
+					value={city}
+					onChange={e => setCity(e.target.value)}
 				/>
+
 
 				<TextField
 					variant="outlined"
@@ -168,35 +209,39 @@ const PropertyEdit = () => {
 					name="state"
 					label="state"
 					type="text"
-					value={property.state  || ""}
-					onChange={handleChange}
+					value={state}
+					onChange={e => setState(e.target.value)}
 				/>
 
-				<TextField
+				 <TextField
 					variant="outlined"
 					margin="normal"
+					required
 					fullWidth
 					id="zip"
 					name="zip"
 					label="zip"
 					type="text"
-					value={property.zip  || ""}
-					onChange={handleChange}
+					value={zip}
+					onChange={e => setZip(e.target.value)}
 				/>
 
 
 				<TextField
 					variant="outlined"
 					margin="normal"
+					required
 					fullWidth
 					id="note"
 					name="note"
 					label="note"
 					type="text"
-					value={property.note  || ""}
-					onChange={handleChange}
+					value={note}
+					onChange={e => setNote(e.target.value)}
 				/>
 
+
+				
 				<TextField
 					variant="outlined"
 					margin="normal"
@@ -206,11 +251,10 @@ const PropertyEdit = () => {
 					name="rent_amount"
 					label="rent_amount"
 					type="number"
-					value={property.rent_amount  || ""}
-					onChange={handleChange}
+					value={rent_amount}
+					onChange={e => setRentAmount(e.target.value)}
 				/>
-
-				{/* <TextField
+				<TextField
 					variant="outlined"
 					margin="normal"
 					required
@@ -219,21 +263,24 @@ const PropertyEdit = () => {
 					name="size"
 					label="size"
 					type="number"
-					value={property.size}
-					onChange={handleChange}
+					value={size}
+					onChange={e => setSize(e.target.value)}
 				/>
+
 
 				<TextField
 					variant="outlined"
 					margin="normal"
+					required
 					fullWidth
 					id="link"
 					name="link"
 					label="link"
 					type="text"
-					value={property.link}
-					onChange={handleChange}
-				/> */}
+					value={link}
+					onChange={e => setLink(e.target.value)}
+				/> 
+
 
 				<Button
 					type="submit"
@@ -244,6 +291,10 @@ const PropertyEdit = () => {
 					Add Property
 				</Button>
             </form>
+		{/* : 
+		<div> Loading ... </div>
+		} */}
+  
 
  
     </DashboardLayout>

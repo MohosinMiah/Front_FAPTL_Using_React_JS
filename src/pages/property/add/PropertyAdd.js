@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-
 const PropertyAdd =  () => {
 
 
@@ -164,7 +163,7 @@ const PropertyAdd =  () => {
 					onChange={e => setState(e.target.value)}
 				/>
 
-				 <TextField
+					<TextField
 					variant="outlined"
 					margin="normal"
 					required
@@ -236,9 +235,8 @@ const PropertyAdd =  () => {
 					>
 					Add Property
 				</Button>
-            </form>
-
- 
+			</form>
+		
     </DashboardLayout>
   )
 }
