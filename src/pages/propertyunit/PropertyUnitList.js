@@ -6,7 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
-import './PropertyList.css';
+import './PropertyUnitList.css';
 
     
   const TextField = styled.input`
@@ -69,25 +69,25 @@ import './PropertyList.css';
 
   const columns = [
     {
-        name: 'Name',
-        selector: row => row.name,
+        name: 'Type',
+        selector: row => row.type,
     },
 	{
-		name: 'Code',
-		selector: row =>  row.code,
+		name: 'Name',
+		selector: row =>  row.name,
 		
 	},
 	{
-		name: 'Type',
-		selector: row =>  row.type,
+		name: 'Floor',
+		selector: row =>  row.floor,
 	},
 	{
 		name: 'Reant Amount',
-		selector: row =>  row.rent_amount,
+		selector: row =>  row.rent,
 	},
 	{
-		name: 'State',
-		selector: row => row.state,
+		name: 'Total Room',
+		selector: row => row.total_room,
 		
     },
 	{
@@ -98,7 +98,7 @@ import './PropertyList.css';
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/property/" + row.id} >Edit</Link>  || <Link to={"/property/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/propertyunit/" + row.id} >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} >Delete</Link></div>
 		}
 	  }
 ];
@@ -108,7 +108,7 @@ const data = properties;
         fetchProperty();
       }, []);
       const fetchProperty = () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+        const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

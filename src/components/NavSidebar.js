@@ -77,6 +77,26 @@ return (
 			},
 
 			{
+				title: "Property Unit",
+				itemId: "/propertyunit",
+				elemBefore: () => <Icon name="user" />,
+				subNav: [
+					{
+					title: "propertyunits",
+					itemId: "/propertyunit/list",
+					// Optional
+					elemBefore: () => <Icon name="cloud-snow" />
+					},
+					{
+					title: "Add New",
+					itemId: "/propertyunit/add",
+					elemBefore: () => <Icon name="coffee" />
+					}
+				]
+				},
+
+				
+			{
 			title: "Authentication",
 			itemId: "/auth",
 			subNav: [

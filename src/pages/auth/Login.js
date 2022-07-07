@@ -1,4 +1,3 @@
-
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Container } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
@@ -19,7 +18,8 @@ const Login = () => {
 		const [password, setPassword] = useState();
 		
 	async function loginUser(credentials) {
-		return fetch('https://faptl.americanbestit.com/api/v1/login', {
+		console.log(process.env.PRODUCTION_DEV_URL);
+		return fetch( "https://faptl.americanbestit.com/api/v1/login", {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

@@ -8,6 +8,7 @@ import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyEdit from "./property/edit/PropertyEdit";
 import PropertyDelete from "./property/PropertyDelete";
 import PropertyList from "./property/PropertyList";
+import PropertyUnitList from "./propertyunit/PropertyUnitList";
 import SettingsPage from "./settings";
 const Routes = () => {
 return (
@@ -20,10 +21,14 @@ return (
 		<Netflix />
 		</Route>
 
+		<Route path="/property">
+			<PropertyList />
+		</Route>
 
 		<Route path="/property/list">
 			<PropertyList />
 		</Route>
+
 		<Route path="/property/add">
 			<PropertyAdd />
 		</Route>
@@ -34,6 +39,27 @@ return (
 		</Route>
 
 		<Route path="/property/:id">
+			<PropertyEdit />
+		</Route>
+
+
+		<Route path="/propertyunit">
+			<PropertyUnitList />
+		</Route>
+
+		<Route path="/propertyunit/list">
+			<PropertyUnitList />
+		</Route>
+		<Route path="/propertyunit/add">
+			<PropertyAdd />
+		</Route>
+		
+				
+		<Route path="/propertyunit/delete/:id">
+			<PropertyDelete />
+		</Route>
+
+		<Route path="/propertyunit/:id">
 			<PropertyEdit />
 		</Route>
 
