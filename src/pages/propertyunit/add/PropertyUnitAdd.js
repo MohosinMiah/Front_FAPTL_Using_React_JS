@@ -151,7 +151,7 @@ const PropertyAdd =  () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
-						<select  name="unit_type"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
+						<select  name="unit_type" className="form-control"   value={unit_type} onChange={e => setUnitType(e.target.value)} required>
 							{unitTypes.map(option => (
 							<option key={option.value} value={option.value}>
 								{option.text}
@@ -182,7 +182,7 @@ const PropertyAdd =  () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Note</label>
-						<textarea name="note" className="form-control" onChange={e => setNote(e.target.value)}  >  </textarea>
+						<textarea name="note" className="form-control" onChange={e => setNote(e.target.value)} ></textarea>
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Is Available</label>

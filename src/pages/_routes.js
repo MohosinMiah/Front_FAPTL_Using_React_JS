@@ -23,6 +23,7 @@ return (
 		<Netflix />
 		</Route>
 
+		{/* Property  Start  */}
 		{/* <Route path="/property">
 			<PropertyList />
 		</Route> */}
@@ -44,8 +45,10 @@ return (
 			<PropertyEdit />
 		</Route>
 
-		{/* Property Unit Start  */}
+				{/* Property  End  */}
 
+
+		{/* Property Unit Start  */}
 
 		<Route path="/propertyunit/list">
 			<PropertyUnitList />
@@ -62,6 +65,29 @@ return (
 		<Route path="/propertyunit/:id">
 			<PropertyUnitEdit />
 		</Route>
+		{/* Property Unit End  */}
+
+
+		{/* Property Tenant  Start   */}
+
+		<Route path="/tenant/list">
+			<PropertyUnitList />
+		</Route>
+		<Route path="/tenant/add">
+			<PropertyUnitAdd />
+		</Route>
+
+				
+		<Route path="/tenant/delete/:id">
+			<PropertyDelete />
+		</Route>
+
+
+		<Route path="/tenant/:id">
+			<PropertyUnitEdit />
+		</Route>
+		{/* Property Tenant End  */}
+
 
 
 		<Route path="/auth/login">

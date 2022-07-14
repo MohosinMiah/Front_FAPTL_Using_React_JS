@@ -182,7 +182,7 @@ const PropertyEdit = () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
-						<select  name="unit_type"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
+						<select  name="unit_type" lassName="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
 							{unitTypes.map(option => (
 							<option key={option.value} value={option.value}>
 								{option.text}
