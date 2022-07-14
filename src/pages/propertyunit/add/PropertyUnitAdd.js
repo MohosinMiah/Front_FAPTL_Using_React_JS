@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import PropertyTopBar from '../../property/PropertyTopBar';
 import './PropertyUnitAdd';
 const PropertyAdd =  () => {
 
@@ -84,6 +85,7 @@ const PropertyAdd =  () => {
 
   return (
     <DashboardLayout>
+	<PropertyTopBar/>
       <h2>Property Unit  Add</h2>
 			<form
 			noValidate

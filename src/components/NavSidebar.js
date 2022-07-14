@@ -5,7 +5,7 @@ import { Navigation } from "react-minimal-side-navigation";
 import { useHistory, useLocation } from "react-router-dom";
 
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
-
+import "./NavSidebar.css";
 export const NavSidebar = () => {
 const history = useHistory();
 const location = useLocation();
@@ -22,7 +22,7 @@ return (
 	/>
 
 	
-	<div>
+	<div className="mobile-nav">
 		<button
 		className="btn-menu"
 		onClick={(): void => setIsSidebarOpen(true)}
@@ -38,9 +38,9 @@ return (
 		isSidebarOpen ? "ease-out translate-x-0" : "ease-in -translate-x-full"
 		}`}
 	>
-		<div className="flex items-center justify-center mt-10 text-center py-6">
+		<div className="flex items-center justify-center text-center py-6">
 		<span className="mx-2 text-2xl font-semibold text-black">
-			react-minimal-side-navigation
+		<img src="/logo.png" alt="Logo" />
 		</span>
 		</div>
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import PropertyTopBar from '../../property/PropertyTopBar';
 import './PropertyUnitEdit';
 
 const PropertyEdit = () => {
@@ -127,6 +128,8 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
+			<PropertyTopBar/>
+
       <h2>Property ID = {id}</h2>
 	  { console.log("Name "+ name)}
 

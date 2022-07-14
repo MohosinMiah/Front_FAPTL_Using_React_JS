@@ -1,10 +1,9 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import PropertyTopBar from '../PropertyTopBar';
 import './PropertyEdit';
 
 const PropertyEdit = () => {
@@ -176,189 +175,61 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
-      <h2>Property ID = {id}</h2>
-	  { console.log("Name "+ name)}
 
-		<form
-			noValidate
-			onSubmit={handleSubmit}
-			>
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="name"
-				name="name"
-				type="text"
-				label="Name"
-				value={name}
-				onChange={e => setName(e.target.value)}
-			/>
+			<PropertyTopBar/>
+			<div className="property-add">
+				<div className="container">
+					<h2 className="large-heading mb-5">Property Add</h2>
+					<form noValidate onSubmit={handleSubmit}>
+						<div className="form-outline">
+							<label className="form-label">Property Name<sup>*</sup></label>
+							<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Code<sup>*</sup></label>
+							<input type="text" name="code" className="form-control"  value={code}  onChange={e => setCode(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Type<sup>*</sup></label>
+							<input type="text" name="type" className="form-control"  value={type}  onChange={e => setType(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Address</label>
+							<input type="text" name="address" className="form-control"  value={address}  onChange={e => setAddress(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">City<sup>*</sup></label>
+							<input type="text" name="city" className="form-control"  value={city}  onChange={e => setCity(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">State<sup>*</sup></label>
+							<input type="text" name="state" className="form-control"  value={state}  onChange={e => setState(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Zip<sup>*</sup></label>
+							<input type="number" name="zip" className="form-control"  value={zip}  onChange={e => setZip(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Note<sup>*</sup></label>
+							<input type="text" name="note" className="form-control"  value={zip}  onChange={e => setNote(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Rent Amount<sup>*</sup></label>
+							<input type="number" name="rent_amount" className="form-control"  value={rent_amount}  onChange={e => setRentAmount(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Size<sup>*</sup></label>
+							<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Link<sup>*</sup></label>
+							<input type="text" name="link" className="form-control"  value={link}  onChange={e => setLink(e.target.value)} />
+						</div>
+						<button type="submit" className="form-btn btn btn-primary btn-block">Update Property</button>
+					</form>
+				</div>
+			</div>
 
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="code"
-				name="code"
-				label="code"
-				value={code}
-				onChange={e => setCode(e.target.value)}
-			/>
-
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="type"
-				name="type"
-				label="type"
-				type="text"
-				value={type}
-				onChange={e => setType(e.target.value)}
-			/>
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="address"
-				name="address"
-				label="address"
-				type="text"
-				value={address}
-				onChange={e => setAddress(e.target.value)}
-			/>
-
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="city"
-				name="city"
-				label="city"
-				type="text"
-				value={city}
-				onChange={e => setCity(e.target.value)}
-			/>
-
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="state"
-				name="state"
-				label="state"
-				type="text"
-				value={state}
-				onChange={e => setState(e.target.value)}
-			/>
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="zip"
-				name="zip"
-				label="zip"
-				type="text"
-				value={zip}
-				onChange={e => setZip(e.target.value)}
-			/>
-
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="note"
-				name="note"
-				label="note"
-				type="text"
-				value={note}
-				onChange={e => setNote(e.target.value)}
-			/>
-
-
-			
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="rent_amount"
-				name="rent_amount"
-				label="rent_amount"
-				type="number"
-				value={rent_amount}
-				onChange={e => setRentAmount(e.target.value)}
-			/>
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="size"
-				name="size"
-				label="size"
-				type="number"
-				value={size}
-				onChange={e => setSize(e.target.value)}
-			/>
-
-
-			<TextField
-				variant="outlined"
-				margin="normal"
-				required
-				fullWidth
-				id="link"
-				name="link"
-				label="link"
-				type="text"
-				value={link}
-				onChange={e => setLink(e.target.value)}
-			/> 
-
-
-			<Button
-				type="submit"
-				
-				variant="contained"
-				color="primary"
-				>
-				Add Property
-			</Button>
-		</form>
-
-		<form
-			encType="multipart/form-data"
-		>
-			<input
-				id="file_name"
-				name="file_name"
-				type="file"
-				onChange={e => setFileName(e.target.value)}
-			/>
-			<Button
-				onClick={handleUploadSubmit}
-				variant="contained"
-				color="primary"
-			>
-				Upload Image
-			</Button>
-		</form>
     </DashboardLayout>
   )
 }

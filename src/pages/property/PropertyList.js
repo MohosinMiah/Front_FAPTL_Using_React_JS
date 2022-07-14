@@ -140,8 +140,10 @@ const data = properties;
   
   	return (
       <DashboardLayout>
-  		<DataTable
-  			title="Contact List"
+		<div className="property-list-section">
+  		<div className="container">
+		  <DataTable
+  			title="Property List"
   			columns={columns}
   			data={filteredItems}
   			pagination
@@ -150,6 +152,7 @@ const data = properties;
   			subHeaderComponent={subHeaderComponentMemo}
   			persistTableHead
   		/>
+		</div></div>
       </DashboardLayout>
 	);
   };

@@ -1,0 +1,210 @@
+.TopBar {
+    background: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.TopBar a {
+    padding: 10px;
+    color: #10ab8e;
+    text-decoration: none;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 3px;
+    line-height: 1;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 150px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.module-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.module-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 30px;
+}
+
+.module-list {
+    text-align: center;
+    border: 1px solid #eef6eb;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 4px #f4f4f4;
+    min-width: 200px;
+}
+
+.module-list img {
+    max-height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.login-page {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.login-box {
+    contain: content;
+    width: 100%;
+    background-color: #f3f4f6;
+    border-radius: 0 70px;
+    box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+    position: relative;
+}
+
+.login-box:before {
+    content: "";
+    background: url(https://1.bp.blogspot.com/--UQ8_O1EFN8/XWkZdpW_MMI/AAAAAAAATDE/kcJXA9nMy4ElB4NmBZDM6WwPE4JQD7ACQCLcBGAs/s1600/shape.png);
+    position: absolute;
+    right: 0;
+    background-size: 100%;
+    top: -80px;
+    width: 100%;
+    height: 653px;
+    z-index: -1; }
+.large-heading{font-size: 34px;}
+.wrap-login {
+    width: 450px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 3px 20px 0 rgb(0 0 0 / 10%);
+    -moz-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 3px 20px 0 rgb(0 0 0 / 10%);
+    -o-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    -ms-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    border: 1px solid #dedede;
+    margin: 30px auto;
+    padding: 20px 55px;
+}
+
+div#circle {
+    -webkit-animation: wait 0s alternate infinite;
+    animation: wait 0s alternate infinite;
+}
+
+.circle-ripple {
+    background-color: transparent;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    -webkit-animation: ripple 0.7s linear infinite;
+    animation: ripple 0.7s linear infinite;
+    left: 60px;
+    position: absolute;
+    top: 44px;
+}
+
+@-webkit-keyframes wait {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes wait {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(175, 166, 255, 0.3), 0 0 0 1em rgba(175, 166, 255, 0.3), 0 0 0 3em rgba(175, 166, 255, 0.3), 0 0 0 5em rgba(175, 166, 255, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 0 1em rgba(175, 166, 255, 0.3), 0 0 0 3em rgba(175, 166, 255, 0.3), 0 0 0 5em rgba(175, 166, 255, 0.3), 0 0 0 8em rgba(175, 166, 255, 0);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgb(60 202 176 / 30%), 0 0 0 1em rgb(60 202 176 / 30%), 0 0 0 3em rgb(60 202 176 / 30%), 0 0 0 5em rgb(60 202 176 / 30%);
+    }
+
+    100% {
+        box-shadow: 0 0 0 1em rgb(60 202 176 / 30%), 0 0 0 3em rgb(60 202 176 / 30%), 0 0 0 5em rgb(60 202 176 / 30%), 0 0 0 8em rgb(60 202 176 / 0%);
+    }
+}
+
+input.input {
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #1b3815;
+    line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 35px;outline: 0;
+}
+
+.wrap-input {
+    margin-bottom: 20px;width: 100%;
+}
+
+.login-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    background-color: #3ccab0;
+    border-radius: 25px;
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
