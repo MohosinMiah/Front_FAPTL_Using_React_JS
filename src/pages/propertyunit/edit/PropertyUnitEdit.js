@@ -28,20 +28,20 @@ const PropertyEdit = () => {
 
 	const isAvailables = [
 		{value: '', text: '--Select Is Available--'},
-		{value: '1', text: 'Yes'},
-		{value: '0', text: 'No'},
+		{value: 'Yes', text: 'Yes'},
+		{value: 'No', text: 'No'},
 		];
 
 	const isFeatureds = [
 		{value: '', text: '--Select Is Featured--'},
-		{value: '1', text: 'Yes'},
-		{value: '0', text: 'No'},
+		{value: 'Yes', text: 'Yes'},
+		{value: 'No', text: 'No'},
 		];
 	
 	const isActives = [
 		{value: '', text: '--Select Is Active--'},
-		{value: '1', text: 'Yes'},
-		{value: '0', text: 'No'},
+		{value: 'Yes', text: 'Yes'},
+		{value: 'No', text: 'No'},
 		];
 	// All Property Unit Variable initialized
 	const [ type, setType ] = useState('');
@@ -109,8 +109,7 @@ const PropertyEdit = () => {
 
 		
 		const updatePropertyUnit = () => {
-
-		const api = 'https://faptl.americanbestit.com/api/v1/property/update/' + id;
+		const api = 'https://faptl.americanbestit.com/api/v1/propertyunit/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -214,7 +213,7 @@ const PropertyEdit = () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Note</label>
-						<input type="text" name="note" className="form-control" value={note}  onChange={e => setNote(e.target.value)} />
+						<textarea name="note"  className="form-control"   onChange={e => setNote(e.target.value)} value={note} >  </textarea>
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Is Available</label>

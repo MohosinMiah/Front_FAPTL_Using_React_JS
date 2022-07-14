@@ -25,20 +25,20 @@ const PropertyAdd =  () => {
 
 	const isAvailables = [
 		{value: '', text: '--Select Is Available--'},
-		{value: '1', text: 'Yes'},
-		{value: '0', text: 'No'},
+		{value: 'Yes', text: 'Yes'},
+		{value: 'No', text: 'No'},
 		];
 
 	const isFeatureds = [
 		{value: '', text: '--Select Is Featured--'},
-		{value: '1', text: 'Yes'},
-		{value: '0', text: 'No'},
+		{value: 'Yes', text: 'Yes'},
+		{value: 'No', text: 'No'},
 		];
 	
 	const isActives = [
 		{value: '', text: '--Select Is Active--'},
-		{value: '1', text: 'Yes'},
-		{value: '0', text: 'No'},
+		{value: 'Yes', text: 'Yes'},
+		{value: 'No', text: 'No'},
 		];
 	// All Property Unit Variable initialized
 	const [ property_id, setPropertyID ] = useState( id );
@@ -182,7 +182,7 @@ const PropertyAdd =  () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Note</label>
-						<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
+						<textarea name="note" className="form-control" onChange={e => setNote(e.target.value)}  >  </textarea>
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Is Available</label>
