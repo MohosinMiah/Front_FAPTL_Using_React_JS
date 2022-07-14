@@ -1,5 +1,3 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,26 +10,54 @@ const PropertyEdit = () => {
 
 
     const [property,setProperty] = useState([]);
+
 	let { id } = useParams();
+	// Selected Option Dropdown Types
+	const types = [
+		{value: '', text: '--Select Type--'},
+		{value: 'Residential', text: 'Residential'},
+		{value: 'Business', text: 'Business'},
+	  ];
 
-   
-	const [ name, setName ] = useState( '');
-	const [ code, setCode ] = useState('');
-	const [ type, setType ] = useState('');
-	const [ address, setAddress ] = useState('');
-	const [ city, setCity ] = useState('');
-	const [ state, setState ] = useState('');
-	const [ zip, setZip ] = useState('');
-	const [ note, setNote ] = useState('');
-	const [ rent_amount, setRentAmount ] = useState('');
-	const [ size, setSize ] = useState('');
-	const [ link, setLink ] = useState('');
-	const [ has_parking, setHasParking ] = useState( 0 );
-	const [ has_security_gard, setHasSecurityGard ] = useState( 0 );
-	const [ isActive, setActive ] = useState( 1 );
+	const unitTypes = [
+		{value: '', text: '--Select Unit Type--'},
+		{value: 'Normal', text: 'Normal'},
+		{value: 'Studio', text: 'Studio'},
+		{value: 'Duplex', text: 'Duplex'},
+		];
+
+	const isAvailables = [
+		{value: '', text: '--Select Is Available--'},
+		{value: '1', text: 'Yes'},
+		{value: '0', text: 'No'},
+		];
+
+	const isFeatureds = [
+		{value: '', text: '--Select Is Featured--'},
+		{value: '1', text: 'Yes'},
+		{value: '0', text: 'No'},
+		];
 	
-
-	const [ file_name, setFileName ] = useState([]);
+	const isActives = [
+		{value: '', text: '--Select Is Active--'},
+		{value: '1', text: 'Yes'},
+		{value: '0', text: 'No'},
+		];
+	// All Property Unit Variable initialized
+	const [ type, setType ] = useState('');
+	const [ name, setName ] = useState('');
+	const [ floor, setFloor ] = useState('');
+	const [ rent, setRent ] = useState('');
+	const [ unit_type, setUnitType ] = useState('');
+	const [ size, setSize ] = useState('');
+	const [ total_room, setTotalRoom ] = useState('');
+	const [ bed_room, setBedRoom ] = useState( '' );
+	const [ bath_room, setBathRoom ] = useState( '' );
+	const [ balcony, setBalcony ] = useState( '' );
+	const [ note, setNote ] = useState( '' );
+	const [ isAvailable, setIsAvailable ] = useState( '' );
+	const [ isFeatured, setIsFeatured ] = useState( '' );
+	const [ isActive, setIsActive ] = useState( '' );
 	
 	  const handleSubmit = async(e) => {
 		// store the states in the form data
@@ -60,20 +86,20 @@ const PropertyEdit = () => {
 			setProperty(res.data);
 			console.log(res.data);
 			// Set Initial Data In States
-			setName( res.data.name );
-			setCode( res.data.code );
 			setType( res.data.type );
-			setAddress( res.data.address );
-			setCity( res.data.city );
-			setState( res.data.state );
-			setZip( res.data.zip );
-			setNote( res.data.note );
-			setRentAmount( res.data.rent_amount );
+			setName( res.data.name );
+			setFloor( res.data.floor );
+			setRent( res.data.rent );
+			setUnitType( res.data.unit_type );
 			setSize( res.data.size );
-			setLink( res.data.link );
-			setHasParking( res.data.has_parking );
-			setHasSecurityGard( res.data.has_security_gard );
-			setActive( res.data.active );
+			setTotalRoom( res.data.total_room );
+			setBedRoom( res.data.bed_room );
+			setBathRoom( res.data.bath_room );
+			setBalcony( res.data.balcony );
+			setNote( res.data.note );
+			setIsAvailable( res.data.isAvailable );
+			setIsFeatured( res.data.isFeatured );
+			setIsActive( res.data.isActive );
 		 
 		  }).catch((error) => {
 			console.log(error);
@@ -90,19 +116,19 @@ const PropertyEdit = () => {
 			method: 'post',
 			url: api,
 			data: {
-				name: name,
-				code: code,
-				type: type,
-				address: address,
-				city: city,
-				state: state,
-				zip: zip,
+                type: type,
+                name: name,
+                floor: floor,
+                rent: rent,
+                unit_type: unit_type,
+                size: size,
+                total_room: total_room,
+                bed_room: bed_room,
+				bath_room: bath_room,
+				balcony: balcony,
 				note: note,
-				rent_amount: rent_amount,
-				size: size,
-				link: link,
-				has_parking: has_parking,
-				has_security_gard: has_security_gard,
+				isAvailable: isAvailable,
+				isFeatured: isFeatured,
 				isActive: isActive,
 			},
 			headers: {"Authorization" : `Bearer ${token}`}
@@ -129,172 +155,100 @@ const PropertyEdit = () => {
   return (
     <DashboardLayout>
 		<PropertyTopBar/>
-      <h2>Property ID = {id}</h2>
-	  { console.log("Name "+ name)}
+      <h2>Property Unit ID = {id}</h2>
 
-	  <form
-			noValidate
-			onSubmit={handleSubmit}
-			>
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="name"
-					name="name"
-					type="text"
-					label="Name"
-					value={name}
-					onChange={e => setName(e.target.value)}
-				/>
+	  <form noValidate onSubmit={handleSubmit}>
+		
+					<div className="form-outline">
+						<label className="form-label">Type<sup>*</sup></label>
+						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
+							{types.map(option => (
+							<option key={option.value} value={option.value}>
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Name</label>
+						<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Floor<sup>*</sup></label>
+						<input type="number" name="floor" className="form-control" value={floor} onChange={e => setFloor(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Rent Amount<sup>*</sup></label>
+						<input type="number" name="rent" className="form-control" value={rent} onChange={e => setRent(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Unit Type<sup>*</sup></label>
+						<select  name="unit_type"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
+							{unitTypes.map(option => (
+							<option key={option.value} value={option.value}>
+								{option.text}
+							</option>
+							))}
+						</select>
 
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="code"
-					name="code"
-					label="code"
-					value={code}
-					onChange={e => setCode(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="type"
-					name="type"
-					label="type"
-					type="text"
-					value={type}
-					onChange={e => setType(e.target.value)}
-				/>
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="address"
-					name="address"
-					label="address"
-					type="text"
-					value={address}
-					onChange={e => setAddress(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="city"
-					name="city"
-					label="city"
-					type="text"
-					value={city}
-					onChange={e => setCity(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="state"
-					name="state"
-					label="state"
-					type="text"
-					value={state}
-					onChange={e => setState(e.target.value)}
-				/>
-
-				 <TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="zip"
-					name="zip"
-					label="zip"
-					type="text"
-					value={zip}
-					onChange={e => setZip(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="note"
-					name="note"
-					label="note"
-					type="text"
-					value={note}
-					onChange={e => setNote(e.target.value)}
-				/>
-
-
-				
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="rent_amount"
-					name="rent_amount"
-					label="rent_amount"
-					type="number"
-					value={rent_amount}
-					onChange={e => setRentAmount(e.target.value)}
-				/>
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="size"
-					name="size"
-					label="size"
-					type="number"
-					value={size}
-					onChange={e => setSize(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="link"
-					name="link"
-					label="link"
-					type="text"
-					value={link}
-					onChange={e => setLink(e.target.value)}
-				/> 
-
-
-				<Button
-					type="submit"
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Size<sup>*</sup></label>
+						<input type="number" name="size" className="form-control" value={size} onChange={e => setSize(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Total Room<sup>*</sup></label>
+						<input type="number" name="total_room" className="form-control" value={total_room} onChange={e => setTotalRoom(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Bed Room<sup>*</sup></label>
+						<input type="number" name="bed_room" className="form-control" value={bed_room} onChange={e => setBedRoom(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Bath Room<sup>*</sup></label>
+						<input type="number" name="bath_room" className="form-control"  value={bath_room} onChange={e => setBathRoom(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">balcony<sup>*</sup></label>
+						<input type="number" name="balcony" className="form-control"  value={balcony}  onChange={e => setBalcony(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Note</label>
+						<input type="text" name="note" className="form-control" value={note}  onChange={e => setNote(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Is Available</label>
+						<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
+							{isAvailables.map(option => (
+							<option key={isAvailables.value} value={option.value}>
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Is Featured</label>
+						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
+							{isFeatureds.map(option => (
+							<option key={option.value} value={option.value} >
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Is Active</label>
+						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
+							{isActives.map(option => (
+							<option key={option.value} value={option.value}>
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
 					
-					variant="contained"
-					color="primary"
-					>
-					Add Property
-				</Button>
-            </form>
-
+					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
+				</form>
     </DashboardLayout>
   )
 }
