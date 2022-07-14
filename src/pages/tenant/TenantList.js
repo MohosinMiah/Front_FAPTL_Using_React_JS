@@ -6,7 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
-import './PropertyList.css';
+import './TenantList.css';
 
     
   const TextField = styled.input`
@@ -60,7 +60,7 @@ import './PropertyList.css';
   	const [filterText, setFilterText] = React.useState('');
   	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 
-    const [properties, setProperties] = useState([]);
+    const [tenants, setTenants] = useState([]);
 
 	const editPropertyHandler = (event) => {
 		event.preventDefault();
@@ -73,46 +73,47 @@ import './PropertyList.css';
         selector: row => row.name,
     },
 	{
-		name: 'Code',
-		selector: row =>  row.code,
+		name: 'phone',
+		selector: row =>  row.phone,
+	},
+	{
+		name: 'Id Number',
+		selector: row =>  row.id_number,
 		
 	},
 	{
-		name: 'Type',
-		selector: row =>  row.type,
+		name: 'Gender',
+		selector: row =>  row.gender,
 	},
+	
 	{
-		name: 'Reant Amount',
-		selector: row =>  row.rent_amount,
-	},
-	{
-		name: 'State',
-		selector: row => row.state,
+		name: 'City',
+		selector: row => row.city,
 		
     },
 	{
-		name: 'IsActive',
-		selector: row => row.isActive,
+		name: 'Country',
+		selector: row => row.country,
 		
     },
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/property/" + row.id} >Edit</Link>  || <Link to={"/property/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/tenant/" + row.id} >Edit</Link>  || <Link to={"/tenant/delete/" + row.id} >Delete</Link></div>
 		}
 	  }
 ];
 
-const data = properties;
+const data = tenants;
     useEffect(() => {
-        fetchProperty();
+        fetchTenant();
       }, []);
-      const fetchProperty = () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+      const fetchTenant = () => {
+        const api = 'https://faptl.americanbestit.com/api/v1/tenants'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
-          setProperties(res.data);
+          setTenants(res.data);
           console.log(res.data);
        
         }).catch((error) => {
@@ -140,10 +141,10 @@ const data = properties;
   
   	return (
       <DashboardLayout>
-		<div className="property-list-section">
+		<div className="tenant-list-section">
   		<div className="container">
 		  <DataTable
-  			title="Property List"
+  			title="Tenant List"
   			columns={columns}
   			data={filteredItems}
   			pagination
