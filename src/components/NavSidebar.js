@@ -89,7 +89,7 @@ return (
 					},
 					{
 					title: "Add New",
-					itemId: "/propertyunit/add",
+					itemId: "/propertyunit/:id/add",
 					elemBefore: () => <Icon name="coffee" />
 					}
 				]

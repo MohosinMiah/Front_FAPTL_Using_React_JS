@@ -50,7 +50,7 @@ return (
 		<Route path="/propertyunit/list">
 			<PropertyUnitList />
 		</Route>
-		<Route path="/propertyunit/add">
+		<Route path="/propertyunit/:id/add">
 			<PropertyUnitAdd />
 		</Route>
 

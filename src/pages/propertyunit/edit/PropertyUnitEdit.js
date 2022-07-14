@@ -128,8 +128,7 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
-			<PropertyTopBar/>
-
+		<PropertyTopBar/>
       <h2>Property ID = {id}</h2>
 	  { console.log("Name "+ name)}
 

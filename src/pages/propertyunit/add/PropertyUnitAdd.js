@@ -1,28 +1,31 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useState } from 'react';
+import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import PropertyTopBar from '../../property/PropertyTopBar';
 import './PropertyUnitAdd';
+
 const PropertyAdd =  () => {
+	let { id } = useParams();
 
 
-	const [ name, setName ] = useState('');
-	const [ code, setCode ] = useState('');
+	const [ property_id, setPropertyID ] = useState( id );
 	const [ type, setType ] = useState('');
-	const [ address, setAddress ] = useState('');
-	const [ city, setCity ] = useState('');
-	const [ state, setState ] = useState('');
+	const [ name, setName ] = useState('');
+	const [ floor, setFloor ] = useState('');
+	const [ rent, setRent ] = useState('');
+	const [ unit_type, setUnitType ] = useState('');
 	const [ zip, setZip ] = useState('');
-	const [ note, setNote ] = useState('');
-	const [ rent_amount, setRentAmount ] = useState('');
 	const [ size, setSize ] = useState('');
-	const [ link, setLink ] = useState('');
-	const [ has_parking, setHasParking ] = useState( 0 );
-	const [ has_security_gard, setSecurityGard ] = useState( 0 );
-	const [ isActive, setActive ] = useState( 1 );
+	const [ total_room, setTotalRoom ] = useState('');
+	const [ bed_room, setBedRoom ] = useState( '' );
+	const [ bath_room, setBathRoom ] = useState( '' );
+	const [ balcony, setBalcony ] = useState( '' );
+	const [ note, setNote ] = useState( '' );
+	const [ isAvailable, setIsAvailable ] = useState( '' );
+	const [ isFeatured, setIsFeatured ] = useState( '' );
+	const [ isActive, setIsActive ] = useState( '' );
 
 
 
@@ -31,7 +34,7 @@ const PropertyAdd =  () => {
 		e.preventDefault();
 
 		try {
-			 addProperty();
+			addPropertyUnit();
 
 		} catch(error) {
 			
@@ -40,34 +43,35 @@ const PropertyAdd =  () => {
 	  }
     
 
-      const addProperty = () => {
+      const addPropertyUnit = () => {
 
-        const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+        const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',
             url: api,
             data: {
-                name: name,
-                code: code,
+                property_id: property_id,
                 type: type,
-                address: address,
-                city: city,
-                state: state,
-                zip: zip,
-                note: note,
-                rent_amount: rent_amount,
-				size: size,
-				link: link,
-				has_parking: has_parking,
-				has_security_gard: has_security_gard,
+                name: name,
+                floor: floor,
+                rent: rent,
+                unit_type: unit_type,
+                size: size,
+                total_room: total_room,
+                bed_room: bed_room,
+				bath_room: bath_room,
+				balcony: balcony,
+				note: note,
+				isAvailable: isAvailable,
+				isFeatured: isFeatured,
 				isActive: isActive,
             },
             headers: {"Authorization" : `Bearer ${token}`}
           })
         .then(res => {
           console.log(res.data);
-		  swal("Success", "New Property Updated", "success", {
+		  swal("Success", "New Property Unit Added", "success", {
 			buttons: false,
 			timer: 2000,
 			})
@@ -85,160 +89,79 @@ const PropertyAdd =  () => {
 
   return (
     <DashboardLayout>
-	<PropertyTopBar/>
-      <h2>Property Unit  Add</h2>
-			<form
-			noValidate
-			onSubmit={handleSubmit}
-			>
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="name"
-					name="name"
-					type="text"
-					label="Property Name"
-					onChange={e => setName(e.target.value)}
-				/>
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="code"
-					name="code"
-					label="code"
-					onChange={e => setCode(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="type"
-					name="type"
-					label="type"
-					type="text"
-					onChange={e => setType(e.target.value)}
-				/>
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="address"
-					name="address"
-					label="address"
-					type="text"
-					onChange={e => setAddress(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="city"
-					name="city"
-					label="city"
-					type="text"
-					onChange={e => setCity(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="state"
-					name="state"
-					label="state"
-					type="text"
-					onChange={e => setState(e.target.value)}
-				/>
-
-					<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="zip"
-					name="zip"
-					label="zip"
-					type="text"
-					onChange={e => setZip(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="note"
-					name="note"
-					label="note"
-					type="text"
-					onChange={e => setNote(e.target.value)}
-				/>
-
-
-				
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="rent_amount"
-					name="rent_amount"
-					label="rent_amount"
-					type="number"
-					onChange={e => setRentAmount(e.target.value)}
-				/>
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="size"
-					name="size"
-					label="size"
-					type="number"
-					onChange={e => setSize(e.target.value)}
-				/>
-
-
-				<TextField
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					id="link"
-					name="link"
-					label="link"
-					type="text"
-					onChange={e => setLink(e.target.value)}
-				/> 
-
-
-				<Button
-					type="submit"
+		<PropertyTopBar/>
+		<div className="property-add">
+			<div className="container">
+				<h2 className="large-heading mb-5">Add Property Unit Under Property ID =   {property_id} </h2>
+				<form noValidate onSubmit={handleSubmit}>
+					<div className="form-outline">
+						<label className="form-label">Property ID <sup>*</sup></label>
+						<input type="text" name="property_id" className="form-control" value={property_id}  readonly />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Type<sup>*</sup></label>
+						<input type="text" name="type" className="form-control" onChange={e => setType(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Name</label>
+						<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Floor<sup>*</sup></label>
+						<input type="text" name="floor" className="form-control" onChange={e => setFloor(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Rent Amount<sup>*</sup></label>
+						<input type="number" name="rent" className="form-control" onChange={e => setRent(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Unit Type<sup>*</sup></label>
+						<input type="text" name="unit_type" className="form-control" onChange={e => setUnitType(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Size<sup>*</sup></label>
+						<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Total Room<sup>*</sup></label>
+						<input type="number" name="total_room" className="form-control" onChange={e => setTotalRoom(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Bed Room<sup>*</sup></label>
+						<input type="number" name="bed_room" className="form-control" onChange={e => setBedRoom(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Bath Room<sup>*</sup></label>
+						<input type="number" name="bath_room" className="form-control" onChange={e => setBathRoom(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">balcony<sup>*</sup></label>
+						<input type="number" name="balcony" className="form-control" onChange={e => setBalcony(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Note</label>
+						<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Is Available</label>
+						<input type="text" name="isAvailable" className="form-control" onChange={e => setIsAvailable(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Is Featured</label>
+						<input type="text" name="isFeatured" className="form-control" onChange={e => setIsFeatured(e.target.value)} />
+					</div>
+					<div className="form-outline">
+						<label className="form-label">Is Active</label>
+						<select class="form-control"name="isActive" className="form-control" onChange={e => setIsActive(e.target.value)} >
+							<option value="1">Yes</option>
+							<option value="0">No</option>
+						</select>
+					</div>
 					
-					variant="contained"
-					color="primary"
-					>
-					Add Property
-				</Button>
-			</form>
-		
+					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
+				</form>
+			</div>
+		</div>
     </DashboardLayout>
   )
 }
