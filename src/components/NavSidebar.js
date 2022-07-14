@@ -89,11 +89,31 @@ return (
 					},
 					{
 					title: "Add New",
-					itemId: "/propertyunit/:id/add",
+					itemId: "/propertyunit/add",
 					elemBefore: () => <Icon name="coffee" />
 					}
 				]
-				},
+			},
+
+
+			{
+				title: "Tenant Settings",
+				itemId: "/tenant",
+				elemBefore: () => <Icon name="user" />,
+				subNav: [
+					{
+					title: "Tenant List",
+					itemId: "/tenant/list",
+					// Optional
+					elemBefore: () => <Icon name="cloud-snow" />
+					},
+					{
+					title: "Add New",
+					itemId: "/tenant/add",
+					elemBefore: () => <Icon name="coffee" />
+					}
+				]
+			},
 
 				
 			{
