@@ -104,7 +104,7 @@ const TenantAdd = () => {
 		})
 			.then(res => {
 				console.log(res.data);
-				swal("Success", "New Property Updated", "success", {
+				swal("Success", "New Tenant Created", "success", {
 					buttons: false,
 					timer: 2000,
 				})
@@ -258,7 +258,7 @@ const TenantAdd = () => {
 
 
 
-						<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
+						<button type="submit" className="form-btn btn btn-primary btn-block">Add Tenant</button>
 					</form>
 				</div>
 			</div>
