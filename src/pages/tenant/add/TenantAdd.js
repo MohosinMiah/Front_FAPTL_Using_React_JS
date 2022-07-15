@@ -104,7 +104,7 @@ const TenantAdd = () => {
 		})
 			.then(res => {
 				console.log(res.data);
-				swal("Success", "New Tenant Created", "success", {
+				swal("Success", "New Tenant Created successfully", "success", {
 					buttons: false,
 					timer: 2000,
 				})
