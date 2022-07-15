@@ -110,8 +110,8 @@ const TenantEdit = () => {
 		setBusinessAddress( res.data.business_address );
 
 		setEmergencyContactName( res.data.emergency_contact_name );
-		emergency_contact_phone( res.data.emergency_contact_phone );
-		emergency_contact_email( res.data.emergency_contact_email );
+		setEmergencyContactPhone( res.data.emergency_contact_phone );
+		setEmergencyContactEmail( res.data.emergency_contact_email );
 		
 		}).catch((error) => {
 		console.log(error);
