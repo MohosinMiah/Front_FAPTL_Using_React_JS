@@ -4,19 +4,21 @@ import { useEffect } from "react";
 import { Redirect, useParams } from "react-router-dom";
 
 import swal from 'sweetalert';
-const PropertyDelete = () => {
+const TenantDelete = () => {
 
 	let { id } = useParams();
+  
     useEffect(() => {
-        deleteProperty();
+        deleteTenant();
       }, []);
-      const deleteProperty = async () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/properties/'+id; 
+
+      const deleteTenant = async () => {
+        const api = 'https://faptl.americanbestit.com/api/v1/tenants/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
           console.log(res.data);
-          swal("Success", "Property Deleted", "success", {
+          swal("Success", "Tenant Deleted", "success", {
 			buttons: false,
 			timer: 2000,
 			})
@@ -29,16 +31,16 @@ const PropertyDelete = () => {
 
     function handleBackNav()  {
         // history.back();
-        window.location.href = "/property/list";
+        window.location.href = "/tenant/list";
 
     }
 
   return(
 
         <div>
-            { <Redirect to={"/property/list"} />}
+            { <Redirect to={"/tenant/list"} />}
         </div>
   )
 }
 
-export default PropertyDelete;
+export default TenantDelete;

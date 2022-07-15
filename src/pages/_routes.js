@@ -14,6 +14,7 @@ import PropertyUnitList from "./propertyunit/PropertyUnitList";
 import SettingsPage from "./settings";
 import TenantAdd from './tenant/add/TenantAdd';
 import TenantEdit from "./tenant/edit/TenantEdit";
+import TenantDelete from "./tenant/TenantDelete";
 import TenantList from "./tenant/TenantList";
 const Routes = () => {
 return (
@@ -82,7 +83,7 @@ return (
 
 				
 		<Route path="/tenant/delete/:id">
-			<PropertyDelete />
+			<TenantDelete />
 		</Route>
 
 
