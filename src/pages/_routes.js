@@ -12,6 +12,7 @@ import PropertyUnitAdd from "./propertyunit/add/PropertyUnitAdd";
 import PropertyUnitEdit from "./propertyunit/edit/PropertyUnitEdit";
 import PropertyUnitList from "./propertyunit/PropertyUnitList";
 import SettingsPage from "./settings";
+import TenantAdd from './tenant/add/TenantAdd';
 import TenantList from "./tenant/TenantList";
 const Routes = () => {
 return (
@@ -75,7 +76,7 @@ return (
 			<TenantList />
 		</Route>
 		<Route path="/tenant/add">
-			<PropertyUnitAdd />
+			<TenantAdd />
 		</Route>
 
 				

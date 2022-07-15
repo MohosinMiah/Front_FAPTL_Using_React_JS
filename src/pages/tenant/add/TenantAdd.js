@@ -1,28 +1,55 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import './PropertyAdd.css';
-const PropertyAdd = () => {
+import './TenantAdd.css';
+const TenantAdd = () => {
+
+	// Selected Option Dropdown Types
+	const types = [
+		{value: '', text: '--Select Type--'},
+		{value: 'Residential', text: 'Residential'},
+		{value: 'Business', text: 'Business'},
+		];
+
+	const genders = [
+		{value: '', text: '--Select Gender--'},
+		{value: 'Male', text: 'Male'},
+		{value: 'Female', text: 'Female'},
+		{value: 'Other', text: 'Other'},
+		];
 
 
+	const marits = [
+		{value: '', text: '--Select Marid Status--'},
+		{value: 'Marid', text: 'Marid'},
+		{value: 'UnMarid', text: 'UnMarid'},
+		{value: 'Other', text: 'Other'},
+		];
+	
 	const [name, setName] = useState('');
-	const [code, setCode] = useState('');
 	const [type, setType] = useState('');
-	const [address, setAddress] = useState('');
+	const [date_of_birth, setDateOfBirth] = useState('');
+	const [id_number, setIdNumber] = useState('');
+	const [passport_number, setPassportNumber] = useState('');
+	const [phone, setPhone] = useState('');
+	const [tenant_number, setTenantNumber] = useState('');
+	const [gender, setGender] = useState('');
+	const [marit_status, setMaritStaus] = useState('');
+	const [email, setEmail] = useState('');
+
 	const [city, setCity] = useState('');
 	const [state, setState] = useState('');
-	const [zip, setZip] = useState('');
-	const [note, setNote] = useState('');
-	const [rent_amount, setRentAmount] = useState('');
-	const [size, setSize] = useState('');
-	const [link, setLink] = useState('');
-	const [has_parking, setHasParking] = useState(0);
-	const [has_security_gard, setSecurityGard] = useState(0);
-	const [isActive, setActive] = useState(1);
+	const [country, setCountry] = useState('');
+	const [postal_code, setPostalCode] = useState('');
 
+	const [business_name, setBusinessName] = useState('');
+	const [registration_number, setRegistrationNumber] = useState('');
+	const [business_address, setBusinessAddress] = useState('');
+
+	const [emergency_contact_name, setEmergencyContactName] = useState('');
+	const [emergency_contact_phone, setEmergencyContactPhone] = useState('');
+	const [emergency_contact_email, setEmergencyContactEmail] = useState('');
 
 
 	const handleSubmit = async (e) => {
@@ -30,7 +57,7 @@ const PropertyAdd = () => {
 		e.preventDefault();
 
 		try {
-			addProperty();
+			addTenant();
 
 		} catch (error) {
 
@@ -39,28 +66,39 @@ const PropertyAdd = () => {
 	}
 
 
-	const addProperty = () => {
+	const addTenant = () => {
 
-		const api = 'https://faptl.americanbestit.com/api/v1/properties';
+		const api = 'https://faptl.americanbestit.com/api/v1/tenants';
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
 			url: api,
 			data: {
 				name: name,
-				code: code,
 				type: type,
-				address: address,
+				date_of_birth: date_of_birth,
+				id_number: id_number,
+				passport_number: passport_number,
+				phone: phone,
+				tenant_number: tenant_number,
+				gender: gender,
+				marit_status: marit_status,
+				email: email,
+
 				city: city,
 				state: state,
-				zip: zip,
-				note: note,
-				rent_amount: rent_amount,
-				size: size,
-				link: link,
-				has_parking: has_parking,
-				has_security_gard: has_security_gard,
-				isActive: isActive,
+				country: country,
+				postal_code: postal_code,
+
+				business_name: business_name,
+				registration_number: registration_number,
+				business_address: business_address,
+
+				emergency_contact_name: emergency_contact_name,
+				emergency_contact_phone: emergency_contact_phone,
+				emergency_contact_email: emergency_contact_email,
+
+
 			},
 			headers: { "Authorization": `Bearer ${token}` }
 		})
@@ -87,52 +125,139 @@ const PropertyAdd = () => {
 
 			<div className="property-add">
 				<div className="container">
-					<h2 className="large-heading mb-5">Property Add</h2>
+					<h2 className="large-heading mb-5">Tenant Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
 						<div className="form-outline">
-							<label className="form-label">Property Name<sup>*</sup></label>
+							<label className="form-label">Tenant Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Code<sup>*</sup></label>
-							<input type="text" name="code" className="form-control" onChange={e => setCode(e.target.value)} />
-						</div>
+
 						<div className="form-outline">
 							<label className="form-label">Type<sup>*</sup></label>
-							<input type="text" name="type" className="form-control" onChange={e => setType(e.target.value)} />
+							<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
+								{types.map(option => (
+								<option key={option.value} value={option.value}>
+									{option.text}
+								</option>
+								))}
+							</select>
 						</div>
+
 						<div className="form-outline">
-							<label className="form-label">Address</label>
-							<input type="text" name="address" className="form-control" onChange={e => setAddress(e.target.value)} />
+							<label className="form-label">Date Of Birth<sup>*</sup></label>
+							<input type="date" name="date_of_birth" className="form-control" onChange={e => setDateOfBirth(e.target.value)} />
 						</div>
+						
 						<div className="form-outline">
-							<label className="form-label">City<sup>*</sup></label>
+							<label className="form-label">ID Number<sup>*</sup></label>
+							<input type="text" name="id_number" className="form-control" onChange={e => setIdNumber(e.target.value)} />
+						</div>
+						
+						
+						<div className="form-outline">
+							<label className="form-label">passport_number</label>
+							<input type="text" name="passport_number" className="form-control" onChange={e => setPassportNumber(e.target.value)} />
+						</div>
+						
+						<div className="form-outline">
+							<label className="form-label">Phone<sup>*</sup></label>
+							<input type="text" name="phone" className="form-control" onChange={e => setPhone(e.target.value)} />
+						</div>
+
+												
+						<div className="form-outline">
+							<label className="form-label">Tenant Number<sup>*</sup></label>
+							<input type="number" name="tenant_number" className="form-control" onChange={e => setTenantNumber(e.target.value)} />
+						</div>
+
+						<div className="form-outline">
+							<label className="form-label">Gender<sup>*</sup></label>
+							<select  name="type" className="form-control"  value={gender} onChange={e => setGender(e.target.value)}>
+								{genders.map(option => (
+								<option key={option.value} value={option.value}>
+									{option.text}
+								</option>
+								))}
+							</select>
+						</div>
+
+						<div className="form-outline">
+							<label className="form-label">Marid Status</label>
+							<select  name="type" className="form-control"  value={marit_status} onChange={e => setMaritStaus(e.target.value)}>
+								{marits.map(option => (
+								<option key={option.value} value={option.value}>
+									{option.text}
+								</option>
+								))}
+							</select>
+						</div>
+
+						<div className="form-outline">
+							<label className="form-label">Email</label>
+							<input type="email" name="email" className="form-control" onChange={e => setEmail(e.target.value)} />
+						</div>
+
+
+
+						<div className="form-outline">
+							<label className="form-label">City</label>
 							<input type="text" name="city" className="form-control" onChange={e => setCity(e.target.value)} />
 						</div>
+						
 						<div className="form-outline">
-							<label className="form-label">State<sup>*</sup></label>
+							<label className="form-label">State</label>
 							<input type="text" name="state" className="form-control" onChange={e => setState(e.target.value)} />
 						</div>
+						
 						<div className="form-outline">
-							<label className="form-label">Zip<sup>*</sup></label>
-							<input type="number" name="zip" className="form-control" onChange={e => setZip(e.target.value)} />
-						</div>
+							<label className="form-label">Country</label>
+							<input type="text" name="country" className="form-control" onChange={e => setCountry(e.target.value)} />
+						</div>	
+
 						<div className="form-outline">
-							<label className="form-label">Note<sup>*</sup></label>
-							<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
+							<label className="form-label">Postal Code</label>
+							<input type="text" name="postal_code" className="form-control" onChange={e => setPostalCode(e.target.value)} />
 						</div>
+
+						
+
+
 						<div className="form-outline">
-							<label className="form-label">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control" onChange={e => setRentAmount(e.target.value)} />
+							<label className="form-label">Business Name</label>
+							<input type="text" name="business_name" className="form-control" onChange={e => setBusinessName(e.target.value)} />
 						</div>
+						
 						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
-							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
-						</div>
+							<label className="form-label">Registration Number</label>
+							<input type="text" name="registration_number" className="form-control" onChange={e => setRegistrationNumber(e.target.value)} />
+						</div>	
+
 						<div className="form-outline">
-							<label className="form-label">Link<sup>*</sup></label>
-							<input type="text" name="link" className="form-control" onChange={e => setLink(e.target.value)} />
+							<label className="form-label">Business Address</label>
+							<input type="text" name="business_address" className="form-control" onChange={e => setBusinessAddress(e.target.value)} />
 						</div>
+
+
+
+
+						<div className="form-outline">
+							<label className="form-label">Emergency Contact Name</label>
+							<input type="text" name="emergency_contact_name" className="form-control" onChange={e => setEmergencyContactName(e.target.value)} />
+						</div>
+						
+						<div className="form-outline">
+							<label className="form-label">Emergency Contact Phone</label>
+							<input type="text" name="emergency_contact_phone" className="form-control" onChange={e => setEmergencyContactPhone(e.target.value)} />
+						</div>	
+
+						<div className="form-outline">
+							<label className="form-label">Emergency Contact Email</label>
+							<input type="text" name="emergency_contact_email" className="form-control" onChange={e => setEmergencyContactEmail(e.target.value)} />
+						</div>
+
+
+
+
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
 					</form>
 				</div>
@@ -142,4 +267,4 @@ const PropertyAdd = () => {
 	)
 }
 
-export default PropertyAdd;
+export default TenantAdd;
