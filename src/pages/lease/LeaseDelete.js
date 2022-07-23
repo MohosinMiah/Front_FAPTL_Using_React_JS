@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Redirect, useParams } from "react-router-dom";
 
 import swal from 'sweetalert';
-const PropertyDelete = () => {
+const LeaseDelete = () => {
 
 	let { id } = useParams();
     useEffect(() => {

@@ -6,7 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
-import './PropertyList.css';
+import './LeaseList.css';
 
     
   const TextField = styled.input`
@@ -43,7 +43,7 @@ import './PropertyList.css';
   		<TextField
   			id="search"
   			type="text"
-  			placeholder="Filter By Name"
+  			placeholder="Filter By Type"
   			aria-label="Search Input"
   			value={filterText}
   			onChange={onFilter}
@@ -60,7 +60,7 @@ import './PropertyList.css';
   	const [filterText, setFilterText] = React.useState('');
   	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 
-    const [properties, setProperties] = useState([]);
+    const [leases, setleases] = useState([]);
 
 	const editPropertyHandler = (event) => {
 		event.preventDefault();
@@ -69,27 +69,38 @@ import './PropertyList.css';
 
   const columns = [
     {
-        name: 'Name',
-        selector: row => row.name,
+        name: 'ID',
+        selector: row => row.id,
     },
 	{
-		name: 'Code',
-		selector: row =>  row.code,
+		name: 'Property Name',
+        selector: row => row.property.name,
 		
 	},
+
 	{
-		name: 'Type',
-		selector: row =>  row.type,
+		name: 'Utit Name',
+        selector: row => row.property_units.name,
+	},	
+	{
+		name: 'Lease Type',
+        selector: row => row.lease_type,
 	},
+
 	{
-		name: 'Reant Amount',
-		selector: row =>  row.rent_amount,
-	},
-	{
-		name: 'State',
-		selector: row => row.state,
+		name: 'Lease Start',
+        selector: row => row.lease_start,
 		
     },
+	{
+		name: 'Lease End',
+        selector: row => row.lease_end,
+    },
+	{
+		name: 'Rent Amount',
+        selector: row => row.rent_amount,
+    },
+
 	{
 		name: 'IsActive',
 		selector: row => row.isActive,
@@ -103,16 +114,16 @@ import './PropertyList.css';
 	  }
 ];
 
-const data = properties;
+const data = leases;
     useEffect(() => {
-        fetchProperty();
+        fetchLease();
       }, []);
-      const fetchProperty = () => {
-        const api = 'http://127.0.0.1:8000/api/v1/properties'; 
+      const fetchLease = () => {
+        const api = 'http://127.0.0.1:8000/api/v1/leases'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
-          setProperties(res.data);
+          setleases(res.data);
           console.log(res.data);
        
         }).catch((error) => {
@@ -122,7 +133,7 @@ const data = properties;
     }
     
   	const filteredItems = data.filter(
-  		item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
+  		item => item.lease_type && item.lease_type.toLowerCase().includes(filterText.toLowerCase()),
   	);
   
   	const subHeaderComponentMemo = React.useMemo(() => {
@@ -143,7 +154,7 @@ const data = properties;
 		<div className="property-list-section">
   		<div className="container">
 		  <DataTable
-  			title="Property List"
+  			title="Lease List"
   			columns={columns}
   			data={filteredItems}
   			pagination

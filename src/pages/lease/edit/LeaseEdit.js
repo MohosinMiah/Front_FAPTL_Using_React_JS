@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import PropertyTopBar from '../PropertyTopBar';
-import './PropertyEdit';
+import './LeaseEdit';
 
-const PropertyEdit = () => {
+const LeaseEdit = () => {
 
 
     const [property,setProperty] = useState([]);
@@ -234,4 +234,4 @@ const PropertyEdit = () => {
   )
 }
 
-export default PropertyEdit;
+export default LeaseEdit;
