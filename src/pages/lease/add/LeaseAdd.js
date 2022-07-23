@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import './PropertyAdd.css';
-const PropertyAdd = () => {
+import './LeaseAdd.css';
+const LeaseAdd = () => {
 
 
 	const [name, setName] = useState('');
@@ -85,7 +85,7 @@ const PropertyAdd = () => {
 
 			<div className="property-add">
 				<div className="container">
-					<h2 className="large-heading mb-5">Property Add</h2>
+					<h2 className="large-heading mb-5">Lease Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
 						<div className="form-outline">
 							<label className="form-label">Property Name<sup>*</sup></label>
@@ -140,4 +140,4 @@ const PropertyAdd = () => {
 	)
 }
 
-export default PropertyAdd;
+export default LeaseAdd;

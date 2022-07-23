@@ -1,0 +1,18 @@
+.property-add {padding-top: 100px;padding-bottom: 100px;}
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+}
+
+.MuiFormControl-root {
+    flex-basis: 32%;
+    max-width: 33.334%;
+    background: #ffffff;
+}
+
+button.MuiButton-root {
+    min-width: 200px;
+    min-height: 54px;
+}

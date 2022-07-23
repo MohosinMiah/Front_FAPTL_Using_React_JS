@@ -115,7 +115,26 @@ return (
 				]
 			},
 
-				
+			{
+				title: "Lease Settings",
+				itemId: "/lease",
+				elemBefore: () => <Icon name="user" />,
+				subNav: [
+					{
+					title: "Lease List",
+					itemId: "/lease/list",
+					// Optional
+					elemBefore: () => <Icon name="cloud-snow" />
+					},
+					{
+					title: "Add New",
+					itemId: "/lease/add",
+					elemBefore: () => <Icon name="coffee" />
+					}
+				]
+			},
+
+
 			{
 			title: "Authentication",
 			itemId: "/auth",

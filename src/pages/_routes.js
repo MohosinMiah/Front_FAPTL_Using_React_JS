@@ -16,6 +16,7 @@ import TenantAdd from './tenant/add/TenantAdd';
 import TenantEdit from "./tenant/edit/TenantEdit";
 import TenantDelete from "./tenant/TenantDelete";
 import TenantList from "./tenant/TenantList";
+import LeaseAdd from './lease/add/LeaseAdd';
 const Routes = () => {
 return (
 	<BrowserRouter>
@@ -92,6 +93,28 @@ return (
 		</Route>
 		
 		{/* Property Tenant End  */}
+
+
+		{/* Lease  Start   */}
+
+		<Route path="/lease/list">
+			<TenantList />
+		</Route>
+		<Route path="/lease/add">
+			<LeaseAdd />
+		</Route>
+
+				
+		<Route path="/lease/delete/:id">
+			<TenantDelete />
+		</Route>
+
+
+		<Route path="/lease/:id">
+			<TenantEdit />
+		</Route>
+		
+		{/* Lease End  */}
 
 
 

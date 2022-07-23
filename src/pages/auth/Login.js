@@ -1,12 +1,3 @@
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Container } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from '../../components/Layout';
@@ -19,7 +10,7 @@ const Login = () => {
 
 	async function loginUser(credentials) {
 		console.log(process.env.PRODUCTION_DEV_URL);
-		return fetch("https://faptl.americanbestit.com/api/v1/login", {
+		return fetch("http://127.0.0.1:8000/api/v1/login", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
