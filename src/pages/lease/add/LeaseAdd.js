@@ -17,7 +17,8 @@ const [properties, setProperties] = useState('');
 		{value: 'Business', text: 'Business'},
 	  ];
 
-	  useEffect(() => {
+
+	useEffect(() => {
 		fetchProperties();
 	}, []);
 
@@ -37,20 +38,15 @@ console.log(res.data);
 	}
 	  
 
-	const [name, setName] = useState('');
-	const [code, setCode] = useState('');
-	const [type, setType] = useState('');
-	const [address, setAddress] = useState('');
-	const [city, setCity] = useState('');
-	const [state, setState] = useState('');
-	const [zip, setZip] = useState('');
-	const [note, setNote] = useState('');
-	const [rent_amount, setRentAmount] = useState('');
-	const [size, setSize] = useState('');
-	const [link, setLink] = useState('');
-	const [has_parking, setHasParking] = useState(0);
-	const [has_security_gard, setSecurityGard] = useState(0);
-	const [isActive, setActive] = useState(1);
+	const [property_id, setPropertyID]         = useState( '' );
+	const [unit_id, setUnitID]                 = useState( '' );
+	const [lease_type, setLeaseType]           = useState( '' );
+	const [rent_amount, setRentAmount]         = useState( '' );
+	const [lease_start, setLeaseStart]         = useState( '' );
+	const [lease_end, setLeaseEnd]             = useState( '' );
+	const [deposit_amount, setDepositAmount]   = useState('');
+	const [late_fee_amount, setLateFeeAmount]  = useState('');
+	const [isActive, setActive]                = useState(1);
 
 
 
@@ -76,19 +72,14 @@ console.log(res.data);
 			method: 'post',
 			url: api,
 			data: {
-				name: name,
-				code: code,
-				type: type,
-				address: address,
-				city: city,
-				state: state,
-				zip: zip,
-				note: note,
+				property_id: property_id,
+				unit_id: unit_id,
+				lease_type: lease_type,
 				rent_amount: rent_amount,
-				size: size,
-				link: link,
-				has_parking: has_parking,
-				has_security_gard: has_security_gard,
+				lease_start: lease_start,
+				lease_end: lease_end,
+				deposit_amount: deposit_amount,
+				late_fee_amount: late_fee_amount,
 				isActive: isActive,
 			},
 			headers: { "Authorization": `Bearer ${token}` }
@@ -123,7 +114,7 @@ console.log(res.data);
 						
 					<div className="form-outline">
 						<label className="form-label">Type<sup>*</sup></label>
-						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
+						<select  name="property_id" className="form-control"  value={property_id} onChange={e => setPropertyID(e.target.value)}>
 							{ properties != '' && properties.map(option => (
 							<option key={option.id} value={option.name}>
 								{option.name}
