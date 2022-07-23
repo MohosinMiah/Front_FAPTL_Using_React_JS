@@ -1,10 +1,41 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import './LeaseAdd.css';
 const LeaseAdd = () => {
 
+
+const [properties, setProperties] = useState('');
+
+
+
+	// Selected Option Dropdown Types
+	const types = [
+		{value: '', text: '--Select Type--'},
+		{value: 'Residential', text: 'Residential'},
+		{value: 'Business', text: 'Business'},
+	  ];
+
+	  useEffect(() => {
+		fetchProperties();
+	}, []);
+
+	const fetchProperties = async () => {
+		const api = 'http://127.0.0.1:8000/api/v1/properties'; 
+		const token = localStorage.getItem('access_token');
+		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		.then(res => {
+console.log(res.data);
+			setProperties( res.data );	
+
+		}).catch((error) => {
+
+		console.log(error);
+	});
+
+	}
+	  
 
 	const [name, setName] = useState('');
 	const [code, setCode] = useState('');
@@ -28,7 +59,7 @@ const LeaseAdd = () => {
 		e.preventDefault();
 
 		try {
-			addProperty();
+			addLease();
 
 		} catch (error) {
 
@@ -37,9 +68,9 @@ const LeaseAdd = () => {
 	}
 
 
-	const addProperty = () => {
+	const addLease = () => {
 
-		const api = 'http://127.0.0.1:8000/api/v1/properties';
+		const api = 'http://localhost:3000/api/v1/properties';
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -64,7 +95,7 @@ const LeaseAdd = () => {
 		})
 			.then(res => {
 				console.log(res.data);
-				swal("Success", "New Property Updated", "success", {
+				swal("Success", "New Lease Updated", "success", {
 					buttons: false,
 					timer: 2000,
 				})
@@ -77,61 +108,32 @@ const LeaseAdd = () => {
 				console.log(error.response.status);
 				console.log(error.response.headers);
 			});
-
 	}
+
+
+
 
 	return (
 		<DashboardLayout>
 
-			<div className="property-add">
+			<div className="Lease-add">
 				<div className="container">
 					<h2 className="large-heading mb-5">Lease Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
-						<div className="form-outline">
-							<label className="form-label">Property Name<sup>*</sup></label>
-							<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Code<sup>*</sup></label>
-							<input type="text" name="code" className="form-control" onChange={e => setCode(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Type<sup>*</sup></label>
-							<input type="text" name="type" className="form-control" onChange={e => setType(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Address</label>
-							<input type="text" name="address" className="form-control" onChange={e => setAddress(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">City<sup>*</sup></label>
-							<input type="text" name="city" className="form-control" onChange={e => setCity(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">State<sup>*</sup></label>
-							<input type="text" name="state" className="form-control" onChange={e => setState(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Zip<sup>*</sup></label>
-							<input type="number" name="zip" className="form-control" onChange={e => setZip(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Note<sup>*</sup></label>
-							<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control" onChange={e => setRentAmount(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
-							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Link<sup>*</sup></label>
-							<input type="text" name="link" className="form-control" onChange={e => setLink(e.target.value)} />
-						</div>
-						<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
+						
+					<div className="form-outline">
+						<label className="form-label">Type<sup>*</sup></label>
+						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
+							{ properties != '' && properties.map(option => (
+							<option key={option.id} value={option.name}>
+								{option.name}
+							</option>
+							))}
+						</select>
+					</div>
+
+						
+						<button type="submit" className="form-btn btn btn-primary btn-block">Add Lease</button>
 					</form>
 				</div>
 			</div>

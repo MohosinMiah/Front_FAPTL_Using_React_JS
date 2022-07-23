@@ -74,7 +74,7 @@ const PropertyAdd =  () => {
 	// Handle Submotted data
       const addPropertyUnit = () => {
 
-        const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
+        const api = 'http://localhost:3000/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',

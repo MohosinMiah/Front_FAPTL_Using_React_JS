@@ -81,7 +81,7 @@ const TenantEdit = () => {
 	}, []);
 
 	const fetchTenant = async () => {
-		const api = 'http://127.0.0.1:8000/api/v1/tenants/'+id; 
+		const api = 'http://localhost:3000/api/v1/tenants/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -122,7 +122,7 @@ const TenantEdit = () => {
 		
 	const updateTenant = () => {
 
-		const api = 'http://127.0.0.1:8000/api/v1/tenant/update/' + id;
+		const api = 'http://localhost:3000/api/v1/tenant/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',

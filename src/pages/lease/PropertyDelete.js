@@ -11,7 +11,7 @@ const PropertyDelete = () => {
         deleteProperty();
       }, []);
       const deleteProperty = async () => {
-        const api = 'http://127.0.0.1:8000/api/v1/properties/'+id; 
+        const api = 'http://localhost:3000/api/v1/properties/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
