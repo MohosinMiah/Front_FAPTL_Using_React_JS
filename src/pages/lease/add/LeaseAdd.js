@@ -12,10 +12,11 @@ const LeaseAdd = () => {
 
 
 // Selected Option Dropdown Types
-const types = [
-	{value: '', text: '--Select Type--'},
-	{value: 'Residential', text: 'Residential'},
-	{value: 'Business', text: 'Business'},
+const leaseTypes = [
+	{value: '',      text: '--Select Lease Type--'},
+	{value: 'One',   text: 'One'},
+	{value: 'Two',   text: 'Two'},
+	{value: 'Three', text: 'Three'},
 	];
 
 
@@ -72,7 +73,7 @@ const handleSubmit = async (e) => {
 
 const addLease = () => {
 
-	const api = 'http://localhost:3000/api/v1/properties';
+	const api = 'http://127.0.0.1:8000/api/v1/leases';
 	const token = localStorage.getItem('access_token');
 	axios({
 		method: 'post',
@@ -159,7 +160,7 @@ const propertyIDHandleChange = ( e ) => {
 
 					<div className="form-outline">
 						<label className="form-label">Select Property  Unit<sup>*</sup></label>
-						<select  name="property_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
+						<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 							{ units != '' && units.map(option => (
 							<option key={option.id} value={option.name}>
 								{option.id} - {option.name}
@@ -168,7 +169,41 @@ const propertyIDHandleChange = ( e ) => {
 						</select>
 					</div>
 
+
+					<div className="form-outline">
+						<label className="form-label">Select Lease Type<sup>*</sup></label>
+						<select  name="lease_type" className="form-control"  value={lease_type} onChange={e => setLeaseType(e.target.value)}>
+							{ leaseTypes != '' && leaseTypes.map(option => (
+							<option key={option.id} value={option.text}>
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
+
 						
+					<div className="form-outline">
+						<label className="form-label">Rent Amount<sup>*</sup></label>
+						<input type="number" name="rent_amount" className="form-control" placeholder="Rent Amount, Ex. 500 " value={rent_amount} onChange={e => setRentAmount(e.target.value)} />
+					</div>
+					
+
+					<div className="form-outline">
+						<label className="form-label">Lease Start Date<sup>*</sup></label>
+						<input type="date" name="lease_start" className="form-control" value={lease_start} onChange={e => setLeaseStart(e.target.value)} />
+					</div>
+					
+					<div className="form-outline">
+						<label className="form-label">Lease End Date<sup>*</sup></label>
+						<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
+					</div>
+
+					<div className="form-outline">
+						<label className="form-label">Deposit Amount<sup>*</sup></label>
+						<input type="number" name="deposit_amount" placeholder="Deposit Amount, Ex. 500 " className="form-control" value={deposit_amount} onChange={e => setDepositAmount(e.target.value)} required  />
+					</div>
+					
+
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Lease</button>
 					</form>
 				</div>
