@@ -2,6 +2,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./auth/Login";
 
 import HomePage from "./home";
+import LeaseAdd from './lease/add/LeaseAdd';
+import LeaseEdit from "./lease/edit/LeaseEdit";
+import LeaseDelete from "./lease/LeaseDelete";
+import LeaseList from './lease/LeaseList';
 import MembersPage from "./members";
 import Netflix from "./netflix";
 import PropertyAdd from "./property/add/PropertyAdd";
@@ -16,8 +20,6 @@ import TenantAdd from './tenant/add/TenantAdd';
 import TenantEdit from "./tenant/edit/TenantEdit";
 import TenantDelete from "./tenant/TenantDelete";
 import TenantList from "./tenant/TenantList";
-import LeaseAdd from './lease/add/LeaseAdd';
-import LeaseList from './lease/LeaseList';
 
 
 const Routes = () => {
@@ -109,12 +111,12 @@ return (
 
 				
 		<Route path="/lease/delete/:id">
-			<TenantDelete />
+			<LeaseDelete />
 		</Route>
 
 
 		<Route path="/lease/:id">
-			<TenantEdit />
+			<LeaseEdit />
 		</Route>
 		
 		{/* Lease End  */}

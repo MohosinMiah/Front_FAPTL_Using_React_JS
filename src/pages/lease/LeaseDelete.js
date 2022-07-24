@@ -11,12 +11,12 @@ const LeaseDelete = () => {
         deleteProperty();
       }, []);
       const deleteProperty = async () => {
-        const api = 'http://127.0.0.1:8000/api/v1/properties/'+id; 
+        const api = 'http://127.0.0.1:8000/api/v1/leases/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
           console.log(res.data);
-          swal("Success", "Property Deleted", "success", {
+          swal("Success", "Lease Deleted", "success", {
 			buttons: false,
 			timer: 2000,
 			})
@@ -29,16 +29,16 @@ const LeaseDelete = () => {
 
     function handleBackNav()  {
         // history.back();
-        window.location.href = "/property/list";
+        window.location.href = "/lease/list";
 
     }
 
   return(
 
         <div>
-            { <Redirect to={"/property/list"} />}
+            { <Redirect to={"/lease/list"} />}
         </div>
   )
 }
 
-export default PropertyDelete;
+export default LeaseDelete;

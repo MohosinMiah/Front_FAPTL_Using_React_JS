@@ -108,8 +108,8 @@ import './LeaseList.css';
     },
 	{
 		name: "Actions",
-		selector: row =>{
-			return <div><Link to={"/property/" + row.id} >Edit</Link>  || <Link to={"/property/delete/" + row.id} >Delete</Link></div>
+		selector: row => {
+			return <div><Link to={"/lease/" + row.id} >Edit</Link>  || <Link to={"/lease/delete/" + row.id} >Delete</Link></div>
 		}
 	  }
 ];

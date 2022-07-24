@@ -11,13 +11,13 @@ const LeaseAdd = () => {
 
 
 
-// Selected Option Dropdown Types
-const leaseTypes = [
-	{value: '',      text: '--Select Lease Type--'},
-	{value: 'One',   text: 'One'},
-	{value: 'Two',   text: 'Two'},
-	{value: 'Three', text: 'Three'},
-	];
+	// Selected Option Dropdown Types
+	const leaseTypes = [
+		{value: '',      text: '--Select Lease Type--'},
+		{value: 'One',   text: 'One'},
+		{value: 'Two',   text: 'Two'},
+		{value: 'Three', text: 'Three'},
+		];
 
 
 useEffect(() => {

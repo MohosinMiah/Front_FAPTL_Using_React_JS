@@ -9,27 +9,29 @@ import './LeaseEdit';
 const LeaseEdit = () => {
 
 
-    const [property,setProperty] = useState([]);
 	let { id } = useParams();
 
-   
-	const [ name, setName ] = useState( '' );
-	const [ code, setCode ] = useState('');
-	const [ type, setType ] = useState('');
-	const [ address, setAddress ] = useState('');
-	const [ city, setCity ] = useState('');
-	const [ state, setState ] = useState('');
-	const [ zip, setZip ] = useState('');
-	const [ note, setNote ] = useState('');
-	const [ rent_amount, setRentAmount ] = useState('');
-	const [ size, setSize ] = useState('');
-	const [ link, setLink ] = useState('');
-	const [ has_parking, setHasParking ] = useState( 0 );
-	const [ has_security_gard, setHasSecurityGard ] = useState( 0 );
-	const [ isActive, setActive ] = useState( 1 );
-	
+	const [properties, setProperties] = useState('');
+	const [units, setUnits] = useState('');
 
-	const [ file_name, setFileName ] = useState([]);
+	// Selected Option Dropdown Types
+	const leaseTypes = [
+		{value: '',      text: '--Select Lease Type--'},
+		{value: 'One',   text: 'One'},
+		{value: 'Two',   text: 'Two'},
+		{value: 'Three', text: 'Three'},
+		];
+		
+	const [property_id, setPropertyID]         = useState( '' );
+	const [unit_id, setUnitID]                 = useState( '' );
+	const [lease_type, setLeaseType]           = useState( '' );
+	const [rent_amount, setRentAmount]         = useState( '' );
+	const [lease_start, setLeaseStart]         = useState( '' );
+	const [lease_end, setLeaseEnd]             = useState( '' );
+	const [deposit_amount, setDepositAmount]   = useState('');
+	const [late_fee_amount, setLateFeeAmount]  = useState('');
+	const [isActive, setActive]                = useState(1);
+
 
 	const handleSubmit = async(e) => {
 	// store the states in the form data
@@ -37,84 +39,111 @@ const LeaseEdit = () => {
 	
 	try {
 	
-		updateProperty();
+		updateLease();
 	} catch(error) {
 		
 		console.log(error);
-		
 	}
 
 	}
 
 
 	useEffect(() => {
-		fetchProperty();
+		fetchLease();
+		fetchProperties();
+		fetchUnits();
 	}, []);
 
-	const fetchProperty = async () => {
-		const api = 'http://127.0.0.1:8000/api/v1/properties/'+id; 
+
+
+	const fetchLease = async () => {
+		const api = 'http://127.0.0.1:8000/api/v1/leases/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
-		setProperty(res.data);
-		console.log(res.data);
-		// Set Initial Data In States
-		setName( res.data.name );
-		setCode( res.data.code );
-		setType( res.data.type );
-		setAddress( res.data.address );
-		setCity( res.data.city );
-		setState( res.data.state );
-		setZip( res.data.zip );
-		setNote( res.data.note );
-		setRentAmount( res.data.rent_amount );
-		setSize( res.data.size );
-		setLink( res.data.link );
-		setHasParking( res.data.has_parking );
-		setHasSecurityGard( res.data.has_security_gard );
-		setActive( res.data.active );
+			console.log(res.data);
+			setPropertyID( res.data.property_id );
+			setUnitID( res.data.unit_id );
+			setLeaseType( res.data.lease_type );
+			setRentAmount( res.data.rent_amount );
+			setLeaseStart( res.data.lease_start );
+			setLeaseEnd( res.data.lease_end );
+			setDepositAmount( res.data.deposit_amount );
+			setLateFeeAmount( res.data.late_fee_amount );
+			setActive( res.data.active );
 		
 		}).catch((error) => {
+			
 		console.log(error);
 	});
 
 	}
+// Load Property Lists
+const fetchProperties = async () => {
+	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("Property List");
+		console.log(res.data);
+		let modifyPropertyList = [{id: '', name: '--Select Property--'}, ...res.data];
+		setProperties( modifyPropertyList );	
+
+	}).catch((error) => {
+
+	console.log(error);
+});
+
+}
+
+// Load Unit Lists
+const fetchUnits = async () => {
+	const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("Unit List");
+		console.log(res.data);
+		let modifyPropertyList = [{id: '', name: '--Select Property Unit --'}, ...res.data];
+		setUnits( modifyPropertyList );	
+
+	}).catch((error) => {
+
+	console.log(error);
+});
+
+}
 
 		
-	const updateProperty = () => {
+	const updateLease = () => {
 
-		const api = 'http://127.0.0.1:8000/api/v1/property/update/' + id;
+		const api = 'http://127.0.0.1:8000/api/v1/lease/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
 			url: api,
 			data: {
-				name: name,
-				code: code,
-				type: type,
-				address: address,
-				city: city,
-				state: state,
-				zip: zip,
-				note: note,
-				rent_amount: rent_amount,
-				size: size,
-				link: link,
-				has_parking: has_parking,
-				has_security_gard: has_security_gard,
-				isActive: isActive,
+			property_id: property_id,
+			unit_id: unit_id,
+			lease_type: lease_type,
+			rent_amount: rent_amount,
+			lease_start: lease_start,
+			lease_end: lease_end,
+			deposit_amount: deposit_amount,
+			late_fee_amount: late_fee_amount,
+			isActive: isActive,
 			},
 			headers: {"Authorization" : `Bearer ${token}`}
 			})
 		.then(res => {
 			console.log(res.data);
-			swal("Success", "New Property Added", "success", {
+			swal("Success", "Lease Updated", "success", {
 			buttons: false,
 			timer: 2000,
 			})
 		}).catch((error) => {
 
-				swal("Failed", "Please Enter Required Field Data, Code name would be Unique", "error");
+				swal("Failed", "Please Enter Required Field Data", "error");
 
 			console.log(error.response.data.errors);
 
@@ -127,51 +156,38 @@ const LeaseEdit = () => {
 			// store the states in the form data
 		e.preventDefault();
 
-		try {
+	}
 
-			updatePropertyImage();
 
-		} catch( error ) {
+	// Load Property Unit List Based On Property ID
+	const fetchUnitsByPropertyID = async ( propertyID ) => {
+		const api = 'http://127.0.0.1:8000/api/v1/lease/unit_list/property/' + propertyID; 
+		const token = localStorage.getItem('access_token');
+		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		.then(res => {
+			console.log("Unit List");
+			console.log(res.data);
+			let modifyPropertyUnitList = [{id: '', name: '--Select Type--'}, ...res.data];
+			setUnits( modifyPropertyUnitList );	
 
-		  console.log(error);
+		}).catch((error) => {
+			setUnits( [ {id: '', name: '--Select Unit--'} ] );	
 
-		}
+		// console.log(error);
+	});
 
 	}
 
 
-	
-	const updatePropertyImage = () => {
 
-        const api = 'http://127.0.0.1:8000/api/v1/propertyimages';
-        const token = localStorage.getItem('access_token');
-		console.log("file_name" + file_name );
-        axios({
-            method: 'post',
-            url: api,
-            data: {
-                file_name: file_name,
-				property_id: id,
-            },
-            headers: {"Authorization" : `Bearer ${token}`}
-          })
-        .then(res => {
-          console.log(res.data);
-		  swal("Success", "New Property Image Added", "success", {
-			buttons: false,
-			timer: 2000,
-			})
-        }).catch((error) => {
-
-			swal("Failed", "Fail To Upload", "error");
-
-			console.log(error.response.data.errors);
-
-			console.log(error.response.status);
-			console.log(error.response.headers);
-      });
-    }
-
+	const propertyIDHandleChange = ( e ) => {
+		console.log("Property Id Changed " + e.target.value);
+		const propertyID = e.target.value;
+		setPropertyID( e.target.value );
+		// After Changed PropertyIDHandleChange We Have To Load Associate Property Unit List
+		
+		fetchUnitsByPropertyID( propertyID );
+	}
 
   return (
     <DashboardLayout>
@@ -179,54 +195,70 @@ const LeaseEdit = () => {
 			<PropertyTopBar/>
 			<div className="property-add">
 				<div className="container">
-					<h2 className="large-heading mb-5">Property Add</h2>
+					<h2 className="large-heading mb-5">Lease Edit</h2>
 					<form noValidate onSubmit={handleSubmit}>
+						
 						<div className="form-outline">
-							<label className="form-label">Property Name<sup>*</sup></label>
-							<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
+							<label className="form-label">Select Property<sup>*</sup></label>
+							{console.log( property_id)}
+							<select  name="property_id" className="form-control"  value={property_id}   onChange={propertyIDHandleChange}>
+								{ properties != '' && properties.map(option => (
+								<option key={option.id} value={option.id}>
+									{option.name}
+								</option>
+								))}
+							</select>
 						</div>
+	
+	
 						<div className="form-outline">
-							<label className="form-label">Code<sup>*</sup></label>
-							<input type="text" name="code" className="form-control"  value={code}  onChange={e => setCode(e.target.value)} />
+							<label className="form-label">Select Property  Unit<sup>*</sup></label>
+							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
+								{ units != '' && units.map(option => (
+								<option key={option.id} value={option.id}>
+									{option.id} - {option.name}
+								</option>
+								))}
+							</select>
 						</div>
+	
+	
 						<div className="form-outline">
-							<label className="form-label">Type<sup>*</sup></label>
-							<input type="text" name="type" className="form-control"  value={type}  onChange={e => setType(e.target.value)} />
+							<label className="form-label">Select Lease Type<sup>*</sup></label>
+							<select  name="lease_type" className="form-control"  value={lease_type} onChange={e => setLeaseType(e.target.value)}>
+								{ leaseTypes != '' && leaseTypes.map(option => (
+								<option key={option.id} value={option.text}>
+									{option.text}
+								</option>
+								))}
+							</select>
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Address</label>
-							<input type="text" name="address" className="form-control"  value={address}  onChange={e => setAddress(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">City<sup>*</sup></label>
-							<input type="text" name="city" className="form-control"  value={city}  onChange={e => setCity(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">State<sup>*</sup></label>
-							<input type="text" name="state" className="form-control"  value={state}  onChange={e => setState(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Zip<sup>*</sup></label>
-							<input type="number" name="zip" className="form-control"  value={zip}  onChange={e => setZip(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Note<sup>*</sup></label>
-							<input type="text" name="note" className="form-control"  value={zip}  onChange={e => setNote(e.target.value)} />
-						</div>
+	
+							
 						<div className="form-outline">
 							<label className="form-label">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control"  value={rent_amount}  onChange={e => setRentAmount(e.target.value)} />
+							<input type="number" name="rent_amount" className="form-control" placeholder="Rent Amount, Ex. 500 " value={rent_amount} onChange={e => setRentAmount(e.target.value)} />
 						</div>
+						
+	
 						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
-							<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
+							<label className="form-label">Lease Start Date<sup>*</sup></label>
+							<input type="date" name="lease_start" className="form-control" value={lease_start} onChange={e => setLeaseStart(e.target.value)} />
 						</div>
+						
 						<div className="form-outline">
-							<label className="form-label">Link<sup>*</sup></label>
-							<input type="text" name="link" className="form-control"  value={link}  onChange={e => setLink(e.target.value)} />
+							<label className="form-label">Lease End Date<sup>*</sup></label>
+							<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 						</div>
-						<button type="submit" className="form-btn btn btn-primary btn-block">Update Property</button>
-					</form>
+	
+						<div className="form-outline">
+							<label className="form-label">Deposit Amount<sup>*</sup></label>
+							<input type="number" name="deposit_amount" placeholder="Deposit Amount, Ex. 500 " className="form-control" value={deposit_amount} onChange={e => setDepositAmount(e.target.value)} required  />
+						</div>
+						
+	
+							<button type="submit" className="form-btn btn btn-primary btn-block">Update Lease</button>
+						</form>
 				</div>
 			</div>
 
