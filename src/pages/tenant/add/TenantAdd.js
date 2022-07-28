@@ -68,7 +68,7 @@ const TenantAdd = () => {
 
 	const addTenant = () => {
 
-		const api = 'http://127.0.0.1:8000/api/v1/tenants';
+		const api = 'https://faptl.americanbestit.com/api/v1/tenants';
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',

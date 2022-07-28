@@ -26,7 +26,7 @@ useEffect(() => {
 
 // Load Property Lists
 const fetchProperties = async () => {
-	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
+	const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -73,7 +73,7 @@ const handleSubmit = async (e) => {
 
 const addLease = () => {
 
-	const api = 'http://127.0.0.1:8000/api/v1/leases';
+	const api = 'https://faptl.americanbestit.com/api/v1/leases';
 	const token = localStorage.getItem('access_token');
 	axios({
 		method: 'post',
@@ -110,7 +110,7 @@ const addLease = () => {
 
 // Load Property Unit List Based On Property ID
 const fetchUnitsByPropertyID = async ( propertyID ) => {
-	const api = 'http://127.0.0.1:8000/api/v1/lease/unit_list/property/' + propertyID; 
+	const api = 'https://faptl.americanbestit.com/api/v1/lease/unit_list/property/' + propertyID; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {

@@ -79,7 +79,7 @@ const PropertyEdit = () => {
 		  fetchPropertyUnit();
 		}, []);
 		const fetchPropertyUnit = async () => {
-		  const api = 'http://127.0.0.1:8000/api/v1/propertyunits/'+id; 
+		  const api = 'https://faptl.americanbestit.com/api/v1/propertyunits/'+id; 
 		  const token = localStorage.getItem('access_token');
 		  await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		  .then(res => {
@@ -109,7 +109,7 @@ const PropertyEdit = () => {
 
 		
 		const updatePropertyUnit = () => {
-		const api = 'http://127.0.0.1:8000/api/v1/propertyunit/update/' + id;
+		const api = 'https://faptl.americanbestit.com/api/v1/propertyunit/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
