@@ -70,7 +70,9 @@ import './PropertyList.css';
   const columns = [
     {
         name: 'Name',
-        selector: row => row.name,
+		selector: row =>{
+			return <div><Link to={"/property/units/" + row.id} >{row.name}</Link></div>
+		}
     },
 	{
 		name: 'Code',
