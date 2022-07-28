@@ -9,6 +9,7 @@ import LeaseList from './lease/LeaseList';
 import MembersPage from "./members";
 import Netflix from "./netflix";
 import PropertyAdd from "./property/add/PropertyAdd";
+import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
 import PropertyEdit from "./property/edit/PropertyEdit";
 import PropertyDelete from "./property/PropertyDelete";
 import PropertyList from "./property/PropertyList";
@@ -37,7 +38,10 @@ return (
 		{/* <Route path="/property">
 			<PropertyList />
 		</Route> */}
-
+	<Route path="/property/units/:id">
+			<PropertyUnitDetail />
+		</Route>
+		
 		<Route path="/property/list">
 			<PropertyList />
 		</Route>
@@ -54,6 +58,8 @@ return (
 		<Route path="/property/:id">
 			<PropertyEdit />
 		</Route>
+
+	
 
 				{/* Property  End  */}
 
