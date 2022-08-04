@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from '../../components/Layout';
-import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -11,7 +10,7 @@ const Login = () => {
 
 	async function loginUser(credentials) {
 		console.log(process.env.PRODUCTION_DEV_URL);
-		return fetch("https://faptl.americanbestit.com/api/v1/login", {
+		return fetch("http://127.0.0.1:8000/api/v1/login", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

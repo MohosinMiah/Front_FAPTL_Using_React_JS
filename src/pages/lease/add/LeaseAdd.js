@@ -27,7 +27,7 @@ useEffect(() => {
 
 // Load Property Lists
 const fetchProperties = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -45,7 +45,7 @@ const fetchProperties = async () => {
 	
 // Load Tenant Lists
 const fetchTenants = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/tenants'; 
+	const api = 'http://127.0.0.1:8000/api/v1/tenants'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -92,7 +92,7 @@ const handleSubmit = async (e) => {
 
 const addLease = () => {
 
-	const api = 'https://faptl.americanbestit.com/api/v1/leases';
+	const api = 'http://127.0.0.1:8000/api/v1/leases';
 	const token = localStorage.getItem('access_token');
 	axios({
 		method: 'post',
@@ -131,7 +131,7 @@ const addLease = () => {
 
 // Load Property Unit List Based On Property ID
 const fetchUnitsByPropertyID = async ( propertyID ) => {
-	const api = 'https://faptl.americanbestit.com/api/v1/lease/unit_list/property/' + propertyID; 
+	const api = 'http://127.0.0.1:8000/api/v1/lease/unit_list/property/' + propertyID; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -233,12 +233,6 @@ const propertyIDHandleChange = ( e ) => {
 						<label className="form-label">Lease End Date<sup>*</sup></label>
 						<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 					</div>
-
-					{/* <div className="form-outline">
-						<label className="form-label">Deposit Amount<sup>*</sup></label>
-						<input type="number" name="deposit_amount" placeholder="Deposit Amount, Ex. 500 " className="form-control" value={deposit_amount} onChange={e => setDepositAmount(e.target.value)} required  />
-					</div> */}
-					
 
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Lease</button>
 					</form>

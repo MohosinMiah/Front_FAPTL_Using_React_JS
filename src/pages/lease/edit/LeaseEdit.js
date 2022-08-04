@@ -57,7 +57,7 @@ const LeaseEdit = () => {
 
 
 	const fetchLease = async () => {
-		const api = 'https://faptl.americanbestit.com/api/v1/leases/'+id; 
+		const api = 'http://127.0.0.1:8000/api/v1/leases/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -80,7 +80,7 @@ const LeaseEdit = () => {
 	}
 // Load Property Lists
 const fetchProperties = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -98,7 +98,7 @@ const fetchProperties = async () => {
 
 // Load Unit Lists
 const fetchUnits = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
+	const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -117,7 +117,7 @@ const fetchUnits = async () => {
 		
 	const updateLease = () => {
 
-		const api = 'https://faptl.americanbestit.com/api/v1/lease/update/' + id;
+		const api = 'http://127.0.0.1:8000/api/v1/lease/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -161,7 +161,7 @@ const fetchUnits = async () => {
 
 	// Load Property Unit List Based On Property ID
 	const fetchUnitsByPropertyID = async ( propertyID ) => {
-		const api = 'https://faptl.americanbestit.com/api/v1/lease/unit_list/property/' + propertyID; 
+		const api = 'http://127.0.0.1:8000/api/v1/lease/unit_list/property/' + propertyID; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {

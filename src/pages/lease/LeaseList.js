@@ -43,7 +43,7 @@ import './LeaseList.css';
   		<TextField
   			id="search"
   			type="text"
-  			placeholder="Filter By Type"
+  			placeholder="Filter By Tenant"
   			aria-label="Search Input"
   			value={filterText}
   			onChange={onFilter}
@@ -80,11 +80,11 @@ import './LeaseList.css';
 
 	{
 		name: 'Utit Name',
-        selector: row => row.property_units.name,
+        selector: row => row.property_unit.name,
 	},	
 	{
-		name: 'Lease Type',
-        selector: row => row.lease_type,
+		name: 'Tenant Name',
+        selector: row => row.tenant.name,
 	},
 
 	{
@@ -119,7 +119,7 @@ const data = leases;
         fetchLease();
       }, []);
       const fetchLease = () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/leases'; 
+        const api = 'http://127.0.0.1:8000/api/v1/leases'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
@@ -133,7 +133,7 @@ const data = leases;
     }
     
   	const filteredItems = data.filter(
-  		item => item.lease_type && item.lease_type.toLowerCase().includes(filterText.toLowerCase()),
+  		item => item.tenant.name && item.tenant.name.toLowerCase().includes(filterText.toLowerCase()),
   	);
   
   	const subHeaderComponentMemo = React.useMemo(() => {
