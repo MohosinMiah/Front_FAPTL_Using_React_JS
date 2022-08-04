@@ -3,26 +3,7 @@ import "../components/TopBar.css";
 const HomePage = () => {
 	return (
 		<DashboardLayout>
-			<div className="TopBar">
-				<div className="container">
-					<div id="top-nav" className="d-flex justify-content-between">
-						<a href="/leads.php?siteid=444">Lead Central
-						</a>
-						<a href="/url_tracking.php?siteid=444">Tracking Station
-						</a>
-						<a href="/cms.php?siteid=444">Content
-						</a>
-						<a href="/Jobs/index.php?siteid=444">Jobs
-						</a>
-						<a href="/Jobs/photo_gallery.php?siteid=444">Gallery
-						</a>
-						<a href="/Jobs/before_after.php?siteid=444">Before &amp; After
-						</a>
-						<a href="/Reviews/index.php?siteid=444">Reviews
-						</a>
-					</div>
-				</div>
-			</div>
+		
 			<div className="module-section">
 				<div className="container">
 					<div className="module-row">

@@ -141,7 +141,7 @@ const propertyIDHandleChange = ( e ) => {
 	return (
 		<DashboardLayout>
 
-			<div className="Lease-add">
+			<div className="padding-top-bottom">
 				<div className="container">
 					<h2 className="large-heading mb-5">Lease Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
