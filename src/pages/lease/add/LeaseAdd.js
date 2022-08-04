@@ -8,20 +8,21 @@ const LeaseAdd = () => {
 
 	const [properties, setProperties] = useState('');
 	const [units, setUnits] = useState('');
-
+	const [tenants, setTenants] = useState('');
+	
 
 
 	// Selected Option Dropdown Types
-	const leaseTypes = [
-		{value: '',      text: '--Select Lease Type--'},
-		{value: 'One',   text: 'One'},
-		{value: 'Two',   text: 'Two'},
-		{value: 'Three', text: 'Three'},
+	const willPay = [
+		{value: '',      text: '--Will Pay--'},
+		{value: 'YES',   text: 'YES'},
+		{value: 'NO',   text: 'NO'},
 		];
 
 
 useEffect(() => {
 	fetchProperties();
+	fetchTenants();
 }, []);
 
 // Load Property Lists
@@ -42,12 +43,30 @@ const fetchProperties = async () => {
 
 }
 	
+// Load Tenant Lists
+const fetchTenants = async () => {
+	const api = 'https://faptl.americanbestit.com/api/v1/tenants'; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("Tenant List");
+		console.log(res.data);
+		let modifyTenantList = [{id: '', name: '--Select Tenant--'}, ...res.data];
+		setTenants( modifyTenantList );	
 
+	}).catch((error) => {
+
+	console.log(error);
+});
+
+}
 
 
 const [property_id, setPropertyID]         = useState( '' );
 const [unit_id, setUnitID]                 = useState( '' );
-const [lease_type, setLeaseType]           = useState( '' );
+const [tenant_id, setTenantID]             = useState( '' );
+const [will_pay, setWillPay]               = useState( '' );
+const [total_will_pay, setTotalWillPay]    = useState( '' );
 const [rent_amount, setRentAmount]         = useState( '' );
 const [lease_start, setLeaseStart]         = useState( '' );
 const [lease_end, setLeaseEnd]             = useState( '' );
@@ -81,8 +100,10 @@ const addLease = () => {
 		data: {
 			property_id: property_id,
 			unit_id: unit_id,
-			lease_type: lease_type,
+			tenant_id: tenant_id,
+			will_pay: will_pay,
 			rent_amount: rent_amount,
+			total_will_pay: total_will_pay,
 			lease_start: lease_start,
 			lease_end: lease_end,
 			deposit_amount: deposit_amount,
@@ -157,7 +178,6 @@ const propertyIDHandleChange = ( e ) => {
 						</select>
 					</div>
 
-
 					<div className="form-outline">
 						<label className="form-label">Select Property  Unit<sup>*</sup></label>
 						<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
@@ -169,11 +189,27 @@ const propertyIDHandleChange = ( e ) => {
 						</select>
 					</div>
 
+					<div className="form-outline">
+						<label className="form-label">Select Tenant<sup>*</sup></label>
+						<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
+							{ tenants != '' && tenants.map(option => (
+							<option key={option.id} value={option.id}>
+								{option.id} - {option.name}
+							</option>
+							))}
+						</select>
+					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Select Lease Type<sup>*</sup></label>
-						<select  name="lease_type" className="form-control"  value={lease_type} onChange={e => setLeaseType(e.target.value)}>
-							{ leaseTypes != '' && leaseTypes.map(option => (
+						<label className="form-label">Rent Amount<sup>*</sup></label>
+						<input type="number" name="rent_amount" className="form-control" placeholder="Rent Amount, Ex. 500 " value={rent_amount} onChange={e => setRentAmount(e.target.value)} />
+					</div>
+					
+					
+					<div className="form-outline">
+						<label className="form-label">Select Will Pay <sup>*</sup></label>
+						<select  name="will_pay" className="form-control"  value={will_pay} onChange={e => setWillPay(e.target.value)}>
+							{ willPay != '' && willPay.map(option => (
 							<option key={option.id} value={option.text}>
 								{option.text}
 							</option>
@@ -181,12 +217,12 @@ const propertyIDHandleChange = ( e ) => {
 						</select>
 					</div>
 
-						
+
 					<div className="form-outline">
-						<label className="form-label">Rent Amount<sup>*</sup></label>
-						<input type="number" name="rent_amount" className="form-control" placeholder="Rent Amount, Ex. 500 " value={rent_amount} onChange={e => setRentAmount(e.target.value)} />
+						<label className="form-label">Total Will Pay<sup>*</sup></label>
+						<input type="number" name="total_will_pay" className="form-control" placeholder="Rent Amount, Ex. 500 " value={total_will_pay} onChange={e => setTotalWillPay(e.target.value)} />
 					</div>
-					
+
 
 					<div className="form-outline">
 						<label className="form-label">Lease Start Date<sup>*</sup></label>
@@ -198,10 +234,10 @@ const propertyIDHandleChange = ( e ) => {
 						<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 					</div>
 
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Deposit Amount<sup>*</sup></label>
 						<input type="number" name="deposit_amount" placeholder="Deposit Amount, Ex. 500 " className="form-control" value={deposit_amount} onChange={e => setDepositAmount(e.target.value)} required  />
-					</div>
+					</div> */}
 					
 
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Lease</button>
