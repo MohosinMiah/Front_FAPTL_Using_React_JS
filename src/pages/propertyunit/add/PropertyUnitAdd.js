@@ -25,20 +25,20 @@ const PropertyAdd =  () => {
 
 	const isAvailables = [
 		{value: '', text: '--Select Is Available--'},
-		{value: 'Yes', text: 'Yes'},
-		{value: 'No', text: 'No'},
+		{value: "YES", text: "YES"},
+		{value: "NO", text: "NO"},
 		];
 
 	const isFeatureds = [
 		{value: '', text: '--Select Is Featured--'},
-		{value: 'Yes', text: 'Yes'},
-		{value: 'No', text: 'No'},
+		{value: "YES", text: "YES"},
+		{value: "NO", text: "NO"},
 		];
 	
 	const isActives = [
 		{value: '', text: '--Select Is Active--'},
-		{value: 'Yes', text: 'Yes'},
-		{value: 'No', text: 'No'},
+		{value: "YES", text: "YES"},
+		{value: "NO", text: "NO"},
 		];
 	// All Property Unit Variable initialized
 	const [ property_id, setPropertyID ] = useState( id );

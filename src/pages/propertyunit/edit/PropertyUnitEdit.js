@@ -28,20 +28,20 @@ const PropertyEdit = () => {
 
 	const isAvailables = [
 		{value: '', text: '--Select Is Available--'},
-		{value: 'Yes', text: 'Yes'},
-		{value: 'No', text: 'No'},
+		{value: "YES", text: "YES"},
+		{value: "NO", text: "NO"},
 		];
 
 	const isFeatureds = [
 		{value: '', text: '--Select Is Featured--'},
-		{value: 'Yes', text: 'Yes'},
-		{value: 'No', text: 'No'},
+		{value: "YES", text: "YES"},
+		{value: "NO", text: "NO"},
 		];
 	
 	const isActives = [
 		{value: '', text: '--Select Is Active--'},
-		{value: 'Yes', text: 'Yes'},
-		{value: 'No', text: 'No'},
+		{value: "YES", text: "YES"},
+		{value: "NO", text: "NO"},
 		];
 	// All Property Unit Variable initialized
 	const [ type, setType ] = useState('');
@@ -182,8 +182,8 @@ const PropertyEdit = () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
-						<select  name="unit_type" lassName="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
-							{unitTypes.map(option => (
+						<select  name="unit_type" className="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
+							{unitTypes != '' && unitTypes.map(option => (
 							<option key={option.value} value={option.value}>
 								{option.text}
 							</option>
@@ -218,7 +218,7 @@ const PropertyEdit = () => {
 					<div className="form-outline">
 						<label className="form-label">Is Available</label>
 						<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
-							{isAvailables.map(option => (
+							{isAvailables != '' && isAvailables.map(option => (
 							<option key={isAvailables.value} value={option.value}>
 								{option.text}
 							</option>
@@ -228,7 +228,7 @@ const PropertyEdit = () => {
 					<div className="form-outline">
 						<label className="form-label">Is Featured</label>
 						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
-							{isFeatureds.map(option => (
+						{isFeatureds != '' && isFeatureds.map(option => (
 							<option key={option.value} value={option.value} >
 								{option.text}
 							</option>
@@ -238,7 +238,7 @@ const PropertyEdit = () => {
 					<div className="form-outline">
 						<label className="form-label">Is Active</label>
 						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
-							{isActives.map(option => (
+						{isActives != ''  && isActives.map(option => (
 							<option key={option.value} value={option.value}>
 								{option.text}
 							</option>

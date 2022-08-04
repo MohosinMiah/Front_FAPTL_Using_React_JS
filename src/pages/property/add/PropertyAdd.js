@@ -6,6 +6,21 @@ import './PropertyAdd.css';
 const PropertyAdd = () => {
 
 
+	
+const isActives = [
+	{value: '',      text: '-- Select Is Active --'},
+	{value: 'YES',   text: 'YES'},
+	{value: 'NO',   text: 'NO'},
+	];
+	
+	const propertyTypes =  [
+		{value: '', text: '-- Select Property Type --'},
+		{value: 'Residential',   text: 'Residential'},
+		{value: 'Business',   text: 'Business'},
+		];
+
+
+		
 	const [name, setName] = useState('');
 	const [code, setCode] = useState('');
 	const [type, setType] = useState('');
@@ -99,6 +114,18 @@ const PropertyAdd = () => {
 							<label className="form-label">Type<sup>*</sup></label>
 							<input type="text" name="type" className="form-control" onChange={e => setType(e.target.value)} />
 						</div>
+
+						<div className="form-outline">
+							<label className="form-label">Type <sup>*</sup></label>
+							<select  name="type" className="form-control"  onChange={e => setType(e.target.value)}>
+								{ propertyTypes != '' && propertyTypes.map(option => (
+								<option key={option.id} value={option.text}>
+									{option.text}
+								</option>
+								))}
+							</select>
+						</div>
+
 						<div className="form-outline">
 							<label className="form-label">Address</label>
 							<input type="text" name="address" className="form-control" onChange={e => setAddress(e.target.value)} />

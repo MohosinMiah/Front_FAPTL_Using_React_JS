@@ -14,12 +14,18 @@ const LeaseAdd = () => {
 
 	// Selected Option Dropdown Types
 	const willPay = [
-		{value: '',      text: '--Will Pay--'},
+		{value: '',      text: '-- Will Pay --'},
 		{value: 'YES',   text: 'YES'},
 		{value: 'NO',   text: 'NO'},
 		];
 
+	const isActives = [
+		{value: '',      text: '-- Select Is Active --'},
+		{value: 'YES',   text: 'YES'},
+		{value: 'NO',   text: 'NO'},
+		];
 
+		
 useEffect(() => {
 	fetchProperties();
 	fetchTenants();
@@ -72,7 +78,7 @@ const [lease_start, setLeaseStart]         = useState( '' );
 const [lease_end, setLeaseEnd]             = useState( '' );
 const [deposit_amount, setDepositAmount]   = useState('');
 const [late_fee_amount, setLateFeeAmount]  = useState('');
-const [isActive, setActive]                = useState(1);
+const [isActive, setIsActive]                = useState(1);
 
 
 
@@ -162,7 +168,7 @@ const propertyIDHandleChange = ( e ) => {
 	return (
 		<DashboardLayout>
 
-			<div className="padding-top-bottom">
+			<div className="padding-top-bottom" id="lease-add">
 				<div className="container">
 					<h2 className="large-heading mb-5">Lease Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
@@ -233,6 +239,18 @@ const propertyIDHandleChange = ( e ) => {
 						<label className="form-label">Lease End Date<sup>*</sup></label>
 						<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 					</div>
+
+					<div className="form-outline">
+						<label className="form-label">Select Is Active <sup>*</sup></label>
+						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)} >
+							{ isActives != '' && isActives.map(option => (
+							<option key={option.id} value={option.text}>
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
+
 
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Lease</button>
 					</form>

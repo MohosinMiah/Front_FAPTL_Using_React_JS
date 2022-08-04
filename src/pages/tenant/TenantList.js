@@ -141,8 +141,7 @@ const data = tenants;
   
   	return (
       <DashboardLayout>
-		<div className="tenant-list-section">
-  		<div className="container">
+		
 		  <DataTable
   			title="Tenant List"
   			columns={columns}
@@ -153,7 +152,7 @@ const data = tenants;
   			subHeaderComponent={subHeaderComponentMemo}
   			persistTableHead
   		/>
-		</div></div>
+		
       </DashboardLayout>
 	);
   };

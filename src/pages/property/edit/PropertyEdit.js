@@ -11,7 +11,13 @@ const PropertyEdit = () => {
 
     const [property,setProperty] = useState([]);
 	let { id } = useParams();
-
+	
+	const propertyTypes =  [
+		{value: '', text: '-- Select Property Type --'},
+		{value: 'Residential',   text: 'Residential'},
+		{value: 'Business',   text: 'Business'},
+		];
+		
    
 	const [ name, setName ] = useState( '' );
 	const [ code, setCode ] = useState('');
@@ -190,8 +196,14 @@ const PropertyEdit = () => {
 							<input type="text" name="code" className="form-control"  value={code}  onChange={e => setCode(e.target.value)} />
 						</div>
 						<div className="form-outline">
-							<label className="form-label">Type<sup>*</sup></label>
-							<input type="text" name="type" className="form-control"  value={type}  onChange={e => setType(e.target.value)} />
+							<label className="form-label">Type <sup>*</sup></label>
+							<select  name="type" className="form-control" value={type} onChange={e => setType(e.target.value)}>
+								{ propertyTypes != '' && propertyTypes.map(option => (
+								<option key={option.id} value={option.text}>
+									{option.text}
+								</option>
+								))}
+							</select>
 						</div>
 						<div className="form-outline">
 							<label className="form-label">Address</label>
