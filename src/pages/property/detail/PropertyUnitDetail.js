@@ -108,7 +108,7 @@ import { DashboardLayout } from "../../../components/Layout";
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/propertyunit/" + row.id} >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={ "/propertyunit/" + row.id + "/copy" } >Copy</Link> || <Link to={"/propertyunit/" + row.id} >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} >Delete</Link> </div>
 		}
 	  }
 ];
