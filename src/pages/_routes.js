@@ -15,6 +15,7 @@ import PropertyDelete from "./property/PropertyDelete";
 import PropertyList from "./property/PropertyList";
 import PropertyUnitAdd from "./propertyunit/add/PropertyUnitAdd";
 import PropertyUnitEdit from "./propertyunit/edit/PropertyUnitEdit";
+import PropertyUnitDelete from "./propertyunit/PropertyUnitDelete";
 import PropertyUnitList from "./propertyunit/PropertyUnitList";
 import SettingsPage from "./settings";
 import TenantAdd from './tenant/add/TenantAdd';
@@ -75,7 +76,7 @@ return (
 
 				
 		<Route path="/propertyunit/delete/:id">
-			<PropertyDelete />
+			<PropertyUnitDelete />
 		</Route>
 
 		<Route path="/propertyunit/:id">

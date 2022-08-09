@@ -152,6 +152,8 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
+			<div className="padding-top-bottom" id="property-unit-edit">
+				<div className="container">
       <h2>Edit Property Unit : {name}</h2>
 
 	  <form noValidate onSubmit={handleSubmit}>
@@ -246,6 +248,8 @@ const PropertyEdit = () => {
 					
 					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
 				</form>
+				</div>
+				</div>
     </DashboardLayout>
   )
 }

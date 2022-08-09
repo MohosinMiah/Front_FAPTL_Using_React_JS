@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import PropertyTopBar from '../PropertyTopBar';
 import './LeaseEdit';
 
 const LeaseEdit = () => {
@@ -225,10 +224,9 @@ const fetchTenants = async () => {
   return (
     <DashboardLayout>
 
-			<PropertyTopBar/>
 			<div className="padding-top-bottom" id="lease-edit">
 				<div className="container">
-					<h2 className="large-heading mb-5">Edit Lease </h2>
+					<h2 className="large-heading mb-5">Edit Lease</h2>
 					<form noValidate onSubmit={handleSubmit}>
 						
 					<div className="form-outline">

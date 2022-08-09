@@ -183,7 +183,7 @@ const PropertyEdit = () => {
     <DashboardLayout>
 
 			<PropertyTopBar/>
-			<div className="property-add">
+			<div className="padding-top-bottom" id="property-edit">
 				<div className="container">
 					<h2 className="large-heading mb-5">Edit Property : {name} </h2>
 					<form noValidate onSubmit={handleSubmit}>

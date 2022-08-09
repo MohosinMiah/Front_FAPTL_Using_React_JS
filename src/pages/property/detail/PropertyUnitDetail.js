@@ -167,6 +167,39 @@ const data = properties;
       <DashboardLayout>
 
 			<h1 className="page-main-heading">Units of property : {property.name != null && property.name}</h1>
+			<table class="table">
+				<tbody>
+				<tr>
+						<td>Property Name : </td>
+						<td>{property.name != null && property.name}</td>
+					</tr>
+					<tr>
+						<td>Type : </td>
+						<td>{property.type != null && property.type}</td>
+					</tr>
+					<tr>
+						<td>City : </td>
+						<td>{property.city != null && property.city}</td>
+					</tr>
+					<tr>
+						<td>State : </td>
+						<td>{property.state != null && property.state}</td>
+					</tr>
+					<tr>
+						<td>Address : </td>
+						<td>{property.address != null && property.address}</td>
+					</tr>
+					<tr>
+						<td>Size : </td>
+						<td>{property.size != null && property.size}</td>
+					</tr>
+					<tr>
+						<td>Is Featured : </td>
+						<td>{property.isFeatured != null && property.isFeatured}</td>
+					</tr>
+				</tbody>
+			</table>
+			<Link to={"/propertyunit/"+ id + "/add/"} className="add-new-btn"> All New Unit</Link>
 			<Link to={"/propertyunit/list"} className="all-list-btn"> All Units</Link>
   		<DataTable
   			columns={columns}
