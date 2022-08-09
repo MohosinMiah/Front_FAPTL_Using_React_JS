@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import PropertyTopBar from '../../property/PropertyTopBar';
 import './PropertyUnitEdit';
 
 const PropertyEdit = () => {
@@ -153,8 +152,7 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
-		<PropertyTopBar/>
-      <h2>Property Unit ID = {id}</h2>
+      <h2>Edit Property Unit : {name}</h2>
 
 	  <form noValidate onSubmit={handleSubmit}>
 		

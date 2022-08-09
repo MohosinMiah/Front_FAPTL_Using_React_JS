@@ -179,7 +179,7 @@ const TenantEdit = () => {
     <DashboardLayout>
 			<div className="property-edit">
 				<div className="container">
-					<h2 className="large-heading mb-5">Tenant Edit</h2>
+					<h2 className="large-heading mb-5">Edit Tenant : {name}</h2>
 					<form noValidate onSubmit={handleSubmit}>
 						<div className="form-outline">
 							<label className="form-label">Tenant Name<sup>*</sup></label>

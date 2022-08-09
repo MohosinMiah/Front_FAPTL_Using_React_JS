@@ -228,7 +228,7 @@ const fetchTenants = async () => {
 			<PropertyTopBar/>
 			<div className="padding-top-bottom" id="lease-edit">
 				<div className="container">
-					<h2 className="large-heading mb-5">Lease Add</h2>
+					<h2 className="large-heading mb-5">Edit Lease </h2>
 					<form noValidate onSubmit={handleSubmit}>
 						
 					<div className="form-outline">
