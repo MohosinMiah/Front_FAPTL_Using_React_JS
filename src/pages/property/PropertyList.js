@@ -71,14 +71,9 @@ import './PropertyList.css';
     {
         name: 'Name',
 		selector: row =>{
-			return <div><Link to={"/property/units/" + row.id} >{row.name}</Link></div>
+			return <div><Link to={"/property/"+  row.id + "/units/"} >{row.name}</Link></div>
 		}
     },
-	{
-		name: 'Code',
-		selector: row =>  row.code,
-		
-	},
 	{
 		name: 'Type',
 		selector: row =>  row.type,
@@ -142,16 +137,17 @@ const data = properties;
   
   	return (
       <DashboardLayout>
-		  <DataTable
-  			title="Property List"
-  			columns={columns}
-  			data={filteredItems}
-  			pagination
-  			paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-  			subHeader
-  			subHeaderComponent={subHeaderComponentMemo}
-  			persistTableHead
-  		/>
+		<Link to={"/property/add"} className="add-new-btn"> Add New Property</Link>
+		<h1 className="page-main-heading">Property Listing</h1>
+		<DataTable
+		columns={columns}
+		data={filteredItems}
+		pagination
+		paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+		subHeader
+		subHeaderComponent={subHeaderComponentMemo}
+		persistTableHead
+	/>
       </DashboardLayout>
 	);
   };

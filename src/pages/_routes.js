@@ -38,7 +38,7 @@ return (
 		{/* <Route path="/property">
 			<PropertyList />
 		</Route> */}
-	<Route path="/property/units/:id">
+	<Route path="/property/:id/units/">
 			<PropertyUnitDetail />
 		</Route>
 		

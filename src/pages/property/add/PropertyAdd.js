@@ -98,7 +98,7 @@ const isActives = [
 	return (
 		<DashboardLayout>
 
-			<div className="property-add">
+			<div className="padding-top-bottom" id="property-add">
 				<div className="container">
 					<h2 className="large-heading mb-5">Property Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
@@ -110,10 +110,7 @@ const isActives = [
 							<label className="form-label">Code<sup>*</sup></label>
 							<input type="text" name="code" className="form-control" onChange={e => setCode(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Type<sup>*</sup></label>
-							<input type="text" name="type" className="form-control" onChange={e => setType(e.target.value)} />
-						</div>
+						
 
 						<div className="form-outline">
 							<label className="form-label">Type <sup>*</sup></label>

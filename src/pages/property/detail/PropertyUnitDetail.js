@@ -62,6 +62,12 @@ import { DashboardLayout } from "../../../components/Layout";
   	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 
     const [properties, setProperties] = useState([]);
+	const [property, setProperty]     = useState([]);
+
+	
+	
+
+
 
 	const editPropertyHandler = (event) => {
 		event.preventDefault();
@@ -110,8 +116,9 @@ import { DashboardLayout } from "../../../components/Layout";
 const data = properties;
     useEffect(() => {
         fetchProperty();
+		fetchProperties();
       }, []);
-      const fetchProperty = () => {
+      const fetchProperties = () => {
         const api = 'http://127.0.0.1:8000/api/v1/property/units/' + id; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
@@ -125,6 +132,20 @@ const data = properties;
 
     }
     
+	
+	// Load Property Lists
+	const fetchProperty = async () => {
+		const api = 'http://127.0.0.1:8000/api/v1/properties/' + id; 
+		const token = localStorage.getItem('access_token');
+		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		.then(res => {
+			console.log(res.data);
+			setProperty( res.data );	
+		}).catch((error) => {
+			console.log(error);
+		});
+	}
+
   	const filteredItems = data.filter(
   		item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
   	);
@@ -144,8 +165,10 @@ const data = properties;
   
   	return (
       <DashboardLayout>
+
+			<h1 className="page-main-heading">Units of property : {property.name != null && property.name}</h1>
+			<Link to={"/propertyunit/list"} className="all-list-btn"> All Units</Link>
   		<DataTable
-  			title="Contact List"
   			columns={columns}
   			data={filteredItems}
   			pagination

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import PropertyTopBar from '../../property/PropertyTopBar';
 import './PropertyUnitAdd';
 
 const PropertyAdd =  () => {
@@ -118,9 +117,8 @@ const PropertyAdd =  () => {
 
   return (
     <DashboardLayout>
-		<PropertyTopBar/>
-		<div className="property-add">
-			<div className="container">
+		<div className="padding-top-bottom" id="lease-add">
+				<div className="container">
 				<h2 className="large-heading mb-5">Add Property Unit Under Property ID =   {property_id} </h2>
 				<form noValidate onSubmit={handleSubmit}>
 					<div className="form-outline">

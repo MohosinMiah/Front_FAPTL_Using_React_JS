@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import PropertyTopBar from '../TenantTopBar';
 import './TenantEdit';
 
 const TenantEdit = () => {
@@ -178,11 +177,8 @@ const TenantEdit = () => {
 
   return (
     <DashboardLayout>
-
-			<PropertyTopBar/>
 			<div className="property-edit">
 				<div className="container">
-					{"Tenant ID  = " + id }
 					<h2 className="large-heading mb-5">Tenant Edit</h2>
 					<form noValidate onSubmit={handleSubmit}>
 						<div className="form-outline">

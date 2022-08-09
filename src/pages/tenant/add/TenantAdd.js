@@ -123,7 +123,6 @@ const TenantAdd = () => {
 	return (
 		<DashboardLayout>
 
-			<div className="property-add">
 				<div className="container">
 					<h2 className="large-heading mb-5">Tenant Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
@@ -261,7 +260,6 @@ const TenantAdd = () => {
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Tenant</button>
 					</form>
 				</div>
-			</div>
 
 		</DashboardLayout>
 	)

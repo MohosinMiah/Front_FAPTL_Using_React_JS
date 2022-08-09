@@ -140,8 +140,9 @@ const data = properties;
   
   	return (
       <DashboardLayout>
+			<h1 className="page-main-heading">Property Units : All</h1>
+
   		<DataTable
-  			title="Contact List"
   			columns={columns}
   			data={filteredItems}
   			pagination

@@ -10,7 +10,7 @@ return (
 		<div id="top-nav" className="d-flex justify-content-between">
 			<Link to={"/propertyunit/" + id + "/add"}> Add Unit
 			</Link>
-			<Link to="/propertyunit/list"> Unit Lists
+			<Link to="/propertyunit/list">All Units
 			</Link>
 		</div>
 	</div>
