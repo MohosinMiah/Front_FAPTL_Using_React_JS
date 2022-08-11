@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
-import './PropertyUnitAdd';
+import './PropertyUnitAddCopy';
 
-const PropertyAdd =  () => {
+const PropertyUnitAddCopy =  () => {
 	let { id } = useParams();
 
 	// Selected Option Dropdown Types
@@ -58,6 +58,38 @@ const PropertyAdd =  () => {
 
 
 
+	useEffect(() => {
+		fetchPropertyUnit();
+	  }, []);
+	  
+	  const fetchPropertyUnit = async () => {
+		const api = 'https://faptl.americanbestit.com/api/v1/propertyunits/'+id; 
+		const token = localStorage.getItem('access_token');
+		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		.then(res => {
+		  console.log(res.data);
+		  // Set Initial Data In States
+		  setType( res.data.type );
+		  setName( res.data.name );
+		  setFloor( res.data.floor );
+		  setRent( res.data.rent );
+		  setUnitType( res.data.unit_type );
+		  setSize( res.data.size );
+		  setTotalRoom( res.data.total_room );
+		  setBedRoom( res.data.bed_room );
+		  setBathRoom( res.data.bath_room );
+		  setBalcony( res.data.balcony );
+		  setNote( res.data.note );
+		  setIsAvailable( res.data.isAvailable );
+		  setIsFeatured( res.data.isFeatured );
+		  setIsActive( res.data.isActive );
+	   
+		}).catch((error) => {
+		  console.log(error);
+	  });
+
+	}
+
 	// store the states in the form data
 	  const handleSubmit = async(e) => {
 		e.preventDefault();
@@ -73,7 +105,7 @@ const PropertyAdd =  () => {
 	// Handle Submotted data
       const addPropertyUnit = () => {
 
-        const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
+        const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',
@@ -115,16 +147,13 @@ const PropertyAdd =  () => {
 
     }
 
+
   return (
     <DashboardLayout>
 		<div className="padding-top-bottom" id="lease-add">
 				<div className="container">
 				<h2 className="large-heading mb-5">Add Property Unit Under Property ID =   {property_id} </h2>
 				<form noValidate onSubmit={handleSubmit}>
-					<div className="form-outline">
-						<label className="form-label">Property ID <sup>*</sup></label>
-						<input type="text" name="property_id" className="form-control" value={property_id}  readOnly />
-					</div>
 					<div className="form-outline">
 						<label className="form-label">Type<sup>*</sup></label>
 						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
@@ -137,20 +166,20 @@ const PropertyAdd =  () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Name</label>
-						<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
+						<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Floor<sup>*</sup></label>
-						<input type="number" name="floor" className="form-control" onChange={e => setFloor(e.target.value)} />
+						<input type="number" name="floor" className="form-control" value={floor} onChange={e => setFloor(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Rent Amount<sup>*</sup></label>
-						<input type="number" name="rent" className="form-control" onChange={e => setRent(e.target.value)} />
+						<input type="number" name="rent" className="form-control" value={rent} onChange={e => setRent(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
-						<select  name="unit_type" className="form-control"   value={unit_type} onChange={e => setUnitType(e.target.value)} required>
-							{unitTypes.map(option => (
+						<select  name="unit_type" className="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
+							{unitTypes != '' && unitTypes.map(option => (
 							<option key={option.value} value={option.value}>
 								{option.text}
 							</option>
@@ -160,32 +189,32 @@ const PropertyAdd =  () => {
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Size<sup>*</sup></label>
-						<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
+						<input type="number" name="size" className="form-control" value={size} onChange={e => setSize(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Total Room<sup>*</sup></label>
-						<input type="number" name="total_room" className="form-control" onChange={e => setTotalRoom(e.target.value)} />
+						<input type="number" name="total_room" className="form-control" value={total_room} onChange={e => setTotalRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Bed Room<sup>*</sup></label>
-						<input type="number" name="bed_room" className="form-control" onChange={e => setBedRoom(e.target.value)} />
+						<input type="number" name="bed_room" className="form-control" value={bed_room} onChange={e => setBedRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Bath Room<sup>*</sup></label>
-						<input type="number" name="bath_room" className="form-control" onChange={e => setBathRoom(e.target.value)} />
+						<input type="number" name="bath_room" className="form-control"  value={bath_room} onChange={e => setBathRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">balcony<sup>*</sup></label>
-						<input type="number" name="balcony" className="form-control" onChange={e => setBalcony(e.target.value)} />
+						<input type="number" name="balcony" className="form-control"  value={balcony}  onChange={e => setBalcony(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Note</label>
-						<textarea name="note" className="form-control" onChange={e => setNote(e.target.value)} ></textarea>
+						<textarea name="note"  className="form-control"   onChange={e => setNote(e.target.value)} value={note} >  </textarea>
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Is Available</label>
 						<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
-							{isAvailables.map(option => (
+							{isAvailables != '' && isAvailables.map(option => (
 							<option key={isAvailables.value} value={option.value}>
 								{option.text}
 							</option>
@@ -195,8 +224,8 @@ const PropertyAdd =  () => {
 					<div className="form-outline">
 						<label className="form-label">Is Featured</label>
 						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
-							{isFeatureds.map(option => (
-							<option key={option.value} value={option.value}>
+						{isFeatureds != '' && isFeatureds.map(option => (
+							<option key={option.value} value={option.value} >
 								{option.text}
 							</option>
 							))}
@@ -205,7 +234,7 @@ const PropertyAdd =  () => {
 					<div className="form-outline">
 						<label className="form-label">Is Active</label>
 						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
-							{isActives.map(option => (
+						{isActives != ''  && isActives.map(option => (
 							<option key={option.value} value={option.value}>
 								{option.text}
 							</option>
@@ -221,4 +250,4 @@ const PropertyAdd =  () => {
   )
 }
 
-export default PropertyAdd;
+export default PropertyUnitAddCopy;

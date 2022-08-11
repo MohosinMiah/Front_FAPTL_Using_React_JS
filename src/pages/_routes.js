@@ -14,6 +14,7 @@ import PropertyEdit from "./property/edit/PropertyEdit";
 import PropertyDelete from "./property/PropertyDelete";
 import PropertyList from "./property/PropertyList";
 import PropertyUnitAdd from "./propertyunit/add/PropertyUnitAdd";
+import PropertyUnitAddCopy from "./propertyunit/copy/PropertyUnitAddCopy";
 import PropertyUnitEdit from "./propertyunit/edit/PropertyUnitEdit";
 import PropertyUnitDelete from "./propertyunit/PropertyUnitDelete";
 import PropertyUnitList from "./propertyunit/PropertyUnitList";
@@ -74,6 +75,9 @@ return (
 			<PropertyUnitAdd />
 		</Route>
 
+		<Route path="/propertyunit/:id/copy">
+			<PropertyUnitAddCopy />
+		</Route>
 				
 		<Route path="/propertyunit/delete/:id">
 			<PropertyUnitDelete />

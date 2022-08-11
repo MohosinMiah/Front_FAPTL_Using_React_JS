@@ -119,7 +119,7 @@ const data = properties;
 		fetchProperties();
       }, []);
       const fetchProperties = () => {
-        const api = 'http://127.0.0.1:8000/api/v1/property/units/' + id; 
+        const api = 'https://faptl.americanbestit.com/api/v1/property/units/' + id; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
@@ -135,7 +135,7 @@ const data = properties;
 	
 	// Load Property Lists
 	const fetchProperty = async () => {
-		const api = 'http://127.0.0.1:8000/api/v1/properties/' + id; 
+		const api = 'https://faptl.americanbestit.com/api/v1/properties/' + id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -167,7 +167,7 @@ const data = properties;
       <DashboardLayout>
 
 			<h1 className="page-main-heading">Units of property : {property.name != null && property.name}</h1>
-			<table class="table">
+			<table className="table">
 				<tbody>
 				<tr>
 						<td>Property Name : </td>

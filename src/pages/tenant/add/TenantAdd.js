@@ -68,7 +68,7 @@ const TenantAdd = () => {
 
 	const addTenant = () => {
 
-		const api = 'http://127.0.0.1:8000/api/v1/tenants';
+		const api = 'https://faptl.americanbestit.com/api/v1/tenants';
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -123,6 +123,7 @@ const TenantAdd = () => {
 	return (
 		<DashboardLayout>
 
+			<div className="padding-top-bottom" id="property-add">
 				<div className="container">
 					<h2 className="large-heading mb-5">Tenant Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
@@ -260,6 +261,7 @@ const TenantAdd = () => {
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Tenant</button>
 					</form>
 				</div>
+			</div>
 
 		</DashboardLayout>
 	)
