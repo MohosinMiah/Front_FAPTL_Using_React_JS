@@ -103,6 +103,8 @@ const PropertyAdd =  () => {
 			buttons: false,
 			timer: 2000,
 			})
+			window.location.href = "/property/"+ property_id + "/units";
+
         }).catch((error) => {
 
 				swal("Failed", "Please Enter Required Field Data.", "error");

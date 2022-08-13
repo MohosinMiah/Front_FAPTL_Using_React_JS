@@ -63,12 +63,13 @@ const PropertyUnitAddCopy =  () => {
 	  }, []);
 	  
 	  const fetchPropertyUnit = async () => {
-		const api = 'https://faptl.americanbestit.com/api/v1/propertyunits/'+id; 
+		const api = 'https://faptl.americanbestit.com/api/v1/propertyunits/'+property_id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
 		  console.log(res.data);
 		  // Set Initial Data In States
+		  setPropertyID( res.data.property_id );
 		  setType( res.data.type );
 		  setName( res.data.name );
 		  setFloor( res.data.floor );
@@ -91,7 +92,7 @@ const PropertyUnitAddCopy =  () => {
 	}
 
 	// store the states in the form data
-	  const handleSubmit = async(e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault();
 		try {
 			addPropertyUnit();
@@ -99,13 +100,13 @@ const PropertyUnitAddCopy =  () => {
 		} catch(error) {
 			
 		}
-	
-	  }
+		
+	}
     
 	// Handle Submotted data
       const addPropertyUnit = () => {
 
-        const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
+		const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',
@@ -135,6 +136,8 @@ const PropertyUnitAddCopy =  () => {
 			buttons: false,
 			timer: 2000,
 			})
+			window.location.href = "/property/"+ property_id + "/units";
+
         }).catch((error) => {
 
 				swal("Failed", "Please Enter Required Field Data.", "error");
@@ -242,7 +245,7 @@ const PropertyUnitAddCopy =  () => {
 						</select>
 					</div>
 					
-					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
+					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property Unit</button>
 				</form>
 			</div>
 		</div>

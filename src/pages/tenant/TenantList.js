@@ -62,10 +62,10 @@ import './TenantList.css';
 
     const [tenants, setTenants] = useState([]);
 
-	const editPropertyHandler = (event) => {
-		event.preventDefault();
-        window.location.href = "/product";
-	}
+	// const editPropertyHandler = (event) => {
+	// 	event.preventDefault();
+    //     window.location.href = "/product";
+	// }
 
   const columns = [
     {

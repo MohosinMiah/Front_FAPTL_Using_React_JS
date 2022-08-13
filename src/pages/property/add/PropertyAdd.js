@@ -22,7 +22,6 @@ const isActives = [
 
 		
 	const [name, setName] = useState('');
-	const [code, setCode] = useState('');
 	const [type, setType] = useState('');
 	const [address, setAddress] = useState('');
 	const [city, setCity] = useState('');
@@ -61,7 +60,6 @@ const isActives = [
 			url: api,
 			data: {
 				name: name,
-				code: code,
 				type: type,
 				address: address,
 				city: city,
@@ -106,11 +104,6 @@ const isActives = [
 							<label className="form-label">Property Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Code<sup>*</sup></label>
-							<input type="text" name="code" className="form-control" onChange={e => setCode(e.target.value)} />
-						</div>
-						
 
 						<div className="form-outline">
 							<label className="form-label">Type <sup>*</sup></label>
@@ -140,7 +133,7 @@ const isActives = [
 							<input type="number" name="zip" className="form-control" onChange={e => setZip(e.target.value)} />
 						</div>
 						<div className="form-outline">
-							<label className="form-label">Note<sup>*</sup></label>
+							<label className="form-label">Note</label>
 							<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
 						</div>
 						<div className="form-outline">
@@ -152,7 +145,7 @@ const isActives = [
 							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
 						</div>
 						<div className="form-outline">
-							<label className="form-label">Link<sup>*</sup></label>
+							<label className="form-label">Link</label>
 							<input type="text" name="link" className="form-control" onChange={e => setLink(e.target.value)} />
 						</div>
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>

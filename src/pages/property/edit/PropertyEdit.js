@@ -20,7 +20,6 @@ const PropertyEdit = () => {
 		
    
 	const [ name, setName ] = useState( '' );
-	const [ code, setCode ] = useState('');
 	const [ type, setType ] = useState('');
 	const [ address, setAddress ] = useState('');
 	const [ city, setCity ] = useState('');
@@ -66,7 +65,6 @@ const PropertyEdit = () => {
 		console.log(res.data);
 		// Set Initial Data In States
 		setName( res.data.name );
-		setCode( res.data.code );
 		setType( res.data.type );
 		setAddress( res.data.address );
 		setCity( res.data.city );
@@ -96,7 +94,6 @@ const PropertyEdit = () => {
 			url: api,
 			data: {
 				name: name,
-				code: code,
 				type: type,
 				address: address,
 				city: city,
@@ -191,10 +188,7 @@ const PropertyEdit = () => {
 							<label className="form-label">Property Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Code<sup>*</sup></label>
-							<input type="text" name="code" className="form-control"  value={code}  onChange={e => setCode(e.target.value)} />
-						</div>
+					
 						<div className="form-outline">
 							<label className="form-label">Type <sup>*</sup></label>
 							<select  name="type" className="form-control" value={type} onChange={e => setType(e.target.value)}>
