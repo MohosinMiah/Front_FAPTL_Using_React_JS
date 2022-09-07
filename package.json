@@ -1,7 +1,8 @@
 {
-  "name": "react-minimal-side-navigation-example",
+  "name": "for-a-place-to-live",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://faptl.americanbestit.com",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -23,7 +24,8 @@
     "react-scripts": "^4.0.3",
     "styled-components": "^5.3.5",
     "sweetalert": "^2.1.2",
-    "tailwindcss": "1.9.6"
+    "tailwindcss": "1.9.6",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",

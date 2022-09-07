@@ -69,7 +69,7 @@ const [isActive, setIsActive]                = useState(1);
 
 
 	const fetchLease = async () => {
-		const api = 'https://faptl.americanbestit.com/api/v1/leases/'+id; 
+		const api = 'https://api.americanbestit.com/api/v1/leases/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -93,7 +93,7 @@ const [isActive, setIsActive]                = useState(1);
 	}
 // Load Property Lists
 const fetchProperties = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/properties'; 
+	const api = 'https://api.americanbestit.com/api/v1/properties'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -111,7 +111,7 @@ const fetchProperties = async () => {
 
 // Load Unit Lists
 const fetchUnits = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
+	const api = 'https://api.americanbestit.com/api/v1/propertyunits'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -129,7 +129,7 @@ const fetchUnits = async () => {
 
 // Load Tenant Lists
 const fetchTenants = async () => {
-	const api = 'https://faptl.americanbestit.com/api/v1/tenants'; 
+	const api = 'https://api.americanbestit.com/api/v1/tenants'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -147,7 +147,7 @@ const fetchTenants = async () => {
 		
 	const updateLease = () => {
 
-		const api = 'https://faptl.americanbestit.com/api/v1/lease/update/' + id;
+		const api = 'https://api.americanbestit.com/api/v1/lease/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -193,7 +193,7 @@ const fetchTenants = async () => {
 
 	// Load Property Unit List Based On Property ID
 	const fetchUnitsByPropertyID = async ( propertyID ) => {
-		const api = 'https://faptl.americanbestit.com/api/v1/lease/unit_list/property/' + propertyID; 
+		const api = 'https://api.americanbestit.com/api/v1/lease/unit_list/property/' + propertyID; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {

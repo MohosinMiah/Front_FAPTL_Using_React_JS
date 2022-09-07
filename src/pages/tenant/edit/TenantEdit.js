@@ -80,7 +80,7 @@ const TenantEdit = () => {
 	}, []);
 
 	const fetchTenant = async () => {
-		const api = 'https://faptl.americanbestit.com/api/v1/tenants/'+id; 
+		const api = 'https://api.americanbestit.com/api/v1/tenants/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -121,7 +121,7 @@ const TenantEdit = () => {
 		
 	const updateTenant = () => {
 
-		const api = 'https://faptl.americanbestit.com/api/v1/tenant/update/' + id;
+		const api = 'https://api.americanbestit.com/api/v1/tenant/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -186,7 +186,7 @@ const TenantEdit = () => {
 							<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
 						</div>
 
-						<div className="form-outline">
+						{/* <div className="form-outline">
 							<label className="form-label">Type<sup>*</sup></label>
 							<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
 								{types.map(option => (
@@ -195,11 +195,16 @@ const TenantEdit = () => {
 								</option>
 								))}
 							</select>
-						</div>
+						</div> */}
 
 						<div className="form-outline">
 							<label className="form-label">Date Of Birth<sup>*</sup></label>
 							<input type="date" name="date_of_birth" className="form-control" value={date_of_birth} onChange={e => setDateOfBirth(e.target.value)} />
+						</div>
+
+						<div className="form-outline">
+							<label className="form-label">Tenant Number<sup>*</sup></label>
+							<input type="number" name="tenant_number" className="form-control"  value={tenant_number}  onChange={e => setTenantNumber(e.target.value)} />
 						</div>
 						
 						<div className="form-outline">
@@ -209,7 +214,7 @@ const TenantEdit = () => {
 						
 						
 						<div className="form-outline">
-							<label className="form-label">passport_number</label>
+							<label className="form-label">Passport Number</label>
 							<input type="text" name="passport_number" className="form-control"  value={passport_number}  onChange={e => setPassportNumber(e.target.value)} />
 						</div>
 						
@@ -219,13 +224,10 @@ const TenantEdit = () => {
 						</div>
 
 												
-						<div className="form-outline">
-							<label className="form-label">Tenant Number<sup>*</sup></label>
-							<input type="number" name="tenant_number" className="form-control"  value={tenant_number}  onChange={e => setTenantNumber(e.target.value)} />
-						</div>
+			
 
 						<div className="form-outline">
-							<label className="form-label">Gender<sup>*</sup></label>
+							<label className="form-label">Gender</label>
 							<select  name="type" className="form-control"  value={gender} onChange={e => setGender(e.target.value)}>
 								{genders.map(option => (
 								<option key={option.value} value={option.value}>
@@ -235,7 +237,7 @@ const TenantEdit = () => {
 							</select>
 						</div>
 
-						<div className="form-outline">
+						{/* <div className="form-outline">
 							<label className="form-label">Marid Status</label>
 							<select  name="type" className="form-control"  value={marit_status} onChange={e => setMaritStaus(e.target.value)}>
 								{marits.map(option => (
@@ -244,37 +246,37 @@ const TenantEdit = () => {
 								</option>
 								))}
 							</select>
-						</div>
+						</div> */}
 
 						<div className="form-outline">
-							<label className="form-label">Email</label>
+							<label className="form-label">Email<sup>*</sup></label>
 							<input type="email" name="email" className="form-control"  value={email}  onChange={e => setEmail(e.target.value)} />
 						</div>
 
-
-
 						<div className="form-outline">
-							<label className="form-label">City</label>
-							<input type="text" name="city" className="form-control"  value={city}   onChange={e => setCity(e.target.value)} />
-						</div>
-						
-						<div className="form-outline">
-							<label className="form-label">State</label>
-							<input type="text" name="state" className="form-control"  value={state}  onChange={e => setState(e.target.value)} />
-						</div>
-						
-						<div className="form-outline">
-							<label className="form-label">Country</label>
+							<label className="form-label">Country<sup>*</sup></label>
 							<input type="text" name="country" className="form-control" value={country}   onChange={e => setCountry(e.target.value)} />
 						</div>	
 
 						<div className="form-outline">
-							<label className="form-label">Postal Code</label>
+							<label className="form-label">City<sup>*</sup></label>
+							<input type="text" name="city" className="form-control"  value={city}   onChange={e => setCity(e.target.value)} />
+						</div>
+						
+						<div className="form-outline">
+							<label className="form-label">State<sup>*</sup></label>
+							<input type="text" name="state" className="form-control"  value={state}  onChange={e => setState(e.target.value)} />
+						</div>
+						
+					
+
+						<div className="form-outline">
+							<label className="form-label">Postal Code<sup>*</sup></label>
 							<input type="text" name="postal_code" className="form-control"  value={postal_code}  onChange={e => setPostalCode(e.target.value)} />
 						</div>
 
 						
-
+{/* 
 
 						<div className="form-outline">
 							<label className="form-label">Business Name</label>
@@ -289,28 +291,22 @@ const TenantEdit = () => {
 						<div className="form-outline">
 							<label className="form-label">Business Address</label>
 							<input type="text" name="business_address" className="form-control"  value={business_address} onChange={e => setBusinessAddress(e.target.value)} />
-						</div>
-
-
-
+						</div> */}
 
 						<div className="form-outline">
-							<label className="form-label">Emergency Contact Name</label>
+							<label className="form-label">Emergency Contact Name<sup>*</sup></label>
 							<input type="text" name="emergency_contact_name" className="form-control"   value={emergency_contact_name}  onChange={e => setEmergencyContactName(e.target.value)} />
 						</div>
 						
 						<div className="form-outline">
-							<label className="form-label">Emergency Contact Phone</label>
+							<label className="form-label">Emergency Contact Phone<sup>*</sup></label>
 							<input type="text" name="emergency_contact_phone" className="form-control"   value={emergency_contact_phone}  onChange={e => setEmergencyContactPhone(e.target.value)} />
 						</div>	
 
 						<div className="form-outline">
-							<label className="form-label">Emergency Contact Email</label>
+							<label className="form-label">Emergency Contact Email<sup>*</sup></label>
 							<input type="text" name="emergency_contact_email" className="form-control"   value={emergency_contact_email}  onChange={e => setEmergencyContactEmail(e.target.value)} />
 						</div>
-
-
-
 
 						<button type="submit" className="form-btn btn btn-primary btn-block">Update Tenant</button>
 					</form>

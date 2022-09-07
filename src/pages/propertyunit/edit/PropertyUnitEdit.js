@@ -78,7 +78,7 @@ const PropertyEdit = () => {
 		  fetchPropertyUnit();
 		}, []);
 		const fetchPropertyUnit = async () => {
-		  const api = 'https://faptl.americanbestit.com/api/v1/propertyunits/'+id; 
+		  const api = 'https://api.americanbestit.com/api/v1/propertyunits/'+id; 
 		  const token = localStorage.getItem('access_token');
 		  await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		  .then(res => {
@@ -108,7 +108,7 @@ const PropertyEdit = () => {
 
 		
 		const updatePropertyUnit = () => {
-		const api = 'https://faptl.americanbestit.com/api/v1/propertyunit/update/' + id;
+		const api = 'https://api.americanbestit.com/api/v1/propertyunit/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -158,7 +158,7 @@ const PropertyEdit = () => {
 
 	  <form noValidate onSubmit={handleSubmit}>
 		
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Type<sup>*</sup></label>
 						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
 							{types.map(option => (
@@ -167,7 +167,7 @@ const PropertyEdit = () => {
 							</option>
 							))}
 						</select>
-					</div>
+					</div> */}
 					<div className="form-outline">
 						<label className="form-label">Name</label>
 						<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
@@ -180,7 +180,7 @@ const PropertyEdit = () => {
 						<label className="form-label">Rent Amount<sup>*</sup></label>
 						<input type="number" name="rent" className="form-control" value={rent} onChange={e => setRent(e.target.value)} />
 					</div>
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
 						<select  name="unit_type" className="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
 							{unitTypes != '' && unitTypes.map(option => (
@@ -190,7 +190,7 @@ const PropertyEdit = () => {
 							))}
 						</select>
 
-					</div>
+					</div> */}
 					<div className="form-outline">
 						<label className="form-label">Size<sup>*</sup></label>
 						<input type="number" name="size" className="form-control" value={size} onChange={e => setSize(e.target.value)} />
@@ -225,7 +225,7 @@ const PropertyEdit = () => {
 							))}
 						</select>
 					</div>
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Is Featured</label>
 						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
 						{isFeatureds != '' && isFeatureds.map(option => (
@@ -234,7 +234,7 @@ const PropertyEdit = () => {
 							</option>
 							))}
 						</select>
-					</div>
+					</div> */}
 					<div className="form-outline">
 						<label className="form-label">Is Active</label>
 						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>

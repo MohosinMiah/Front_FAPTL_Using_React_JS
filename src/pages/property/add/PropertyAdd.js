@@ -13,11 +13,11 @@ const isActives = [
 	{value: 'NO',   text: 'NO'},
 	];
 	
-	const propertyTypes =  [
-		{value: '', text: '-- Select Property Type --'},
-		{value: 'Residential',   text: 'Residential'},
-		{value: 'Business',   text: 'Business'},
-		];
+const propertyTypes =  [
+	{value: '', text: '-- Select Property Type --'},
+	{value: 'Shared',   text: 'Shared'},
+	{value: 'Private',   text: 'Private'},
+	];
 
 
 		
@@ -53,7 +53,7 @@ const isActives = [
 
 	const addProperty = () => {
 
-		const api = 'https://faptl.americanbestit.com/api/v1/properties';
+		const api = 'https://api.americanbestit.com/api/v1/properties';
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -117,6 +117,16 @@ const isActives = [
 						</div>
 
 						<div className="form-outline">
+							<label className="form-label">Rent Amount<sup>*</sup></label>
+							<input type="number" name="rent_amount" className="form-control" onChange={e => setRentAmount(e.target.value)} />
+						</div>
+						
+						<div className="form-outline">
+							<label className="form-label">Size<sup>*</sup></label>
+							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
+						</div>
+
+						<div className="form-outline">
 							<label className="form-label">Address</label>
 							<input type="text" name="address" className="form-control" onChange={e => setAddress(e.target.value)} />
 						</div>
@@ -132,22 +142,16 @@ const isActives = [
 							<label className="form-label">Zip<sup>*</sup></label>
 							<input type="number" name="zip" className="form-control" onChange={e => setZip(e.target.value)} />
 						</div>
+						
 						<div className="form-outline">
 							<label className="form-label">Note</label>
 							<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control" onChange={e => setRentAmount(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
-							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
-						</div>
-						<div className="form-outline">
+
+						{/* <div className="form-outline">
 							<label className="form-label">Link</label>
 							<input type="text" name="link" className="form-control" onChange={e => setLink(e.target.value)} />
-						</div>
+						</div> */}
 						<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
 					</form>
 				</div>

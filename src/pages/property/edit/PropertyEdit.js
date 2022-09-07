@@ -14,8 +14,8 @@ const PropertyEdit = () => {
 	
 	const propertyTypes =  [
 		{value: '', text: '-- Select Property Type --'},
-		{value: 'Residential',   text: 'Residential'},
-		{value: 'Business',   text: 'Business'},
+		{value: 'Shared',   text: 'Shared'},
+		{value: 'Private',   text: 'Private'},
 		];
 		
    
@@ -57,7 +57,7 @@ const PropertyEdit = () => {
 	}, []);
 
 	const fetchProperty = async () => {
-		const api = 'https://faptl.americanbestit.com/api/v1/properties/'+id; 
+		const api = 'https://api.americanbestit.com/api/v1/properties/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -87,7 +87,7 @@ const PropertyEdit = () => {
 		
 	const updateProperty = () => {
 
-		const api = 'https://faptl.americanbestit.com/api/v1/property/update/' + id;
+		const api = 'https://api.americanbestit.com/api/v1/property/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -146,7 +146,7 @@ const PropertyEdit = () => {
 	
 	const updatePropertyImage = () => {
 
-        const api = 'https://faptl.americanbestit.com/api/v1/propertyimages';
+        const api = 'https://api.americanbestit.com/api/v1/propertyimages';
         const token = localStorage.getItem('access_token');
 		console.log("file_name" + file_name );
         axios({
@@ -200,6 +200,15 @@ const PropertyEdit = () => {
 							</select>
 						</div>
 						<div className="form-outline">
+							<label className="form-label">Rent Amount<sup>*</sup></label>
+							<input type="number" name="rent_amount" className="form-control"  value={rent_amount}  onChange={e => setRentAmount(e.target.value)} />
+						</div>
+						<div className="form-outline">
+							<label className="form-label">Size<sup>*</sup></label>
+							<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
+						</div>
+						
+						<div className="form-outline">
 							<label className="form-label">Address</label>
 							<input type="text" name="address" className="form-control"  value={address}  onChange={e => setAddress(e.target.value)} />
 						</div>
@@ -219,18 +228,11 @@ const PropertyEdit = () => {
 							<label className="form-label">Note<sup>*</sup></label>
 							<input type="text" name="note" className="form-control"  value={zip}  onChange={e => setNote(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control"  value={rent_amount}  onChange={e => setRentAmount(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
-							<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
-						</div>
-						<div className="form-outline">
+					
+						{/* <div className="form-outline">
 							<label className="form-label">Link<sup>*</sup></label>
 							<input type="text" name="link" className="form-control"  value={link}  onChange={e => setLink(e.target.value)} />
-						</div>
+						</div> */}
 						<button type="submit" className="form-btn btn btn-primary btn-block">Update Property</button>
 					</form>
 				</div>

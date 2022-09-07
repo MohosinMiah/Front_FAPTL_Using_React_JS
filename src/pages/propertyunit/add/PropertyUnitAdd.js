@@ -73,7 +73,7 @@ const PropertyAdd =  () => {
 	// Handle Submotted data
       const addPropertyUnit = () => {
 
-        const api = 'https://faptl.americanbestit.com/api/v1/propertyunits'; 
+        const api = 'https://api.americanbestit.com/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',
@@ -127,7 +127,7 @@ const PropertyAdd =  () => {
 						<label className="form-label">Property ID <sup>*</sup></label>
 						<input type="text" name="property_id" className="form-control" value={property_id}  readOnly />
 					</div>
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Type<sup>*</sup></label>
 						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
 							{types.map(option => (
@@ -136,9 +136,9 @@ const PropertyAdd =  () => {
 							</option>
 							))}
 						</select>
-					</div>
+					</div> */}
 					<div className="form-outline">
-						<label className="form-label">Name</label>
+						<label className="form-label">Name<sup>*</sup></label>
 						<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
 					</div>
 					<div className="form-outline">
@@ -149,7 +149,7 @@ const PropertyAdd =  () => {
 						<label className="form-label">Rent Amount<sup>*</sup></label>
 						<input type="number" name="rent" className="form-control" onChange={e => setRent(e.target.value)} />
 					</div>
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
 						<select  name="unit_type" className="form-control"   value={unit_type} onChange={e => setUnitType(e.target.value)} required>
 							{unitTypes.map(option => (
@@ -159,7 +159,7 @@ const PropertyAdd =  () => {
 							))}
 						</select>
 
-					</div>
+					</div> */}
 					<div className="form-outline">
 						<label className="form-label">Size<sup>*</sup></label>
 						<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
@@ -194,7 +194,7 @@ const PropertyAdd =  () => {
 							))}
 						</select>
 					</div>
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Is Featured</label>
 						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
 							{isFeatureds.map(option => (
@@ -203,7 +203,7 @@ const PropertyAdd =  () => {
 							</option>
 							))}
 						</select>
-					</div>
+					</div> */}
 					<div className="form-outline">
 						<label className="form-label">Is Active</label>
 						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>

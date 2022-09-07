@@ -119,7 +119,7 @@ const data = leases;
         fetchLease();
       }, []);
       const fetchLease = () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/leases'; 
+        const api = 'https://api.americanbestit.com/api/v1/leases'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

@@ -13,7 +13,7 @@ const TenantDelete = () => {
       }, []);
 
       const deleteTenant = async () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/tenants/'+id; 
+        const api = 'https://api.americanbestit.com/api/v1/tenants/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

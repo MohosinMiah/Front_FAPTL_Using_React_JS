@@ -11,7 +11,7 @@ const PropertyDelete = () => {
         deleteProperty();
       }, []);
       const deleteProperty = async () => {
-        const api = 'https://faptl.americanbestit.com/api/v1/properties/'+id; 
+        const api = 'https://api.americanbestit.com/api/v1/properties/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
