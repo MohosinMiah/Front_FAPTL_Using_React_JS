@@ -57,7 +57,7 @@ const PropertyEdit = () => {
 	}, []);
 
 	const fetchProperty = async () => {
-		const api = 'https://api.americanbestit.com/api/v1/properties/'+id; 
+		const api = 'http://127.0.0.1:8000/api/v1/properties/'+id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -87,7 +87,7 @@ const PropertyEdit = () => {
 		
 	const updateProperty = () => {
 
-		const api = 'https://api.americanbestit.com/api/v1/property/update/' + id;
+		const api = 'http://127.0.0.1:8000/api/v1/property/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -146,7 +146,7 @@ const PropertyEdit = () => {
 	
 	const updatePropertyImage = () => {
 
-        const api = 'https://api.americanbestit.com/api/v1/propertyimages';
+        const api = 'http://127.0.0.1:8000/api/v1/propertyimages';
         const token = localStorage.getItem('access_token');
 		console.log("file_name" + file_name );
         axios({
@@ -226,7 +226,7 @@ const PropertyEdit = () => {
 						</div>
 						<div className="form-outline">
 							<label className="form-label">Note<sup>*</sup></label>
-							<input type="text" name="note" className="form-control"  value={zip}  onChange={e => setNote(e.target.value)} />
+							<input type="text" name="note" className="form-control"  value={note}  onChange={e => setNote(e.target.value)} />
 						</div>
 					
 						{/* <div className="form-outline">

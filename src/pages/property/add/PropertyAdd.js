@@ -53,7 +53,7 @@ const propertyTypes =  [
 
 	const addProperty = () => {
 
-		const api = 'https://api.americanbestit.com/api/v1/properties';
+		const api = 'http://127.0.0.1:8000/api/v1/properties';
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',

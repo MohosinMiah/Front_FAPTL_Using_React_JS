@@ -52,9 +52,9 @@ const PropertyAdd =  () => {
 	const [ bath_room, setBathRoom ] = useState( '' );
 	const [ balcony, setBalcony ] = useState( '' );
 	const [ note, setNote ] = useState( '' );
-	const [ isAvailable, setIsAvailable ] = useState( '' );
+	const [ isAvailable, setIsAvailable ] = useState( 'YES' );
 	const [ isFeatured, setIsFeatured ] = useState( '' );
-	const [ isActive, setIsActive ] = useState( '' );
+	const [ isActive, setIsActive ] = useState( 'YES' );
 
 
 
@@ -73,7 +73,7 @@ const PropertyAdd =  () => {
 	// Handle Submotted data
       const addPropertyUnit = () => {
 
-        const api = 'https://api.americanbestit.com/api/v1/propertyunits'; 
+        const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',
@@ -169,15 +169,15 @@ const PropertyAdd =  () => {
 						<input type="number" name="total_room" className="form-control" onChange={e => setTotalRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Bed Room<sup>*</sup></label>
+						<label className="form-label">Bed Room</label>
 						<input type="number" name="bed_room" className="form-control" onChange={e => setBedRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Bath Room<sup>*</sup></label>
+						<label className="form-label">Bath Room</label>
 						<input type="number" name="bath_room" className="form-control" onChange={e => setBathRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">balcony<sup>*</sup></label>
+						<label className="form-label">balcony</label>
 						<input type="number" name="balcony" className="form-control" onChange={e => setBalcony(e.target.value)} />
 					</div>
 					<div className="form-outline">

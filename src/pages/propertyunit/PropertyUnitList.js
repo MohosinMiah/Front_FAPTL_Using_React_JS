@@ -68,10 +68,6 @@ import './PropertyUnitList.css';
 	}
 
   const columns = [
-    {
-        name: 'Type',
-        selector: row => row.type,
-    },
 	{
 		name: 'Name',
 		selector: row =>  row.name,
@@ -108,7 +104,7 @@ const data = properties;
         fetchProperty();
       }, []);
       const fetchProperty = () => {
-        const api = 'https://api.americanbestit.com/api/v1/propertyunits'; 
+        const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

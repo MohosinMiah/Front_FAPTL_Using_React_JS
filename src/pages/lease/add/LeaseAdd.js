@@ -33,7 +33,7 @@ useEffect(() => {
 
 // Load Property Lists
 const fetchProperties = async () => {
-	const api = 'https://api.americanbestit.com/api/v1/properties'; 
+	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -51,7 +51,7 @@ const fetchProperties = async () => {
 	
 // Load Tenant Lists
 const fetchTenants = async () => {
-	const api = 'https://api.americanbestit.com/api/v1/tenants'; 
+	const api = 'http://127.0.0.1:8000/api/v1/tenants'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -71,13 +71,13 @@ const fetchTenants = async () => {
 const [property_id, setPropertyID]         = useState( '' );
 const [unit_id, setUnitID]                 = useState( '' );
 const [tenant_id, setTenantID]             = useState( '' );
-const [will_pay, setWillPay]               = useState( '' );
-const [total_will_pay, setTotalWillPay]    = useState( '' );
+
 const [rent_amount, setRentAmount]         = useState( '' );
+const [security_deposit, setSecurityDeposit] = useState( '' );
+const [pet_security_deposit, setPetSecurityDeposit]         = useState( '' );
 const [lease_start, setLeaseStart]         = useState( '' );
 const [lease_end, setLeaseEnd]             = useState( '' );
-const [deposit_amount, setDepositAmount]   = useState('');
-const [late_fee_amount, setLateFeeAmount]  = useState('');
+
 const [isActive, setIsActive]                = useState(1);
 
 
@@ -98,7 +98,7 @@ const handleSubmit = async (e) => {
 
 const addLease = () => {
 
-	const api = 'https://api.americanbestit.com/api/v1/leases';
+	const api = 'http://127.0.0.1:8000/api/v1/leases';
 	const token = localStorage.getItem('access_token');
 	axios({
 		method: 'post',
@@ -107,13 +107,15 @@ const addLease = () => {
 			property_id: property_id,
 			unit_id: unit_id,
 			tenant_id: tenant_id,
-			will_pay: will_pay,
+			
 			rent_amount: rent_amount,
-			total_will_pay: total_will_pay,
+			
+			security_deposit: security_deposit,
+			pet_security_deposit: pet_security_deposit,
+			
 			lease_start: lease_start,
 			lease_end: lease_end,
-			deposit_amount: deposit_amount,
-			late_fee_amount: late_fee_amount,
+			
 			isActive: isActive,
 		},
 		headers: { "Authorization": `Bearer ${token}` }
@@ -137,7 +139,7 @@ const addLease = () => {
 
 // Load Property Unit List Based On Property ID
 const fetchUnitsByPropertyID = async ( propertyID ) => {
-	const api = 'https://api.americanbestit.com/api/v1/lease/unit_list/property/' + propertyID; 
+	const api = 'http://127.0.0.1:8000/api/v1/lease/unit_list/property/' + propertyID; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -211,24 +213,15 @@ const propertyIDHandleChange = ( e ) => {
 						<input type="number" name="rent_amount" className="form-control" placeholder="Rent Amount, Ex. 500 " value={rent_amount} onChange={e => setRentAmount(e.target.value)} />
 					</div>
 					
-					
 					<div className="form-outline">
-						<label className="form-label">Select Will Pay <sup>*</sup></label>
-						<select  name="will_pay" className="form-control"  value={will_pay} onChange={e => setWillPay(e.target.value)}>
-							{ willPay != '' && willPay.map(option => (
-							<option key={option.id} value={option.text}>
-								{option.text}
-							</option>
-							))}
-						</select>
+						<label className="form-label">Security Deposit<sup>*</sup></label>
+						<input type="number" name="security_deposit" className="form-control" placeholder="Security Deposit, Ex. 200 " value={security_deposit} onChange={e => setSecurityDeposit(e.target.value)} />
 					</div>
 
-
 					<div className="form-outline">
-						<label className="form-label">Total Will Pay<sup>*</sup></label>
-						<input type="number" name="total_will_pay" className="form-control" placeholder="Rent Amount, Ex. 500 " value={total_will_pay} onChange={e => setTotalWillPay(e.target.value)} />
+						<label className="form-label">Security Deposit<sup>*</sup></label>
+						<input type="number" name="pet_security_deposit" className="form-control" placeholder="Pet Security Deposit, Ex. 200 " value={pet_security_deposit} onChange={e => setPetSecurityDeposit(e.target.value)} />
 					</div>
-
 
 					<div className="form-outline">
 						<label className="form-label">Lease Start Date<sup>*</sup></label>

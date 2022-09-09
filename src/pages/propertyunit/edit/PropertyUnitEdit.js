@@ -78,7 +78,7 @@ const PropertyEdit = () => {
 		  fetchPropertyUnit();
 		}, []);
 		const fetchPropertyUnit = async () => {
-		  const api = 'https://api.americanbestit.com/api/v1/propertyunits/'+id; 
+		  const api = 'http://127.0.0.1:8000/api/v1/propertyunits/'+id; 
 		  const token = localStorage.getItem('access_token');
 		  await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		  .then(res => {
@@ -108,7 +108,7 @@ const PropertyEdit = () => {
 
 		
 		const updatePropertyUnit = () => {
-		const api = 'https://api.americanbestit.com/api/v1/propertyunit/update/' + id;
+		const api = 'http://127.0.0.1:8000/api/v1/propertyunit/update/' + id;
 		const token = localStorage.getItem('access_token');
 		axios({
 			method: 'post',
@@ -200,15 +200,15 @@ const PropertyEdit = () => {
 						<input type="number" name="total_room" className="form-control" value={total_room} onChange={e => setTotalRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Bed Room<sup>*</sup></label>
+						<label className="form-label">Bed Room</label>
 						<input type="number" name="bed_room" className="form-control" value={bed_room} onChange={e => setBedRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Bath Room<sup>*</sup></label>
+						<label className="form-label">Bath Room</label>
 						<input type="number" name="bath_room" className="form-control"  value={bath_room} onChange={e => setBathRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">balcony<sup>*</sup></label>
+						<label className="form-label">balcony</label>
 						<input type="number" name="balcony" className="form-control"  value={balcony}  onChange={e => setBalcony(e.target.value)} />
 					</div>
 					<div className="form-outline">
