@@ -8,6 +8,8 @@ import LeaseDelete from "./lease/LeaseDelete";
 import LeaseList from './lease/LeaseList';
 import MembersPage from "./members";
 import Netflix from "./netflix";
+import PaymentAdd from "./payment/add/PaymentAdd";
+import PaymentList from "./payment/PaymentList";
 import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
 import PropertyEdit from "./property/edit/PropertyEdit";
@@ -133,6 +135,28 @@ return (
 		{/* Lease End  */}
 
 
+		{/* Payment  Start   */}
+
+		<Route path="/payment/list">
+			<PaymentList />
+		</Route> 
+
+
+		<Route path="/payment/add">
+			<PaymentAdd />
+		</Route>
+
+{/* 				
+		<Route path="/payment/delete/:id">
+			<PaymentDelete />
+		</Route>
+
+
+		<Route path="/payment/:id">
+			<PaymentEdit />
+		</Route> */}
+		
+		{/* Payment End  */}
 
 		<Route path="/auth/login">
 		<Login />

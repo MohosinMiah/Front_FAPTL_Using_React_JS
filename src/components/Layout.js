@@ -1,15 +1,17 @@
 
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import BodyWrapper from "./BodyWrapper";
 import { NavSidebar } from "./NavSidebar";
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
 
 export const DashboardLayout = ({ children }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 	const [propertyActive, setPropertyActive] = useState(false);
 	const [tenantActive, setTenantActive] = useState(false);
 	const [leaseActive, setLeaseActive] = useState(false);
+	const [paymentActive, setPaymentActive] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	return (
 		<BodyWrapper>
 			<NavSidebar />
@@ -77,6 +79,19 @@ export const DashboardLayout = ({ children }) => {
 								</ul>
 							</div>
 						</li>
+
+						<li className="nav-item mainDropdown">
+							<Link to={"/payment/list"} className="nav-link collapsed" >Payment</Link>
+							<span data-toggle="collapse" data-target_="#payment"   onClick={() => setPaymentActive(!paymentActive)}  className={paymentActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span>
+							<div className={paymentActive ? 'collapse show' : 'collapse'}  id="payment">
+								<ul className="flex-column nav">
+									<li className="nav-item">
+										<Link to={"/payment/add"} className="nav-link collapsed" >Add Payment</Link>
+									</li>
+								</ul>
+							</div>
+						</li>
+
 						<li className="nav-item">
 							<Link to={"/auth/login"} className="nav-link collapsed">Login</Link>
 						</li>
