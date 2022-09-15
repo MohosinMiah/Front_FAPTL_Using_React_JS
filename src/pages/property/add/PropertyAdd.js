@@ -145,7 +145,7 @@ const propertyTypes =  [
 						
 						<div className="form-outline">
 							<label className="form-label">Note</label>
-							<input type="text" name="note" className="form-control" onChange={e => setNote(e.target.value)} />
+							<textarea name="note"  value={note} onChange={e => setNote(e.target.value)} class="form-control"></textarea>
 						</div>
 
 						{/* <div className="form-outline">

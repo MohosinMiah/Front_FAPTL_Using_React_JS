@@ -87,29 +87,35 @@ import './PaymentList.css';
         selector: row => row.tenant.name,
 	},
 
+
+
 	{
-		name: 'Lease Start',
-        selector: row => row.lease_start,
-		
-    },
-	{
-		name: 'Lease End',
-        selector: row => row.lease_end,
-    },
-	{
-		name: 'Rent Amount',
-        selector: row => row.rent_amount,
+		name: 'Payment Amount',
+        selector: row => row.payment_date,
     },
 
 	{
-		name: 'IsActive',
-		selector: row => row.isActive,
+		name: 'Payment Date',
+        selector: row => row.payment_date,
 		
     },
+	
+	{
+		name: 'Status',
+		selector: row => row.status,
+		
+    },	
+	
+	{
+		name: 'Short Note',
+		selector: row => row.payment_note,
+		
+    },
+	
 	{
 		name: "Actions",
 		selector: row => {
-			return <div><Link to={"/lease/" + row.id} >Edit</Link>  || <Link to={"/lease/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/payment/" + row.id} >Edit</Link>  || <Link to={"/payment/delete/" + row.id} >Delete</Link></div>
 		}
 	  }
 ];
@@ -119,7 +125,7 @@ const data = leases;
         fetchLease();
       }, []);
       const fetchLease = () => {
-        const api = 'http://127.0.0.1:8000/api/v1/leases'; 
+        const api = 'http://127.0.0.1:8000/api/v1/payments'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

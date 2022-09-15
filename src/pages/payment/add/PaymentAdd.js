@@ -98,7 +98,7 @@ const handleSubmit = async (e) => {
 
 const addPayment = () => {
 
-	const api = 'http://127.0.0.1:8000/api/v1/Payments';
+	const api = 'http://127.0.0.1:8000/api/v1/payments';
 	const token = localStorage.getItem('access_token');
 	axios({
 		method: 'post',
@@ -107,7 +107,7 @@ const addPayment = () => {
 			property_id: property_id,
 			unit_id: unit_id,
 			tenant_id: tenant_id,
-		
+			payment_purpose: payment_purpose,
 			payment_amount: payment_amount,
 			payment_date: payment_date,
 			payment_note: payment_note,
@@ -215,7 +215,7 @@ const propertyIDHandleChange = ( e ) => {
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Status <sup>*</sup></label>
+						<label className="form-label">Payment Purpose <sup>*</sup></label>
 						<select  name="payment_purpose" className="form-control"  value={payment_purpose} onChange={e => setPaymentPurpose(e.target.value)} >
 							{ paymentPurpose != '' && paymentPurpose.map(option => (
 							<option key={option.text} value={option.text}>
@@ -227,7 +227,7 @@ const propertyIDHandleChange = ( e ) => {
 
 					<div className="form-outline">
 						<label className="form-label">Payment  Note</label>
-						<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control">This is my test</textarea>
+						<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control"></textarea>
 					</div>
 
 					

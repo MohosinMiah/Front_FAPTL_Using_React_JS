@@ -9,6 +9,9 @@ import LeaseList from './lease/LeaseList';
 import MembersPage from "./members";
 import Netflix from "./netflix";
 import PaymentAdd from "./payment/add/PaymentAdd";
+import PaymentEdit from "./payment/edit/PaymentEdit";
+import PaymentDelete from "./payment/PaymentDelete";
+
 import PaymentList from "./payment/PaymentList";
 import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
@@ -146,7 +149,7 @@ return (
 			<PaymentAdd />
 		</Route>
 
-{/* 				
+			
 		<Route path="/payment/delete/:id">
 			<PaymentDelete />
 		</Route>
@@ -154,7 +157,7 @@ return (
 
 		<Route path="/payment/:id">
 			<PaymentEdit />
-		</Route> */}
+		</Route>
 		
 		{/* Payment End  */}
 

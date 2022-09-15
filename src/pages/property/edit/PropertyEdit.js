@@ -226,7 +226,8 @@ const PropertyEdit = () => {
 						</div>
 						<div className="form-outline">
 							<label className="form-label">Note<sup>*</sup></label>
-							<input type="text" name="note" className="form-control"  value={note}  onChange={e => setNote(e.target.value)} />
+							<textarea name="note"  value={note} onChange={e => setNote(e.target.value)} class="form-control">This is my test</textarea>
+
 						</div>
 					
 						{/* <div className="form-outline">
