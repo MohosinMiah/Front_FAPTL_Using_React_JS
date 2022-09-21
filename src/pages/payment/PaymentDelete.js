@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 const PaymentDelete = () => {
 
 	let { id } = useParams();
+
     useEffect(() => {
         deleteProperty();
       }, []);

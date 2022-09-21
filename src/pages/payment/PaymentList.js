@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import swal from 'sweetalert';
 import { DashboardLayout } from '../../components/Layout';
 import './PaymentList.css';
 
@@ -60,7 +61,165 @@ import './PaymentList.css';
   	const [filterText, setFilterText] = React.useState('');
   	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 
-    const [leases, setleases] = useState([]);
+    const [payments, setPayments] = useState([]);
+
+	let data = payments;
+
+
+	// Filter Start **********************************************************************  START FILTER ****************************************************************
+
+
+	const [properties, setProperties] = useState('');
+	const [units, setUnits] = useState('');
+	const [tenants, setTenants] = useState('');
+	
+
+
+	// Selected Option Dropdown Types
+
+	const statusOption = [
+		{value: '',      text: '-- Select Payment Status --'},
+		{value: 'PENDING',   text: 'PENDING'},
+		{value: 'COMPLETE',   text: 'COMPLETE'},
+		];
+
+	const paymentPurpose = [
+		{value: '',      text: '-- Select Payment Status --'},
+		{value: 'Rent',   text: 'Rent'},
+		{value: 'Damage',   text: 'Damage'},
+		{value: 'Others',   text: 'Others'},
+		];
+
+		
+useEffect(() => {
+	fetchProperties();
+	fetchTenants();
+}, []);
+
+// Load Property Lists
+const fetchProperties = async () => {
+	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("Property List");
+		console.log(res.data);
+		let modifyPropertyList = [{id: '', name: '--Select Property--'}, ...res.data];
+		setProperties( modifyPropertyList );	
+
+	}).catch((error) => {
+
+	console.log(error);
+});
+
+}
+	
+// Load Tenant Lists
+const fetchTenants = async () => {
+	const api = 'http://127.0.0.1:8000/api/v1/tenants'; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("Tenant List");
+		console.log(res.data);
+		let modifyTenantList = [{id: '', name: '--Select Tenant--'}, ...res.data];
+		setTenants( modifyTenantList );	
+
+	}).catch((error) => {
+
+	console.log(error);
+});
+
+}
+
+
+const [property_id, setPropertyID]         = useState( '' );
+const [unit_id, setUnitID]                 = useState( '' );
+const [tenant_id, setTenantID]             = useState( '' );
+
+const [paymentStartDate, setpaymentStartDate]         = useState( '' );
+const [paymentEndDate, setpaymentEndDate]             = useState( '' );
+
+const [status, setStatus]             = useState( '' );
+
+
+
+const handleSubmit = async (e) => {
+	// store the states in the form data
+	e.preventDefault();
+
+	try {
+		
+		filterPaymentList();
+	} catch (error) {
+
+	}
+
+}
+
+
+const filterPaymentList = () => {
+
+	const api = 'http://127.0.0.1:8000/api/v1/payments/search';
+	const token = localStorage.getItem('access_token');
+	axios({
+		method: 'post',
+		url: api,
+		data: {
+			property_id: property_id,
+			unit_id: unit_id,
+			// tenant_id: tenant_id,
+			paymentStartDate: paymentStartDate,
+			paymentEndDate: paymentEndDate,
+			// status: status,
+		},
+		headers: { "Authorization": `Bearer ${token}` }
+	})
+		.then(res => {
+			console.log(res.data);
+			setPayments(res.data);
+			
+		}).catch((error) => {
+
+			swal("Failed", "PPayment Enter Required Field Data.", "error");
+
+			console.log(error.response.data.errors);
+
+			console.log(error.response.status);
+			console.log(error.response.headers);
+		});
+}
+
+// Load Property Unit List Based On Property ID
+const fetchUnitsByPropertyID = async ( propertyID ) => {
+	const api = 'http://127.0.0.1:8000/api/v1/payment/unit_list/property/' + propertyID; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("Unit List");
+		console.log(res.data);
+		let modifyPropertyUnitList = [{id: '', name: '--Select Type--'}, ...res.data];
+		setUnits( modifyPropertyUnitList );	
+
+	}).catch((error) => {
+		setUnits( [ {id: '', name: '--Select Unit--'} ] );	
+
+	// console.log(error);
+});
+
+}
+
+
+
+const propertyIDHandleChange = ( e ) => {
+	console.log("Property Id Changed " + e.target.value);
+	const propertyID = e.target.value;
+	setPropertyID( e.target.value );
+	// After Changed PropertyIDHandleChange We Have To Load Associate Property Unit List
+	
+	fetchUnitsByPropertyID( propertyID );
+}
+	// Filter End **********************************************************************  END FILTER ****************************************************************
 
 	const editPropertyHandler = (event) => {
 		event.preventDefault();
@@ -120,16 +279,19 @@ import './PaymentList.css';
 	  }
 ];
 
-const data = leases;
+	function reSetFilter() {
+		fetchPayments();
+	}
+
     useEffect(() => {
-        fetchLease();
+        fetchPayments();
       }, []);
-      const fetchLease = () => {
+      const fetchPayments = () => {
         const api = 'http://127.0.0.1:8000/api/v1/payments'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
-          setleases(res.data);
+          setPayments(res.data);
           console.log(res.data);
        
         }).catch((error) => {
@@ -157,7 +319,46 @@ const data = leases;
   
   	return (
       <DashboardLayout>
+		<form noValidate onSubmit={handleSubmit}>
+						
+						<div className="form-outline">
+							<label className="form-label">Select Property</label>
+							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
+								{ properties != '' && properties.map(option => (
+								<option key={option.id} value={option.id}>
+									{option.id} - {option.name}
+								</option>
+								))}
+							</select>
+						</div>
 	
+						<div className="form-outline">
+							<label className="form-label">Select Property  Unit</label>
+							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
+								{ units != '' && units.map(option => (
+								<option key={option.id} value={option.id}>
+									{option.id} - {option.name}
+								</option>
+								))}
+							</select>
+						</div>
+
+						<div className="form-outline">
+							<label className="form-label">From Date</label>
+							<input type="date" name="paymentStartDate" className="form-control" value={paymentStartDate} onChange={e => setpaymentStartDate(e.target.value)} />
+						</div>
+
+						<div className="form-outline">
+							<label className="form-label">To Date</label>
+							<input type="date" name="paymentEndDate" className="form-control" value={paymentEndDate} onChange={e => setpaymentEndDate(e.target.value)} />
+						</div>
+
+
+
+						<button type="submit" className="form-btn btn btn-primary btn-block">Filter</button>
+
+					</form>
+					<button onClick={reSetFilter}className="form-btn btn btn-primary btn-block">Reset</button>
 		  <DataTable
   			title="Payment List"
   			columns={columns}
@@ -168,7 +369,7 @@ const data = leases;
   			subHeaderComponent={subHeaderComponentMemo}
   			persistTableHead
   		/>
-	
+
       </DashboardLayout>
 	);
   };
