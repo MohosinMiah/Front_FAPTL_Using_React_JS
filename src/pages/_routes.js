@@ -12,6 +12,7 @@ import PaymentAdd from "./payment/add/PaymentAdd";
 import PaymentEdit from "./payment/edit/PaymentEdit";
 import PaymentDelete from "./payment/PaymentDelete";
 
+import Logout from "./Logout";
 import PaymentList from "./payment/PaymentList";
 import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
@@ -165,12 +166,15 @@ return (
 		<Login />
 		</Route>
 
+		<Route path="/logout">
+		<Logout/>
+		</Route>
+
 		<Route path="/settings">
 		<SettingsPage />
 		</Route>
 
-		<Route path="/logout">
-		</Route>
+
 		
 		<Route path="/">
 		<HomePage />

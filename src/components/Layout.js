@@ -11,7 +11,7 @@ export const DashboardLayout = ({ children }) => {
 	const [leaseActive, setLeaseActive] = useState(false);
 	const [paymentActive, setPaymentActive] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const token = localStorage.getItem('access_token');
+	var token = localStorage.getItem('access_token');
 	return (
 		<BodyWrapper>
 			<NavSidebar />
@@ -97,14 +97,8 @@ export const DashboardLayout = ({ children }) => {
 								</ul>
 							</div>
 						</li>
-						{ token.length < 0 ?	
-
-						<li className="nav-item">
-								<Link to={"/auth/login"} className="nav-link collapsed">Login</Link>
-						</li> : <li className="nav-item">
-								<Link to={"/logout"} className="nav-link collapsed">Logout</Link>
-						</li>
-						}
+						{token === null &&  <li className="nav-item"><Link to={"/auth/login"} className="nav-link collapsed">Login</Link></li> }
+						{token !== null &&  <li className="nav-item"><Link to={"/logout"} className="nav-link collapsed">Logout</Link></li> }
 					</ul>
 				</nav>
 				<div className="settings-bottom">
