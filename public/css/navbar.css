@@ -114,8 +114,14 @@
     right: 0;
     cursor: pointer;
     padding: 10px;
-    color: #ffffff;
-    background: red;
+    /* color: #ffffff; */
+}
+
+.menuExpand {
+    padding: 10px;
+    color: #161313;
+    font-weight: bolder;
+    font-size: 17px;
 }
 
 .nav-item.active span {
@@ -134,6 +140,7 @@
     font-size: 15px;
     font-weight: 500;
     border: 0;
+    background-color: #6c786b;
 }
 
 .nav-item.active a.nav-link.collapsed {

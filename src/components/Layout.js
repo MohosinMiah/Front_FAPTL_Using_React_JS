@@ -11,7 +11,7 @@ export const DashboardLayout = ({ children }) => {
 	const [leaseActive, setLeaseActive] = useState(false);
 	const [paymentActive, setPaymentActive] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+	const token = localStorage.getItem('access_token');
 	return (
 		<BodyWrapper>
 			<NavSidebar />
@@ -45,7 +45,7 @@ export const DashboardLayout = ({ children }) => {
 						</li>
 						<li className="nav-item mainDropdown">
 							<Link to={"/property/list"} className="nav-link collapsed">Properties</Link>
-							<span data-toggle="collapse" data-target_="#properties"  onClick={() => setPropertyActive(!propertyActive)} className={propertyActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span>
+							<span onClick={() => setPropertyActive(!propertyActive)} className="menuExpand"> {propertyActive ?   '-' : '+'  }</span>
 							<div className={propertyActive ? 'collapse show' : 'collapse'} id="properties">
 								<ul className="flex-column nav">
 									<li className="nav-item">
@@ -59,7 +59,9 @@ export const DashboardLayout = ({ children }) => {
 						</li>
 						<li className="nav-item mainDropdown">
 							<Link to={"/tenant/list"} className="nav-link collapsed" >Tenants</Link>
-							<span data-toggle="collapse" data-target_="#tenants"   onClick={() => setTenantActive(!tenantActive)}  className={tenantActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span>
+							{/* <span data-toggle="collapse" data-target_="#tenants"   onClick={() => setTenantActive(!tenantActive)}  className={tenantActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span> */}
+							<span onClick={() => setTenantActive(!tenantActive)} className="menuExpand"> {tenantActive ?   '-' : '+'  }</span>
+
 							<div className={tenantActive ? 'collapse show' : 'collapse'} id="tenants">
 								<ul className="flex-column nav">
 									<li className="nav-item">
@@ -70,7 +72,9 @@ export const DashboardLayout = ({ children }) => {
 						</li>
 						<li className="nav-item mainDropdown">
 							<Link to={"/lease/list"} className="nav-link collapsed" >Lease</Link>
-							<span data-toggle="collapse" data-target_="#lease"   onClick={() => setLeaseActive(!leaseActive)}  className={leaseActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span>
+							{/* <span data-toggle="collapse" data-target_="#lease"   onClick={() => setLeaseActive(!leaseActive)}  className={leaseActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span> */}
+							<span onClick={() => setLeaseActive(!leaseActive)} className="menuExpand"> {leaseActive ?   '-' : '+'  }</span>
+
 							<div className={leaseActive ? 'collapse show' : 'collapse'}  id="lease">
 								<ul className="flex-column nav">
 									<li className="nav-item">
@@ -82,7 +86,9 @@ export const DashboardLayout = ({ children }) => {
 
 						<li className="nav-item mainDropdown">
 							<Link to={"/payment/list"} className="nav-link collapsed" >Payment</Link>
-							<span data-toggle="collapse" data-target_="#payment"   onClick={() => setPaymentActive(!paymentActive)}  className={paymentActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span>
+							{/* <span data-toggle="collapse" data-target_="#payment"   onClick={() => setPaymentActive(!paymentActive)}  className={paymentActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span> */}
+							<span onClick={() => setPaymentActive(!paymentActive)} className="menuExpand"> {paymentActive ?   '-' : '+'  }</span>
+
 							<div className={paymentActive ? 'collapse show' : 'collapse'}  id="payment">
 								<ul className="flex-column nav">
 									<li className="nav-item">
@@ -91,10 +97,14 @@ export const DashboardLayout = ({ children }) => {
 								</ul>
 							</div>
 						</li>
+						{ token.length < 0 ?	
 
 						<li className="nav-item">
-							<Link to={"/auth/login"} className="nav-link collapsed">Login</Link>
+								<Link to={"/auth/login"} className="nav-link collapsed">Login</Link>
+						</li> : <li className="nav-item">
+								<Link to={"/logout"} className="nav-link collapsed">Logout</Link>
 						</li>
+						}
 					</ul>
 				</nav>
 				<div className="settings-bottom">
