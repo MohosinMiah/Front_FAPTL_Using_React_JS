@@ -219,7 +219,7 @@ const propertyIDHandleChange = ( e ) => {
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Security Deposit<sup>*</sup></label>
+						<label className="form-label">Pet Security Deposit<sup>*</sup></label>
 						<input type="number" name="pet_security_deposit" className="form-control" placeholder="Pet Security Deposit, Ex. 200 " value={pet_security_deposit} onChange={e => setPetSecurityDeposit(e.target.value)} />
 					</div>
 

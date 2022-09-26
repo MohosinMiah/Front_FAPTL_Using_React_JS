@@ -250,7 +250,7 @@ const propertyIDHandleChange = ( e ) => {
 
 	{
 		name: 'Payment Amount',
-        selector: row => row.payment_date,
+        selector: row => '$ ' + row.payment_amount + '.00',
     },
 
 	{
