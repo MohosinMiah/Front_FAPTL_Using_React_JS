@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './TenantAdd.css';
 const TenantAdd = () => {
 
@@ -123,10 +124,14 @@ const TenantAdd = () => {
 	return (
 		<DashboardLayout>
 
-			<div className="padding-top-bottom" id="property-add">
+		<TopBar />
+			<div className="padding-top-bottom">
 				<div className="container">
-					<h2 className="large-heading mb-5">Tenant Add</h2>
+					<div className="">
+						<h1 className="large-heading mb-5 theme-page-heading">Tenant List</h1>
+					</div>
 					<form noValidate onSubmit={handleSubmit}>
+					<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label">Tenant Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
@@ -152,7 +157,9 @@ const TenantAdd = () => {
 							<label className="form-label">Tenant Number<sup>*</sup></label>
 							<input type="number" name="tenant_number" className="form-control"  value={tenant_number}  onChange={e => setTenantNumber(e.target.value)} />
 						</div>
-						
+					</div>
+
+					<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label">ID Number<sup>*</sup></label>
 							<input type="text" name="id_number" className="form-control" onChange={e => setIdNumber(e.target.value)} />
@@ -169,7 +176,9 @@ const TenantAdd = () => {
 							<label className="form-label">Phone<sup>*</sup></label>
 							<input type="text" name="phone" className="form-control" onChange={e => setPhone(e.target.value)} />
 						</div>
+					</div>
 
+					<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label">Gender</label>
 							<select  name="type" className="form-control"  value={gender} onChange={e => setGender(e.target.value)}>
@@ -203,7 +212,9 @@ const TenantAdd = () => {
 							<label className="form-label">Country<sup>*</sup></label>
 							<input type="text" name="country" className="form-control" onChange={e => setCountry(e.target.value)} />
 						</div>
+				</div>
 
+				<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label">State<sup>*</sup></label>
 							<input type="text" name="state" className="form-control" onChange={e => setState(e.target.value)} />
@@ -219,8 +230,10 @@ const TenantAdd = () => {
 							<label className="form-label">Postal Code<sup>*</sup></label>
 							<input type="text" name="postal_code" className="form-control" onChange={e => setPostalCode(e.target.value)} />
 						</div>
-	
-{/* 						
+					</div>
+
+
+	{/* 						
 						<div className="form-outline">
 							<label className="form-label">Business Name</label>
 							<input type="text" name="business_name" className="form-control" onChange={e => setBusinessName(e.target.value)} />
@@ -235,7 +248,9 @@ const TenantAdd = () => {
 							<label className="form-label">Business Address</label>
 							<input type="text" name="business_address" className="form-control" onChange={e => setBusinessAddress(e.target.value)} />
 						</div>
- */}
+	*/}
+
+				<div className="form-oneline">
 
 						<div className="form-outline">
 							<label className="form-label">Emergency Contact Name<sup>*</sup></label>
@@ -251,9 +266,10 @@ const TenantAdd = () => {
 							<label className="form-label">Emergency Contact Email<sup>*</sup></label>
 							<input type="text" name="emergency_contact_email" className="form-control" onChange={e => setEmergencyContactEmail(e.target.value)} />
 						</div>
-						<button type="submit" className="form-btn btn btn-primary btn-block">Add Tenant</button>
+					</div>
+						<button type="submit" className="form-btn">Add Tenant</button>
 					</form>
-				</div>
+			</div>
 			</div>
 
 		</DashboardLayout>

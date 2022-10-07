@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './PaymentEdit';
 
 const PaymentEdit = () => {
@@ -216,12 +217,16 @@ const fetchTenants = async () => {
   return (
     <DashboardLayout>
 
-			<div className="padding-top-bottom" id="lease-edit">
+		<TopBar />
+			<div className="padding-top-bottom">
 				<div className="container">
-					<h2 className="large-heading mb-5">Edit Payment</h2>
+					<div className="">
+						<h2 className="large-heading mb-5 theme-page-heading">Edit Payment</h2>
+						</div>
 					<form noValidate onSubmit={handleSubmit}>
 						
-						<div className="form-outline">
+				<div className="form-oneline">
+					<div className="form-outline">
 							<label className="form-label">Select Property<sup>*</sup></label>
 							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
 								{ properties != '' && properties.map(option => (
@@ -253,7 +258,8 @@ const fetchTenants = async () => {
 								))}
 							</select>
 						</div>
-	
+					</div>
+					<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label">Payment Amount<sup>*</sup></label>
 							<input type="number" name="payment_amount" className="form-control" placeholder="Payment Amount, Ex. 500 " value={payment_amount} onChange={e => setPaymentAmount(e.target.value)} />
@@ -264,7 +270,8 @@ const fetchTenants = async () => {
 							<label className="form-label">Payment  Date<sup>*</sup></label>
 							<input type="date" name="payment_date" className="form-control" value={payment_date} onChange={e => setPaymentDate(e.target.value)} />
 						</div>
-	
+					</div>
+					<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label">Payment Purpose <sup>*</sup></label>
 							<select  name="payment_purpose" className="form-control"  value={payment_purpose} onChange={e => setPaymentPurpose(e.target.value)} >
@@ -275,12 +282,6 @@ const fetchTenants = async () => {
 								))}
 							</select>
 						</div>
-	
-						<div className="form-outline">
-							<label className="form-label">Payment  Note</label>
-							<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control"></textarea>
-						</div>
-	
 						
 						<div className="form-outline">
 							<label className="form-label">Status <sup>*</sup></label>
@@ -292,8 +293,14 @@ const fetchTenants = async () => {
 								))}
 							</select>
 						</div>
-	
-						<button type="submit" className="form-btn btn btn-primary btn-block">Add payment</button>
+					</div>
+
+					<div className="form-outline one-line">
+							<label className="form-label">Payment  Note</label>
+							<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control"></textarea>
+					</div>
+
+						<button type="submit" className="form-btn">Add payment</button>
 						</form>	
 				</div>
 			</div>

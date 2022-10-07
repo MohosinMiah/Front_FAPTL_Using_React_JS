@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './LeaseAdd.css';
 const LeaseAdd = () => {
 
@@ -169,14 +170,14 @@ const propertyIDHandleChange = ( e ) => {
 
 	return (
 		<DashboardLayout>
-
-			<div className="padding-top-bottom" id="lease-add">
+		<TopBar />
+			<div className="padding-top-bottom" id="property-add">
 				<div className="container">
-					<h2 className="large-heading mb-5">Lease Add</h2>
+					<h2 className="large-heading mb-5 theme-page-heading">Lease Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
-						
+				<div className="form-oneline">
 					<div className="form-outline">
-						<label className="form-label">Select Property<sup>*</sup></label>
+						<label className="form-label themeLabel">Select Property<sup>*</sup></label>
 						<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
 							{ properties != '' && properties.map(option => (
 							<option key={option.id} value={option.id}>
@@ -187,7 +188,7 @@ const propertyIDHandleChange = ( e ) => {
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Select Property  Unit<sup>*</sup></label>
+						<label className="form-label themeLabel">Select Property  Unit<sup>*</sup></label>
 						<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 							{ units != '' && units.map(option => (
 							<option key={option.id} value={option.id}>
@@ -198,7 +199,7 @@ const propertyIDHandleChange = ( e ) => {
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Select Tenant<sup>*</sup></label>
+						<label className="form-label themeLabel">Select Tenant<sup>*</sup></label>
 						<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
 							{ tenants != '' && tenants.map(option => (
 							<option key={option.id} value={option.id}>
@@ -207,34 +208,36 @@ const propertyIDHandleChange = ( e ) => {
 							))}
 						</select>
 					</div>
-
+				</div>
+				<div className="form-oneline">
 					<div className="form-outline">
-						<label className="form-label">Rent Amount<sup>*</sup></label>
+						<label className="form-label themeLabel">Rent Amount<sup>*</sup></label>
 						<input type="number" name="rent_amount" className="form-control" placeholder="Rent Amount, Ex. 500 " value={rent_amount} onChange={e => setRentAmount(e.target.value)} />
 					</div>
 					
 					<div className="form-outline">
-						<label className="form-label">Security Deposit<sup>*</sup></label>
+						<label className="form-label themeLabel">Security Deposit<sup>*</sup></label>
 						<input type="number" name="security_deposit" className="form-control" placeholder="Security Deposit, Ex. 200 " value={security_deposit} onChange={e => setSecurityDeposit(e.target.value)} />
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Pet Security Deposit<sup>*</sup></label>
+						<label className="form-label themeLabel">Pet Security Deposit<sup>*</sup></label>
 						<input type="number" name="pet_security_deposit" className="form-control" placeholder="Pet Security Deposit, Ex. 200 " value={pet_security_deposit} onChange={e => setPetSecurityDeposit(e.target.value)} />
 					</div>
-
+				</div>
+				<div className="form-oneline">
 					<div className="form-outline">
-						<label className="form-label">Lease Start Date<sup>*</sup></label>
+						<label className="form-label themeLabel">Lease Start Date<sup>*</sup></label>
 						<input type="date" name="lease_start" className="form-control" value={lease_start} onChange={e => setLeaseStart(e.target.value)} />
 					</div>
 					
 					<div className="form-outline">
-						<label className="form-label">Lease End Date<sup>*</sup></label>
+						<label className="form-label themeLabel">Lease End Date<sup>*</sup></label>
 						<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label">Select Is Active <sup>*</sup></label>
+						<label className="form-label themeLabel">Select Is Active <sup>*</sup></label>
 						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)} >
 							{ isActives != '' && isActives.map(option => (
 							<option key={option.id} value={option.text}>
@@ -243,9 +246,8 @@ const propertyIDHandleChange = ( e ) => {
 							))}
 						</select>
 					</div>
-
-
-						<button type="submit" className="form-btn btn btn-primary btn-block">Add Lease</button>
+				</div>
+						<button type="submit" className="form-btn">Add Lease</button>
 					</form>
 				</div>
 			</div>

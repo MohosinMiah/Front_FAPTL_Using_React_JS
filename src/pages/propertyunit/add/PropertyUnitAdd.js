@@ -215,7 +215,7 @@ const PropertyAdd =  () => {
 						</select>
 					</div>
 					
-					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property Unit</button>
+					<button type="submit" className="form-btn">Add Property Unit</button>
 				</form>
 			</div>
 		</div>

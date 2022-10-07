@@ -51,7 +51,7 @@ const Login = () => {
 
 	return (
 		<DashboardLayout>
-
+			{localStorage.removeItem('access_token')}
 			<div className="login-page">
 				<div className="container">
 					<div className="login-box">

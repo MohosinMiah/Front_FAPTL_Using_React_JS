@@ -1,9 +1,10 @@
 import { DashboardLayout } from '../components/Layout';
 import "../components/TopBar.css";
+import TopBar from './global/TopBar';
 const HomePage = () => {
 	return (
 		<DashboardLayout>
-		
+		<TopBar />
 			<div className="module-section">
 				<div className="container">
 					<div className="module-row">

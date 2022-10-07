@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './PaymentAdd.css';
 const PaymentAdd = () => {
 
@@ -164,12 +165,12 @@ const propertyIDHandleChange = ( e ) => {
 
 	return (
 		<DashboardLayout>
-
-			<div className="padding-top-bottom" id="payment-add">
+			<TopBar />
+			<div className="padding-top-bottom" id="property-add">
 				<div className="container">
-					<h2 className="large-heading mb-5">Payment Add</h2>
+					<h2 className="large-heading mb-5 theme-page-heading">Payment Add</h2>
 					<form noValidate onSubmit={handleSubmit}>
-						
+				<div className="form-oneline" >
 					<div className="form-outline">
 						<label className="form-label">Select Property<sup>*</sup></label>
 						<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
@@ -202,7 +203,8 @@ const propertyIDHandleChange = ( e ) => {
 							))}
 						</select>
 					</div>
-
+				</div>
+				<div className="form-oneline" >
 					<div className="form-outline">
 						<label className="form-label">Payment Amount<sup>*</sup></label>
 						<input type="number" name="payment_amount" className="form-control" placeholder="Payment Amount, Ex. 500 " value={payment_amount} onChange={e => setPaymentAmount(e.target.value)} />
@@ -213,7 +215,8 @@ const propertyIDHandleChange = ( e ) => {
 						<label className="form-label">Payment  Date<sup>*</sup></label>
 						<input type="date" name="payment_date" className="form-control" value={payment_date} onChange={e => setPaymentDate(e.target.value)} />
 					</div>
-
+				</div>
+				<div className="form-oneline" >
 					<div className="form-outline">
 						<label className="form-label">Payment Purpose <sup>*</sup></label>
 						<select  name="payment_purpose" className="form-control"  value={payment_purpose} onChange={e => setPaymentPurpose(e.target.value)} >
@@ -225,12 +228,7 @@ const propertyIDHandleChange = ( e ) => {
 						</select>
 					</div>
 
-					<div className="form-outline">
-						<label className="form-label">Payment  Note</label>
-						<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control"></textarea>
-					</div>
 
-					
 					<div className="form-outline">
 						<label className="form-label">Status <sup>*</sup></label>
 						<select  name="isActive" className="form-control"  value={status} onChange={e => setStatus(e.target.value)} >
@@ -242,7 +240,15 @@ const propertyIDHandleChange = ( e ) => {
 						</select>
 					</div>
 
-					<button type="submit" className="form-btn btn btn-primary btn-block">Add payment</button>
+				</div>
+
+
+				<div className="form-outline one-line">
+						<label className="form-label">Payment  Note</label>
+						<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control"></textarea>
+					</div>
+
+					<button type="submit" className="form-btn">Add payment</button>
 					</form>
 				</div>
 			</div>

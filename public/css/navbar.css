@@ -398,23 +398,66 @@ nav.sc-iIPllB.jxflYm.rdt_Pagination {
     background: rgb(226 232 240 / 50%);
 }
 
-.padding-top-bottom {padding-top: 100px;padding-bottom: 100px;}
+.padding-top-bottom {
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
 .padding-top-bottom form {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 25px px ;
+    gap: 25px;
 }
 
 .padding-top-bottom form .form-outline {
-    max-width: 400px;
-    width: 100%;
+    max-width: 49%;
+    flex-basis: 49%;
+}
+.padding-top-bottom form .form-outline.address {
+    max-width: 100%;
+    flex-basis: 100%;
+}
+.form-oneline {
+    max-width: 100%;
+    flex-basis: 100%;
+    display: flex;
+    gap: 25px;
 }
 
+.padding-top-bottom form .form-outline.one-line {
+    max-width: 100%;
+    flex-basis: 100%;
+}
 .btn-primary {
     display: flex;
     width: max-content;
 }
+.form-btn {
+    padding: 10px;
+    background: #10ab8e;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 3px;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 150px;
+    text-align: center;
+    border-radius: 3px;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.form-btn:hover {
+    border-color: #10ab8e;
+    background: transparent;
+    color: #10ab8e;
+}
+
+.theme-page-heading {
+    color: #10ab8e;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
 
 /* //Add new Button Style    */
 
@@ -430,7 +473,7 @@ nav.sc-iIPllB.jxflYm.rdt_Pagination {
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: normal;
@@ -473,4 +516,83 @@ nav.sc-iIPllB.jxflYm.rdt_Pagination {
 
 .page-main-heading {
     font-size: 25px;
+}
+
+div {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.themeLabel {
+    color: #7d7777;
+}
+
+a.theme-btn-edit{
+padding: 5px;
+color: #10ab8e;
+text-decoration: none;
+box-shadow: rgb(0 0 0 / 10%) 0px 0px 3px;
+line-height: 1;
+font-size: 16px;
+font-weight: 600;
+text-align: center;
+border-radius: 3px;display: inline-block;}
+a.theme-btn-edit:hover {
+    background:#10ab8e;
+    color: #fff;
+}
+a.theme-btn-edit.red{color: red;}
+a.theme-btn-edit.red:hover {
+    background:red;
+    color: #fff;
+}
+
+a.copy {
+    color: #239823;
+}
+
+a.red {
+    color: red;
+}
+
+.sc-hLBbgP {
+    border: 2px solid #dedede;
+}
+
+sup {
+    color: red;
+}
+
+
+hr {
+    border: 2px solid #ccc7c7;
+    height: 4px;
+    width: 100%;
+    background-color: #ccc7c7;
+}
+
+.form-btn-submit
+{
+    padding: 5px;
+    background: #10ab8e;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 3px;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 150px;
+    text-align: center;
+    border-radius: 3px;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.form-btn-submit:hover {
+    border-color: #10ab8e;
+    background: transparent;
+    color: #10ab8e;
+}
+
+.padding-bottom-style
+{
+    padding-bottom: 30px;
 }

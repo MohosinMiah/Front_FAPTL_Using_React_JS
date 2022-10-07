@@ -6,6 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
+import TopBar from '../global/TopBar';
 import './LeaseList.css';
 
     
@@ -77,11 +78,7 @@ import './LeaseList.css';
         selector: row => row.property.name,
 		
 	},
-
-	{
-		name: 'Utit Name',
-        selector: row => row.property_unit.name,
-	},	
+	
 	{
 		name: 'Tenant Name',
         selector: row => row.tenant.name,
@@ -109,7 +106,7 @@ import './LeaseList.css';
 	{
 		name: "Actions",
 		selector: row => {
-			return <div><Link to={"/lease/" + row.id} >Edit</Link>  || <Link to={"/lease/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/lease/" + row.id} className="theme-btn-edit">Edit</Link>  || <Link to={"/lease/delete/" + row.id} className="theme-btn-edit red" >Delete</Link></div>
 		}
 	  }
 ];
@@ -151,18 +148,27 @@ const data = leases;
   
   	return (
       <DashboardLayout>
-	
-		  <DataTable
-  			title="Lease List"
-  			columns={columns}
-  			data={filteredItems}
-  			pagination
-  			paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-  			subHeader
-  			subHeaderComponent={subHeaderComponentMemo}
-  			persistTableHead
-  		/>
-	
+			<TopBar />
+			<div className="padding-top-bottom">
+				<div className="container">
+					<div className="">
+						<h1 className="large-heading mb-5 theme-page-heading">Tenant List</h1>
+						<Link to={"/tenant/add"} className="theme-btn"> Add New Tenant</Link>
+						
+					</div>
+			<DataTable
+				columns={columns}
+				data={filteredItems}
+				pagination
+				paginationPerPage={30}
+				paginationRowsPerPageOptions={[10, 25, 50, 100]}
+				paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+				subHeader
+				subHeaderComponent={subHeaderComponentMemo}
+				persistTableHead
+			/>
+		</div>
+	</div>
       </DashboardLayout>
 	);
   };

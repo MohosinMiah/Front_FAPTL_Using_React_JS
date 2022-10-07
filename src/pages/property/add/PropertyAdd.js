@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './PropertyAdd.css';
 const PropertyAdd = () => {
 
@@ -95,18 +96,19 @@ const propertyTypes =  [
 
 	return (
 		<DashboardLayout>
-
+			<TopBar />
 			<div className="padding-top-bottom" id="property-add">
 				<div className="container">
-					<h2 className="large-heading mb-5">Property Add</h2>
+					<h2 className="large-heading mb-5 theme-page-heading">Property Add</h2>
+					<br />
 					<form noValidate onSubmit={handleSubmit}>
 						<div className="form-outline">
-							<label className="form-label">Property Name<sup>*</sup></label>
+							<label className="form-label themeLabel">Property Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label">Type <sup>*</sup></label>
+							<label className="form-label themeLabel">Type <sup>*</sup></label>
 							<select  name="type" className="form-control"  onChange={e => setType(e.target.value)}>
 								{ propertyTypes != '' && propertyTypes.map(option => (
 								<option key={option.id} value={option.text}>
@@ -117,42 +119,44 @@ const propertyTypes =  [
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label">Rent Amount<sup>*</sup></label>
+							<label className="form-label themeLabel">Rent Amount<sup>*</sup></label>
 							<input type="number" name="rent_amount" className="form-control" onChange={e => setRentAmount(e.target.value)} />
 						</div>
 						
 						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
+							<label className="form-label themeLabel">Size<sup>*</sup></label>
 							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
 						</div>
 
-						<div className="form-outline">
-							<label className="form-label">Address</label>
+						<div className="form-outline address">
+							<label className="form-label themeLabel">Address</label>
 							<input type="text" name="address" className="form-control" onChange={e => setAddress(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">City<sup>*</sup></label>
-							<input type="text" name="city" className="form-control" onChange={e => setCity(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">State<sup>*</sup></label>
-							<input type="text" name="state" className="form-control" onChange={e => setState(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Zip<sup>*</sup></label>
-							<input type="number" name="zip" className="form-control" onChange={e => setZip(e.target.value)} />
+						<div className="form-oneline">
+							<div className="form-outline">
+								<label className="form-label themeLabel">City<sup>*</sup></label>
+								<input type="text" name="city" className="form-control" onChange={e => setCity(e.target.value)} />
+							</div>
+							<div className="form-outline">
+								<label className="form-label themeLabel">State<sup>*</sup></label>
+								<input type="text" name="state" className="form-control" onChange={e => setState(e.target.value)} />
+							</div>
+							<div className="form-outline">
+								<label className="form-label themeLabel">Zip<sup>*</sup></label>
+								<input type="number" name="zip" className="form-control" onChange={e => setZip(e.target.value)} />
+							</div>
 						</div>
 						
-						<div className="form-outline">
-							<label className="form-label">Note</label>
-							<textarea name="note"  value={note} onChange={e => setNote(e.target.value)} class="form-control"></textarea>
+						<div className="form-outline one-line">
+							<label className="form-label themeLabel">Note</label>
+							<textarea name="note"  value={note} onChange={e => setNote(e.target.value)} className="form-control"></textarea>
 						</div>
 
 						{/* <div className="form-outline">
-							<label className="form-label">Link</label>
+							<label className="form-label themeLabel">Link</label>
 							<input type="text" name="link" className="form-control" onChange={e => setLink(e.target.value)} />
 						</div> */}
-						<button type="submit" className="form-btn btn btn-primary btn-block">Add Property</button>
+						<button type="submit" className="form-btn">Add Property</button>
 					</form>
 				</div>
 			</div>

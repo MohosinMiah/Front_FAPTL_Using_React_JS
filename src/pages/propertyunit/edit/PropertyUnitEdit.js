@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './PropertyUnitEdit';
 
 const PropertyEdit = () => {
@@ -152,104 +153,119 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
-			<div className="padding-top-bottom" id="property-unit-edit">
+		<TopBar />
+			<div className="padding-top-bottom">
 				<div className="container">
-      <h2>Edit Property Unit : {name}</h2>
+					<div className="">
+						<h1 className="large-heading mb-5 theme-page-heading" > Edit Property Unit : {name}</h1>
+					</div>
+						<form noValidate onSubmit={handleSubmit}>
+				
+							{/* <div className="form-outline">
+								<label className="form-label themeLabel">Type<sup>*</sup></label>
+								<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
+									{types.map(option => (
+									<option key={option.value} value={option.value}>
+										{option.text}
+									</option>
+									))}
+								</select>
+							</div> */}
+							<div className="form-outline">
+								<label className="form-label themeLabel">Name</label>
+								<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
+							</div>
+							<div className="form-oneline">
+								<div className="form-outline">
+									<label className="form-label themeLabel">Floor<sup>*</sup></label>
+									<input type="number" name="floor" className="form-control" value={floor} onChange={e => setFloor(e.target.value)} />
+								</div>
+								<div className="form-outline">
+									<label className="form-label themeLabel">Rent Amount<sup>*</sup></label>
+									<input type="number" name="rent" className="form-control" value={rent} onChange={e => setRent(e.target.value)} />
+								</div>
+							</div>
+							{/* <div className="form-outline">
+								<label className="form-label themeLabel">Unit Type<sup>*</sup></label>
+								<select  name="unit_type" className="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
+									{unitTypes != '' && unitTypes.map(option => (
+									<option key={option.value} value={option.value}>
+										{option.text}
+									</option>
+									))}
+								</select>
 
-	  <form noValidate onSubmit={handleSubmit}>
-		
-					{/* <div className="form-outline">
-						<label className="form-label">Type<sup>*</sup></label>
-						<select  name="type" className="form-control"  value={type} onChange={e => setType(e.target.value)}>
-							{types.map(option => (
-							<option key={option.value} value={option.value}>
-								{option.text}
-							</option>
-							))}
-						</select>
-					</div> */}
-					<div className="form-outline">
-						<label className="form-label">Name</label>
-						<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Floor<sup>*</sup></label>
-						<input type="number" name="floor" className="form-control" value={floor} onChange={e => setFloor(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Rent Amount<sup>*</sup></label>
-						<input type="number" name="rent" className="form-control" value={rent} onChange={e => setRent(e.target.value)} />
-					</div>
-					{/* <div className="form-outline">
-						<label className="form-label">Unit Type<sup>*</sup></label>
-						<select  name="unit_type" className="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
-							{unitTypes != '' && unitTypes.map(option => (
-							<option key={option.value} value={option.value}>
-								{option.text}
-							</option>
-							))}
-						</select>
+							</div> */}
+							
+							<div className="form-oneline">
+								<div className="form-outline">
+									<label className="form-label themeLabel">Size<sup>*</sup></label>
+									<input type="number" name="size" className="form-control" value={size} onChange={e => setSize(e.target.value)} />
+								</div>
 
-					</div> */}
-					<div className="form-outline">
-						<label className="form-label">Size<sup>*</sup></label>
-						<input type="number" name="size" className="form-control" value={size} onChange={e => setSize(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Total Room<sup>*</sup></label>
-						<input type="number" name="total_room" className="form-control" value={total_room} onChange={e => setTotalRoom(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Bed Room</label>
-						<input type="number" name="bed_room" className="form-control" value={bed_room} onChange={e => setBedRoom(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Bath Room</label>
-						<input type="number" name="bath_room" className="form-control"  value={bath_room} onChange={e => setBathRoom(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">balcony</label>
-						<input type="number" name="balcony" className="form-control"  value={balcony}  onChange={e => setBalcony(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Note</label>
-						<textarea name="note"  className="form-control"   onChange={e => setNote(e.target.value)} value={note} >  </textarea>
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Is Available</label>
-						<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
-							{isAvailables != '' && isAvailables.map(option => (
-							<option key={isAvailables.value} value={option.value}>
-								{option.text}
-							</option>
-							))}
-						</select>
-					</div>
-					{/* <div className="form-outline">
-						<label className="form-label">Is Featured</label>
-						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
-						{isFeatureds != '' && isFeatureds.map(option => (
-							<option key={option.value} value={option.value} >
-								{option.text}
-							</option>
-							))}
-						</select>
-					</div> */}
-					<div className="form-outline">
-						<label className="form-label">Is Active</label>
-						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
-						{isActives != ''  && isActives.map(option => (
-							<option key={option.value} value={option.value}>
-								{option.text}
-							</option>
-							))}
-						</select>
-					</div>
-					
-					<button type="submit" className="form-btn btn btn-primary btn-block">Update Property Unit</button>
-				</form>
+								<div className="form-outline">
+									<label className="form-label themeLabel">Total Room<sup>*</sup></label>
+									<input type="number" name="total_room" className="form-control" value={total_room} onChange={e => setTotalRoom(e.target.value)} />
+								</div>
+								
+							</div>
+
+							<div className="form-oneline">
+								<div className="form-outline">
+										<label className="form-label themeLabel">Bed Room</label>
+										<input type="number" name="bed_room" className="form-control" value={bed_room} onChange={e => setBedRoom(e.target.value)} />
+								</div>
+								<div className="form-outline">
+									<label className="form-label themeLabel">Bath Room</label>
+									<input type="number" name="bath_room" className="form-control"  value={bath_room} onChange={e => setBathRoom(e.target.value)} />
+								</div>
+								<div className="form-outline">
+									<label className="form-label themeLabel">balcony</label>
+									<input type="number" name="balcony" className="form-control"  value={balcony}  onChange={e => setBalcony(e.target.value)} />
+								</div>
+							</div>
+						
+							<div className="form-outline one-line">
+								<label className="form-label themeLabel">Note</label>
+								<textarea name="note"  className="form-control"   onChange={e => setNote(e.target.value)} value={note} >  </textarea>
+							</div>
+
+							<div className="form-oneline">
+								<div className="form-outline">
+									<label className="form-label themeLabel">Is Available</label>
+									<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
+										{isAvailables != '' && isAvailables.map(option => (
+										<option key={isAvailables.value} value={option.value}>
+											{option.text}
+										</option>
+										))}
+									</select>
+								</div>
+								{/* <div className="form-outline">
+									<label className="form-label themeLabel">Is Featured</label>
+									<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
+									{isFeatureds != '' && isFeatureds.map(option => (
+										<option key={option.value} value={option.value} >
+											{option.text}
+										</option>
+										))}
+									</select>
+								</div> */}
+								<div className="form-outline">
+									<label className="form-label themeLabel">Is Active</label>
+									<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
+									{isActives != ''  && isActives.map(option => (
+										<option key={option.value} value={option.value}>
+											{option.text}
+										</option>
+										))}
+									</select>
+								</div>
+							</div>
+							<button type="submit" className="form-btn">Update Property Unit</button>
+						</form>
 				</div>
-				</div>
+			</div>
     </DashboardLayout>
   )
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './PropertyUnitAddCopy';
 
 const PropertyUnitAddCopy =  () => {
@@ -153,9 +154,10 @@ const PropertyUnitAddCopy =  () => {
 
   return (
     <DashboardLayout>
-		<div className="padding-top-bottom" id="lease-add">
-				<div className="container">
-				<h2 className="large-heading mb-5">Add Property Unit Under Property ID =   {property_id} </h2>
+		<TopBar />
+		<div className="padding-top-bottom">
+			<div className="container">
+					<h2 className="large-heading mb-5  theme-page-heading">Add Property Unit Under Property ID =   {property_id} </h2>
 				<form noValidate onSubmit={handleSubmit}>
 					{/* <div className="form-outline">
 						<label className="form-label">Type<sup>*</sup></label>
@@ -245,7 +247,7 @@ const PropertyUnitAddCopy =  () => {
 						</select>
 					</div>
 					
-					<button type="submit" className="form-btn btn btn-primary btn-block">Add Property Unit</button>
+					<button type="submit" className="form-btn">Add Property Unit</button>
 				</form>
 			</div>
 		</div>

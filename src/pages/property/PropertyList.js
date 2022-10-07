@@ -6,6 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
+import TopBar from '../global/TopBar';
 import './PropertyList.css';
 
     
@@ -71,7 +72,7 @@ import './PropertyList.css';
     {
         name: 'Name',
 		selector: row =>{
-			return <div><Link to={"/property/"+  row.id + "/units/"} >{row.name}</Link></div>
+			return <div><Link to={"/property/"+  row.id + "/units/"} className="normal-link" >{row.name}</Link></div>
 		}
     },
 	{
@@ -79,7 +80,7 @@ import './PropertyList.css';
 		selector: row =>  row.type,
 	},
 	{
-		name: 'Reant Amount',
+		name: 'Rent Amount',
 		selector: row =>  row.rent_amount,
 	},
 	{
@@ -95,7 +96,7 @@ import './PropertyList.css';
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/property/" + row.id} >Edit</Link>  || <Link to={"/property/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/property/" + row.id} className="theme-btn-edit" >Edit</Link>  || <Link to={"/property/delete/" + row.id} className="theme-btn-edit red">Delete</Link></div>
 		}
 	  }
 ];
@@ -137,17 +138,24 @@ const data = properties;
   
   	return (
       <DashboardLayout>
-		<Link to={"/property/add"} className="add-new-btn"> Add New Property</Link>
-		<h1 className="page-main-heading">Property Listing</h1>
+		<TopBar />
+		<div className="padding-top-bottom">
+		<div className="container">
+		<div className="">
+			<h1 className="large-heading mb-5 theme-page-heading">Property Listing</h1>
+			<Link to={"/property/add"} className="theme-btn"> Add New Property</Link>
+		</div>
 		<DataTable
 		columns={columns}
 		data={filteredItems}
 		pagination
+		paginationPerPage={30}
+		paginationRowsPerPageOptions={[10, 25, 50, 100]}
 		paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
 		subHeader
 		subHeaderComponent={subHeaderComponentMemo}
 		persistTableHead
-	/>
+	/></div></div>
       </DashboardLayout>
 	);
   };

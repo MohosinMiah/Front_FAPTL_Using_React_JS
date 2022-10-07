@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import PropertyTopBar from '../PropertyTopBar';
 import './PropertyEdit';
 
@@ -178,19 +179,21 @@ const PropertyEdit = () => {
 
   return (
     <DashboardLayout>
-
+			<TopBar />
 			<PropertyTopBar/>
-			<div className="padding-top-bottom" id="property-edit">
+			<div className="padding-top-bottom">
 				<div className="container">
-					<h2 className="large-heading mb-5">Edit Property : {name} </h2>
+				<div className="">
+					<h2 className="large-heading mb-5 theme-page-heading">Edit Property : {name} </h2>
+					</div>
 					<form noValidate onSubmit={handleSubmit}>
 						<div className="form-outline">
-							<label className="form-label">Property Name<sup>*</sup></label>
+							<label className="form-label themeLabel">Property Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
 						</div>
 					
 						<div className="form-outline">
-							<label className="form-label">Type <sup>*</sup></label>
+							<label className="form-label themeLabel">Type <sup>*</sup></label>
 							<select  name="type" className="form-control" value={type} onChange={e => setType(e.target.value)}>
 								{ propertyTypes != '' && propertyTypes.map(option => (
 								<option key={option.id} value={option.text}>
@@ -200,41 +203,43 @@ const PropertyEdit = () => {
 							</select>
 						</div>
 						<div className="form-outline">
-							<label className="form-label">Rent Amount<sup>*</sup></label>
+							<label className="form-label themeLabel">Rent Amount<sup>*</sup></label>
 							<input type="number" name="rent_amount" className="form-control"  value={rent_amount}  onChange={e => setRentAmount(e.target.value)} />
 						</div>
 						<div className="form-outline">
-							<label className="form-label">Size<sup>*</sup></label>
+							<label className="form-label themeLabel">Size<sup>*</sup></label>
 							<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
 						</div>
 						
-						<div className="form-outline">
-							<label className="form-label">Address</label>
+						<div className="form-outline address">
+							<label className="form-label themeLabel">Address</label>
 							<input type="text" name="address" className="form-control"  value={address}  onChange={e => setAddress(e.target.value)} />
 						</div>
-						<div className="form-outline">
-							<label className="form-label">City<sup>*</sup></label>
-							<input type="text" name="city" className="form-control"  value={city}  onChange={e => setCity(e.target.value)} />
+						<div className="form-oneline">
+							<div className="form-outline">
+								<label className="form-label themeLabel">City<sup>*</sup></label>
+								<input type="text" name="city" className="form-control"  value={city}  onChange={e => setCity(e.target.value)} />
+							</div>
+							<div className="form-outline">
+								<label className="form-label themeLabel">State<sup>*</sup></label>
+								<input type="text" name="state" className="form-control"  value={state}  onChange={e => setState(e.target.value)} />
+							</div>
+							<div className="form-outline">
+								<label className="form-label themeLabel">Zip<sup>*</sup></label>
+								<input type="number" name="zip" className="form-control"  value={zip}  onChange={e => setZip(e.target.value)} />
+							</div>
 						</div>
-						<div className="form-outline">
-							<label className="form-label">State<sup>*</sup></label>
-							<input type="text" name="state" className="form-control"  value={state}  onChange={e => setState(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Zip<sup>*</sup></label>
-							<input type="number" name="zip" className="form-control"  value={zip}  onChange={e => setZip(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label">Note<sup>*</sup></label>
-							<textarea name="note"  value={note} onChange={e => setNote(e.target.value)} class="form-control">This is my test</textarea>
 
-						</div>
-					
+							<div className="form-outline one-line">
+								<label className="form-label themeLabel">Note<sup>*</sup></label>
+								<textarea name="note"  value={note} onChange={e => setNote(e.target.value)} class="form-control">{note}</textarea>
+							</div>
+			
 						{/* <div className="form-outline">
-							<label className="form-label">Link<sup>*</sup></label>
+							<label className="form-label themeLabel">Link<sup>*</sup></label>
 							<input type="text" name="link" className="form-control"  value={link}  onChange={e => setLink(e.target.value)} />
 						</div> */}
-						<button type="submit" className="form-btn btn btn-primary btn-block">Update Property</button>
+						<button type="submit" className="form-btn">Update Property</button>
 					</form>
 				</div>
 			</div>

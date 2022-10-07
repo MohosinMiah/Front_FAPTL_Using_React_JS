@@ -6,6 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from '../../components/Layout';
+import TopBar from '../global/TopBar';
 import './PropertyUnitList.css';
 
     
@@ -94,7 +95,7 @@ import './PropertyUnitList.css';
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/propertyunit/" + row.id} >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/propertyunit/" + row.id} className="theme-btn-edit">Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} className="theme-btn-edit red	">Delete</Link></div>
 		}
 	  }
 ];
@@ -136,17 +137,25 @@ const data = properties;
   
   	return (
       <DashboardLayout>
-			<h1 className="page-main-heading">Property Units : All</h1>
-
-  		<DataTable
-  			columns={columns}
-  			data={filteredItems}
-  			pagination
-  			paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-  			subHeader
-  			subHeaderComponent={subHeaderComponentMemo}
-  			persistTableHead
-  		/>
+		<TopBar />
+		<div className="padding-top-bottom">
+			<div className="container">
+				<div className="">
+					<h1 className="large-heading mb-5 theme-page-heading">Property Units : All</h1>
+				</div>
+				<DataTable
+					columns={columns}
+					data={filteredItems}
+					pagination
+					paginationPerPage={30}
+					paginationRowsPerPageOptions={[10, 25, 50, 100]}
+					paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+					subHeader
+					subHeaderComponent={subHeaderComponentMemo}
+					persistTableHead
+				/>
+			</div>
+		</div>
       </DashboardLayout>
 	);
   };

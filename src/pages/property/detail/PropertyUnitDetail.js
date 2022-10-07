@@ -6,6 +6,7 @@ import DataTable from 'react-data-table-component';
 import { Link, useParams } from "react-router-dom";
 import styled from 'styled-components';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 
     
   const TextField = styled.input`
@@ -105,7 +106,7 @@ import { DashboardLayout } from "../../../components/Layout";
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={ "/propertyunit/" + row.id + "/copy" } >Copy</Link> || <Link to={"/propertyunit/" + row.id} >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} >Delete</Link> </div>
+			return <div><Link to={ "/propertyunit/" + row.id + "/copy" } className="copy"  >Copy</Link> || <Link to={"/propertyunit/" + row.id} className="theme-btn-edit" >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id}  className="red"  >Delete</Link> </div>
 		}
 	  }
 ];
@@ -162,42 +163,56 @@ const data = properties;
   
   	return (
       <DashboardLayout>
-
-			<h1 className="page-main-heading">Units of property : {property.name != null && property.name}</h1>
+		<TopBar />
+		<div className="padding-top-bottom">
+			<div className="container">
+				<div className="">
+					<h1 className="large-heading mb-5  theme-page-heading">Units of property : {property.name != null && property.name}</h1>
+				</div>
+				
 			<table className="table">
 				<tbody>
 				<tr>
-						<td>Property Name : </td>
+						<td className="themeLabel">Property Name : </td>
 						<td>{property.name != null && property.name}</td>
 					</tr>
 					<tr>
-						<td>Type : </td>
+						<td  className="themeLabel">Type : </td>
 						<td>{property.type != null && property.type}</td>
 					</tr>
 					<tr>
-						<td>City : </td>
+						<td  className="themeLabel">City : </td>
 						<td>{property.city != null && property.city}</td>
 					</tr>
 					<tr>
-						<td>State : </td>
+						<td  className="themeLabel">State : </td>
 						<td>{property.state != null && property.state}</td>
 					</tr>
 					<tr>
-						<td>Address : </td>
+						<td  className="themeLabel">Address : </td>
 						<td>{property.address != null && property.address}</td>
 					</tr>
 					<tr>
-						<td>Size : </td>
+						<td  className="themeLabel">Size : </td>
 						<td>{property.size != null && property.size}</td>
 					</tr>
 					<tr>
-						<td>Is Featured : </td>
+						<td  className="themeLabel">Is Featured : </td>
 						<td>{property.isFeatured != null && property.isFeatured}</td>
+					</tr>
+					<tr>
+						
+							<Link to={"/propertyunit/"+ id + "/add/"}  className="theme-btn "> Add New Unit</Link>
+						
+							<Link to={"/propertyunit/list"} className="theme-btn" > All Units</Link>
+						
+							<Link to={"/property/list"} className="theme-btn "> Property List</Link>
+					
+					
 					</tr>
 				</tbody>
 			</table>
-			<Link to={"/propertyunit/"+ id + "/add/"} className="add-new-btn"> All New Unit</Link>
-			<Link to={"/propertyunit/list"} className="all-list-btn"> All Units</Link>
+			
   		<DataTable
   			columns={columns}
   			data={filteredItems}
@@ -207,6 +222,8 @@ const data = properties;
   			subHeaderComponent={subHeaderComponentMemo}
   			persistTableHead
   		/>
+		</div>
+		</div>
       </DashboardLayout>
 	);
   };

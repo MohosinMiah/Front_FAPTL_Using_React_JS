@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import swal from 'sweetalert';
 import { DashboardLayout } from '../../components/Layout';
+import TopBar from '../global/TopBar';
 import './PaymentList.css';
 
     
@@ -266,15 +267,9 @@ const propertyIDHandleChange = ( e ) => {
     },	
 	
 	{
-		name: 'Short Note',
-		selector: row => row.payment_note,
-		
-    },
-	
-	{
 		name: "Actions",
 		selector: row => {
-			return <div><Link to={"/payment/" + row.id} >Edit</Link>  || <Link to={"/payment/delete/" + row.id} >Delete</Link></div>
+			return <div><Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link>  || <Link to={"/payment/delete/" + row.id} className="theme-btn-edit red">Delete</Link></div>
 		}
 	  }
 ];
@@ -319,8 +314,14 @@ const propertyIDHandleChange = ( e ) => {
   
   	return (
       <DashboardLayout>
-		<form noValidate onSubmit={handleSubmit}>
-						
+		<TopBar />
+		<div className="padding-top-bottom">
+			<div className="container">
+			<h2 className="large-heading mb-5 theme-page-heading">Payment List</h2>
+				<Link to={"/payment/add"} className="form-btn"> Add Payment</Link>
+				<div className="padding-bottom-style" ></div>
+				<form noValidate onSubmit={handleSubmit}>
+					<div className="form-oneline" >
 						<div className="form-outline">
 							<label className="form-label">Select Property</label>
 							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
@@ -352,23 +353,24 @@ const propertyIDHandleChange = ( e ) => {
 							<label className="form-label">To Date</label>
 							<input type="date" name="paymentEndDate" className="form-control" value={paymentEndDate} onChange={e => setpaymentEndDate(e.target.value)} />
 						</div>
+					</div>
+						<button type="submit" className="form-btn-submit">Filter</button>
+						<button onClick={reSetFilter} className="form-btn-submit">Reset</button>
+				</form>
 
-
-
-						<button type="submit" className="form-btn btn btn-primary btn-block">Filter</button>
-
-					</form>
-					<button onClick={reSetFilter}className="form-btn btn btn-primary btn-block">Reset</button>
-		  <DataTable
-  			title="Payment List"
-  			columns={columns}
-  			data={filteredItems}
-  			pagination
-  			paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-  			subHeader
-  			subHeaderComponent={subHeaderComponentMemo}
-  			persistTableHead
-  		/>
+			<DataTable
+				columns={columns}
+				data={filteredItems}
+				pagination
+				paginationPerPage={30}
+				paginationRowsPerPageOptions={[10, 25, 50, 100]}
+				paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+				subHeader
+				subHeaderComponent={subHeaderComponentMemo}
+				persistTableHead
+				/>
+			</div>
+		</div>
 
       </DashboardLayout>
 	);
