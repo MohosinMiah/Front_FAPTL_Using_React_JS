@@ -85,11 +85,13 @@ import './PaymentList.css';
 
 	// Selected Option Dropdown Types
 
+
 	const statusOption = [
-		{value: '',      text: '-- Select Payment Status --'},
+		{value: '',   text: 'Payment Status'},
+		{value: 'DEPOSITED',   text: 'DEPOSITED'},
 		{value: 'PENDING',   text: 'PENDING'},
-		{value: 'COMPLETE',   text: 'COMPLETE'},
-		];
+		{value: 'RECORDED',   text: 'RECORDED'},
+	];
 
 	const paymentPurpose = [
 		{value: '',      text: '-- Select Payment Status --'},
@@ -168,10 +170,10 @@ const filterPaymentList = () => {
 		data: {
 			property_id: property_id,
 			unit_id: unit_id,
-			// tenant_id: tenant_id,
+			tenant_id: tenant_id,
 			paymentStartDate: paymentStartDate,
 			paymentEndDate: paymentEndDate,
-			// status: status,
+			status: status,
 		},
 		headers: { "Authorization": `Bearer ${token}` }
 	})
@@ -208,7 +210,6 @@ const fetchUnitsByPropertyID = async ( propertyID ) => {
 });
 
 }
-
 
 
 const propertyIDHandleChange = ( e ) => {
@@ -321,12 +322,25 @@ const propertyIDHandleChange = ( e ) => {
 				<div className="padding-bottom-style" ></div>
 				<form noValidate onSubmit={handleSubmit}>
 					<div className="form-oneline" >
+					
+						<div className="form-outline">
+							<label className="form-label">Select Property</label>
+							<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
+								{ tenants != '' && tenants.map(option => (
+								<option key={option.id} value={option.id}>
+									{option.name}
+								</option>
+								))}
+							</select>
+						</div>
+
+
 						<div className="form-outline">
 							<label className="form-label">Select Property</label>
 							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
 								{ properties != '' && properties.map(option => (
 								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
+									{option.name}
 								</option>
 								))}
 							</select>
@@ -337,11 +351,23 @@ const propertyIDHandleChange = ( e ) => {
 							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 								{ units != '' && units.map(option => (
 								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
+									{option.name}
 								</option>
 								))}
 							</select>
 						</div>
+
+						<div className="form-outline">
+							<label className="form-label">Select Property  Status</label>
+							<select  name="unit_id" className="form-control"  value={status} onChange={e => setStatus(e.target.value)}>
+								{ statusOption != '' && statusOption.map(option => (
+								<option key={option.value} value={option.value}>
+									{option.text}
+								</option>
+								))}
+							</select>
+						</div>
+
 
 						<div className="form-outline">
 							<label className="form-label">From Date</label>

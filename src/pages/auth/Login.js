@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import swal from 'sweetalert';
-import { DashboardLayout } from '../../components/Layout';
 import { DashboardLayoutLogin } from '../../components/LayoutLogin';
 
 
@@ -13,7 +12,7 @@ const Login = () => {
 		localStorage.removeItem('access_token' );
 
 		console.log(process.env.PRODUCTION_DEV_URL);
-		return fetch("http://api.americanbestit.com/api/v1/login", {
+		return fetch("http://127.0.0.1:8000/api/v1/login", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

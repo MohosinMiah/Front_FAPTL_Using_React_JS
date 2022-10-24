@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./auth/Login";
 
-import HomePage from "./home";
 import LeaseAdd from './lease/add/LeaseAdd';
 import LeaseEdit from "./lease/edit/LeaseEdit";
 import LeaseDelete from "./lease/LeaseDelete";
@@ -12,11 +11,13 @@ import PaymentAdd from "./payment/add/PaymentAdd";
 import PaymentEdit from "./payment/edit/PaymentEdit";
 import PaymentDelete from "./payment/PaymentDelete";
 
+import PaymentStatusChangeDeposited from "./payment/status/PaymentStatusChangeDeposited";
+
 import Logout from "./Logout";
-import PaymentList from "./payment/PaymentListPending";
 import PaymentListPending from "./payment/PaymentListPending";
 import PaymentListRecorded from "./payment/PaymentListRecorded";
 import PaymentListReport from "./payment/PaymentListReport";
+import PaymentStatusChangeRecorded from './payment/status/PaymentStatusChangeRecorded';
 import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
 import PropertyEdit from "./property/edit/PropertyEdit";
@@ -167,6 +168,17 @@ return (
 		<Route exact  path="/payment/:id">
 			<PaymentEdit />
 		</Route>
+
+		
+		<Route exact  path="/payment/status/recorded/:id">
+			<PaymentStatusChangeRecorded />
+		</Route>
+
+		
+		<Route exact  path="/payment/status/deposited/:id">
+			<PaymentStatusChangeDeposited />
+		</Route>
+		
 		
 		<Route exact  path="/payment/list/pending">
 			<PaymentListPending />

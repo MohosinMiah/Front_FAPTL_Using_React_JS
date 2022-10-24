@@ -269,7 +269,7 @@ const propertyIDHandleChange = ( e ) => {
 	{
 		name: "Actions",
 		selector: row => {
-			return <div> <Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link> </div>
+			return <div> <Link to={"/payment/status/recorded/" + row.id} className="theme-btn-edit red"> PR</Link> ||  <Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link> </div>
 		}
 	  }
 ];
@@ -282,7 +282,7 @@ const propertyIDHandleChange = ( e ) => {
         fetchPayments();
       }, []);
       const fetchPayments = () => {
-        const api = 'http://127.0.0.1:8000/api/v1/payments'; 
+        const api = 'http://127.0.0.1:8000/api/v1/payments/list/pending'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

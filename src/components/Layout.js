@@ -1,9 +1,9 @@
 
-import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BodyWrapper from "./BodyWrapper";
 import { NavSidebar } from "./NavSidebar";
-import axios from 'axios';
 
 export const DashboardLayout = ({ children }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -19,7 +19,7 @@ export const DashboardLayout = ({ children }) => {
       }, []);
 
       const fetchProperty = () => {
-        const api = 'http://api.americanbestit.com/api/v1/properties';
+        const api = 'http://127.0.0.1:8000/api/v1/properties';
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
@@ -82,6 +82,15 @@ export const DashboardLayout = ({ children }) => {
 						<li className="nav-item">
 							<Link to={"/"} className="nav-link" >Report</Link>
 						</li>
+						<li className="nav-item">
+							<Link to={"/payment/list/pending"} className="nav-link collapsed" >Pending Payments</Link>
+						</li>
+						<li className="nav-item">
+							<Link to={"/payment/list/recorded"} className="nav-link collapsed" >Recorded Payments</Link>
+						</li>
+
+						<hr />
+						
 						<li className="nav-item mainDropdown">
 							<Link to={"/property/list"} className="nav-link collapsed">Properties</Link>
 							<span onClick={() => setPropertyActive(!propertyActive)} className="menuExpand"> {propertyActive ?   '-' : '+'  }</span>
@@ -121,12 +130,6 @@ export const DashboardLayout = ({ children }) => {
 									</li>
 								</ul>
 							</div>
-						</li>
-						<li className="nav-item">
-							<Link to={"/payment/list/pending"} className="nav-link collapsed" >Pending Payments</Link>
-						</li>
-						<li className="nav-item">
-							<Link to={"/payment/list/recorded"} className="nav-link collapsed" >Recorded Payments</Link>
 						</li>
 						
 						{token === null &&  <li className="nav-item"><Link to={"/auth/login"} className="nav-link collapsed">Login</Link></li> }
