@@ -78,29 +78,30 @@ import './TenantList.css';
 		selector: row =>  row.phone,
 	},
 	{
-		name: 'Id Number',
-		selector: row =>  row.id_number,
+		name: 'Email',
+		selector: row =>  row.email,
 		
 	},
+	{
+		name: 'ID Number',
+		selector: row => row.id_number,
+		
+    },
 	{
 		name: 'Gender',
 		selector: row =>  row.gender,
 	},
 	
 	{
-		name: 'City',
-		selector: row => row.city,
+		name: 'Date Of Birth',
+		selector: row => row.date_of_birth,
 		
     },
-	{
-		name: 'Country',
-		selector: row => row.country,
-		
-    },
+
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/tenant/" + row.id} className="theme-btn-edit" >Edit</Link>  || <Link to={"/tenant/delete/" + row.id} className="theme-btn-edit red" >Delete</Link></div>
+			return <div><Link to={"/tenant/" + row.id} className="theme-btn-edit" >Edit</Link> </div>
 		}
 	  }
 ];

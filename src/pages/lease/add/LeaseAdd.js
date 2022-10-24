@@ -4,13 +4,16 @@ import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import TopBar from '../../global/TopBar';
 import './LeaseAdd.css';
+
+
 const LeaseAdd = () => {
 
 
 	const [properties, setProperties] = useState('');
 	const [units, setUnits] = useState('');
 	const [tenants, setTenants] = useState('');
-	
+	const [selectedOption, setSelectedOption] = useState(null);
+
 
 
 	// Selected Option Dropdown Types
@@ -26,7 +29,12 @@ const LeaseAdd = () => {
 		{value: 'NO',   text: 'NO'},
 		];
 
-		
+	const options = [
+		{ value: '17', label: 'Chocolate' },
+		{ value: '18', label: 'Strawberry' },
+		{ value: '19', label: 'Vanilla' }
+		];
+
 useEffect(() => {
 	fetchProperties();
 	fetchTenants();
@@ -78,6 +86,8 @@ const [security_deposit, setSecurityDeposit] = useState( '' );
 const [pet_security_deposit, setPetSecurityDeposit]         = useState( '' );
 const [lease_start, setLeaseStart]         = useState( '' );
 const [lease_end, setLeaseEnd]             = useState( '' );
+
+const [property_name, setPropertyName ] = useState( '' );
 
 const [isActive, setIsActive]                = useState(1);
 
@@ -157,14 +167,29 @@ const fetchUnitsByPropertyID = async ( propertyID ) => {
 
 }
 
+const fetchProperty = async ( id ) => {
+		const api = 'http://127.0.0.1:8000/api/v1/properties/'+id; 
+		const token = localStorage.getItem('access_token');
+		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+		.then(res => {
+		// Set Initial Data In States
+		setPropertyName( res.data.name );
+		console.log( "Fetch Property " );
+		console.log(  res.data.name );
+		}).catch((error) => {
+		console.log(error);
+	});
 
+}
+const propertyIDFKHandleChange = ( e ) => {
 
+}
 const propertyIDHandleChange = ( e ) => {
-	console.log("Property Id Changed " + e.target.value);
+	console.log("Property Id Changed " +  e.target.value );
 	const propertyID = e.target.value;
-	setPropertyID( e.target.value );
+	setPropertyID( propertyID );
+	fetchProperty( propertyID );
 	// After Changed PropertyIDHandleChange We Have To Load Associate Property Unit List
-	
 	fetchUnitsByPropertyID( propertyID );
 }
 
@@ -181,18 +206,37 @@ const propertyIDHandleChange = ( e ) => {
 						<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
 							{ properties != '' && properties.map(option => (
 							<option key={option.id} value={option.id}>
-								{option.id} - {option.name}
+								{option.name}
 							</option>
 							))}
 						</select>
 					</div>
+			
+				{/* <div className="form-outline">
+					<label className="form-label themeLabel">Select Property - { property_name } <sup>*</sup></label>
+				
+					<input
+						name="property_id"
+						className="form-control"
+						list="datalistOptions"
+						id="exampleDataList"
+						placeholder="Type to search..."
+						value={property_id}
+						onChange={propertyIDHandleChange}
+					/>
+					<datalist id="datalistOptions">
+							{ properties != '' && properties.map(option => (
+							<option key={option.id}  value={option.id} />
+							))}
+					</datalist>
+				</div> */}
 
 					<div className="form-outline">
 						<label className="form-label themeLabel">Select Property  Unit<sup>*</sup></label>
 						<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 							{ units != '' && units.map(option => (
 							<option key={option.id} value={option.id}>
-								{option.id} - {option.name}
+								 {option.name}
 							</option>
 							))}
 						</select>
@@ -203,7 +247,7 @@ const propertyIDHandleChange = ( e ) => {
 						<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
 							{ tenants != '' && tenants.map(option => (
 							<option key={option.id} value={option.id}>
-								{option.id} - {option.name}
+								{option.name}
 							</option>
 							))}
 						</select>
@@ -221,7 +265,7 @@ const propertyIDHandleChange = ( e ) => {
 					</div>
 
 					<div className="form-outline">
-						<label className="form-label themeLabel">Pet Security Deposit<sup>*</sup></label>
+						<label className="form-label themeLabel">Pet Security Deposit</label>
 						<input type="number" name="pet_security_deposit" className="form-control" placeholder="Pet Security Deposit, Ex. 200 " value={pet_security_deposit} onChange={e => setPetSecurityDeposit(e.target.value)} />
 					</div>
 				</div>
@@ -236,16 +280,7 @@ const propertyIDHandleChange = ( e ) => {
 						<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 					</div>
 
-					<div className="form-outline">
-						<label className="form-label themeLabel">Select Is Active <sup>*</sup></label>
-						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)} >
-							{ isActives != '' && isActives.map(option => (
-							<option key={option.id} value={option.text}>
-								{option.text}
-							</option>
-							))}
-						</select>
-					</div>
+
 				</div>
 						<button type="submit" className="form-btn">Add Lease</button>
 					</form>

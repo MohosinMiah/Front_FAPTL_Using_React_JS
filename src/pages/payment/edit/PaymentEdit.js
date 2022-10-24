@@ -20,15 +20,19 @@ const [tenants, setTenants] = useState('');
 const statusOption = [
 	{value: '',      text: '-- Select Payment Status --'},
 	{value: 'PENDING',   text: 'PENDING'},
-	{value: 'COMPLETE',   text: 'COMPLETE'},
-	];
+	{value: 'RECORDED',   text: 'RECORDED'},
+	{value: 'DEPOSITED',   text: 'DEPOSITED'},
+];
 
 const paymentPurpose = [
-	{value: '',      text: '-- Select Payment Status --'},
+	{value: '',      text: '-- Select Payment Purpose --'},
 	{value: 'Rent',   text: 'Rent'},
+	{value: 'Prorated_Rent',   text: 'Prorated Rent'},
+	{value: 'Security_Deposit',   text: 'Security Deposit'},
 	{value: 'Damage',   text: 'Damage'},
-	{value: 'Others',   text: 'Others'},
-	];
+	{value: 'Other',   text: 'Other'},
+];
+
 
 	const [property_id, setPropertyID]         = useState( '' );
 	const [unit_id, setUnitID]                 = useState( '' );
@@ -226,6 +230,23 @@ const fetchTenants = async () => {
 					<form noValidate onSubmit={handleSubmit}>
 						
 				<div className="form-oneline">
+
+					<div className="form-outline">
+						<label className="form-label">Select Tenant<sup>*</sup></label>
+						<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
+							{ tenants != '' && tenants.map(option => (
+							<option key={option.id} value={option.id}>
+								{option.id} - {option.name}
+							</option>
+							))}
+						</select>
+					</div>
+
+					<div className="form-outline">
+						<label className="form-label">Payment Amount<sup>*</sup></label>
+						<input type="number" name="payment_amount" className="form-control" placeholder="Payment Amount, Ex. 500 " value={payment_amount} onChange={e => setPaymentAmount(e.target.value)} />
+					</div>
+
 					<div className="form-outline">
 							<label className="form-label">Select Property<sup>*</sup></label>
 							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
@@ -235,69 +256,53 @@ const fetchTenants = async () => {
 								</option>
 								))}
 							</select>
-						</div>
-	
-						<div className="form-outline">
-							<label className="form-label">Select Property  Unit<sup>*</sup></label>
-							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
-								{ units != '' && units.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
-								</option>
-								))}
-							</select>
-						</div>
-	
-						<div className="form-outline">
-							<label className="form-label">Select Tenant<sup>*</sup></label>
-							<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
-								{ tenants != '' && tenants.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
-								</option>
-								))}
-							</select>
-						</div>
 					</div>
-					<div className="form-oneline">
-						<div className="form-outline">
-							<label className="form-label">Payment Amount<sup>*</sup></label>
-							<input type="number" name="payment_amount" className="form-control" placeholder="Payment Amount, Ex. 500 " value={payment_amount} onChange={e => setPaymentAmount(e.target.value)} />
-						</div>
-						
-						
-						<div className="form-outline">
-							<label className="form-label">Payment  Date<sup>*</sup></label>
-							<input type="date" name="payment_date" className="form-control" value={payment_date} onChange={e => setPaymentDate(e.target.value)} />
-						</div>
+	
+				</div>
+				<div className="form-oneline">
+
+					<div className="form-outline">
+						<label className="form-label">Select Property  Unit<sup>*</sup></label>
+						<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
+							{ units != '' && units.map(option => (
+							<option key={option.id} value={option.id}>
+								{option.id} - {option.name}
+							</option>
+							))}
+						</select>
 					</div>
-					<div className="form-oneline">
-						<div className="form-outline">
-							<label className="form-label">Payment Purpose <sup>*</sup></label>
-							<select  name="payment_purpose" className="form-control"  value={payment_purpose} onChange={e => setPaymentPurpose(e.target.value)} >
-								{ paymentPurpose != '' && paymentPurpose.map(option => (
-								<option key={option.text} value={option.text}>
-									{option.text}
-								</option>
-								))}
-							</select>
-						</div>
-						
-						<div className="form-outline">
-							<label className="form-label">Status <sup>*</sup></label>
-							<select  name="isActive" className="form-control"  value={status} onChange={e => setStatus(e.target.value)} >
-								{ statusOption != '' && statusOption.map(option => (
-								<option key={option.text} value={option.text}>
-									{option.text}
-								</option>
-								))}
-							</select>
-						</div>
+
+					<div className="form-outline">
+						<label className="form-label">Payment  Date<sup>*</sup></label>
+						<input type="date" name="payment_date" className="form-control" value={payment_date} onChange={e => setPaymentDate(e.target.value)} />
+					</div>
+
+					<div className="form-outline">
+						<label className="form-label">Payment Purpose <sup>*</sup></label>
+						<select  name="payment_purpose" className="form-control"  value={payment_purpose} onChange={e => setPaymentPurpose(e.target.value)} >
+							{ paymentPurpose != '' && paymentPurpose.map(option => (
+							<option key={option.text} value={option.text}>
+								{option.text}
+							</option>
+							))}
+						</select>
+					</div>
+				</div>
+
+				<div className="form-outline one-line">
+						<label className="form-label">Payment Status <sup>*</sup></label>
+						<select  name="status" className="form-control"  value={status} onChange={e => setStatus(e.target.value)} >
+							{ statusOption != '' && statusOption.map(option => (
+							<option key={option.text} value={option.text}>
+								{option.text}
+							</option>
+							))}
+						</select>
 					</div>
 
 					<div className="form-outline one-line">
 							<label className="form-label">Payment  Note</label>
-							<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} class="form-control"></textarea>
+							<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} className="form-control"></textarea>
 					</div>
 
 						<button type="submit" className="form-btn">Add payment</button>

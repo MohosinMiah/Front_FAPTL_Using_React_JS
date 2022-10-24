@@ -95,7 +95,7 @@ import './PropertyUnitList.css';
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/propertyunit/" + row.id} className="theme-btn-edit">Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id} className="theme-btn-edit red	">Delete</Link></div>
+			return <div><Link to={"/propertyunit/" + row.id} className="theme-btn-edit">Edit</Link> </div>
 		}
 	  }
 ];
@@ -113,8 +113,9 @@ const data = properties;
           console.log(res.data);
        
         }).catch((error) => {
-          console.log(error);
-      });
+			
+			console.log(error);
+		});
 
     }
     

@@ -106,7 +106,7 @@ import './LeaseList.css';
 	{
 		name: "Actions",
 		selector: row => {
-			return <div><Link to={"/lease/" + row.id} className="theme-btn-edit">Edit</Link>  || <Link to={"/lease/delete/" + row.id} className="theme-btn-edit red" >Delete</Link></div>
+			return <div><Link to={"/lease/" + row.id} className="theme-btn-edit">Edit</Link> </div>
 		}
 	  }
 ];

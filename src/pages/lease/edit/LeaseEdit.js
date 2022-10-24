@@ -265,7 +265,7 @@ const fetchTenants = async () => {
 							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
 								{ properties != '' && properties.map(option => (
 								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
+									{option.name}
 								</option>
 								))}
 							</select>
@@ -276,7 +276,7 @@ const fetchTenants = async () => {
 							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 								{ units != '' && units.map(option => (
 								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
+									{option.name}
 								</option>
 								))}
 							</select>
@@ -287,7 +287,7 @@ const fetchTenants = async () => {
 							<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
 								{ tenants != '' && tenants.map(option => (
 								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
+									{option.name}
 								</option>
 								))}
 							</select>
@@ -306,7 +306,7 @@ const fetchTenants = async () => {
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Security Deposit<sup>*</sup></label>
+							<label className="form-label themeLabel">Pet Security Deposit</label>
 							<input type="number" name="pet_security_deposit" className="form-control" placeholder="Pet Security Deposit, Ex. 200 " value={pet_security_deposit} onChange={e => setPetSecurityDeposit(e.target.value)} />
 						</div>
 					</div>
@@ -352,16 +352,6 @@ const fetchTenants = async () => {
 							<input type="date" name="lease_end" className="form-control" value={lease_end} onChange={e => setLeaseEnd(e.target.value)} />
 						</div>
 						
-						<div className="form-outline">
-							<label className="form-label themeLabel">Select Is Active <sup>*</sup></label>
-							<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)} >
-								{ isActives != '' && isActives.map(option => (
-								<option key={option.id} value={option.text}>
-									{option.text}
-								</option>
-								))}
-							</select>
-						</div>
 					</div>
 						<button type="submit" className="form-btn">Update Lease</button>
 					</form>

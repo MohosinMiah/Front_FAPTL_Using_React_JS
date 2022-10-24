@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
+import TopBar from '../../global/TopBar';
 import './PropertyUnitAdd';
 
 const PropertyAdd =  () => {
@@ -119,6 +120,7 @@ const PropertyAdd =  () => {
 
   return (
     <DashboardLayout>
+		<TopBar />
 		<div className="padding-top-bottom" id="lease-add">
 				<div className="container">
 				<h2 className="large-heading mb-5">Add Property Unit Under Property ID =   {property_id} </h2>

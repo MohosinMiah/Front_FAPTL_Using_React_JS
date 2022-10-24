@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import TopBar from '../../global/TopBar';
 import './PropertyAdd.css';
 const PropertyAdd = () => {
 
-
-	
 const isActives = [
 	{value: '',      text: '-- Select Is Active --'},
 	{value: 'YES',   text: 'YES'},
@@ -16,12 +15,10 @@ const isActives = [
 	
 const propertyTypes =  [
 	{value: '', text: '-- Select Property Type --'},
-	{value: 'Shared',   text: 'Shared'},
-	{value: 'Private',   text: 'Private'},
+	{value: 'Single_Unit',   text: 'Single Unit'},
+	{value: 'Multi_Unit',   text: 'Multi Unit'},
 	];
-
-
-		
+	
 	const [name, setName] = useState('');
 	const [type, setType] = useState('');
 	const [address, setAddress] = useState('');
@@ -90,6 +87,15 @@ const propertyTypes =  [
 
 				console.log(error.response.status);
 				console.log(error.response.headers);
+
+				if( error.response.data.message == "Unauthenticated." )
+				{
+					localStorage.removeItem('access_token' );
+					window.location.href = "/auth/login";
+				}else{
+					console.log("Not Match");
+				}
+
 			});
 
 	}
@@ -102,6 +108,7 @@ const propertyTypes =  [
 					<h2 className="large-heading mb-5 theme-page-heading">Property Add</h2>
 					<br />
 					<form noValidate onSubmit={handleSubmit}>
+					<div className="form-oneline">
 						<div className="form-outline">
 							<label className="form-label themeLabel">Property Name<sup>*</sup></label>
 							<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
@@ -119,15 +126,10 @@ const propertyTypes =  [
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control" onChange={e => setRentAmount(e.target.value)} />
-						</div>
-						
-						<div className="form-outline">
 							<label className="form-label themeLabel">Size<sup>*</sup></label>
 							<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
 						</div>
-
+					</div>
 						<div className="form-outline address">
 							<label className="form-label themeLabel">Address</label>
 							<input type="text" name="address" className="form-control" onChange={e => setAddress(e.target.value)} />

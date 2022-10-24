@@ -269,7 +269,7 @@ const propertyIDHandleChange = ( e ) => {
 	{
 		name: "Actions",
 		selector: row => {
-			return <div><Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link>  || <Link to={"/payment/delete/" + row.id} className="theme-btn-edit red">Delete</Link></div>
+			return <div> <Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link> </div>
 		}
 	  }
 ];
@@ -317,46 +317,8 @@ const propertyIDHandleChange = ( e ) => {
 		<TopBar />
 		<div className="padding-top-bottom">
 			<div className="container">
-			<h2 className="large-heading mb-5 theme-page-heading">Payment List</h2>
-				<Link to={"/payment/add"} className="form-btn"> Add Payment</Link>
-				<div className="padding-bottom-style" ></div>
-				<form noValidate onSubmit={handleSubmit}>
-					<div className="form-oneline" >
-						<div className="form-outline">
-							<label className="form-label">Select Property</label>
-							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
-								{ properties != '' && properties.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
-								</option>
-								))}
-							</select>
-						</div>
-	
-						<div className="form-outline">
-							<label className="form-label">Select Property  Unit</label>
-							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
-								{ units != '' && units.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
-								</option>
-								))}
-							</select>
-						</div>
-
-						<div className="form-outline">
-							<label className="form-label">From Date</label>
-							<input type="date" name="paymentStartDate" className="form-control" value={paymentStartDate} onChange={e => setpaymentStartDate(e.target.value)} />
-						</div>
-
-						<div className="form-outline">
-							<label className="form-label">To Date</label>
-							<input type="date" name="paymentEndDate" className="form-control" value={paymentEndDate} onChange={e => setpaymentEndDate(e.target.value)} />
-						</div>
-					</div>
-						<button type="submit" className="form-btn-submit">Filter</button>
-						<button onClick={reSetFilter} className="form-btn-submit">Reset</button>
-				</form>
+			<h2 className="large-heading mb-5 theme-page-heading">New Pending Payment List</h2>
+			<Link to={"/payment/add"} className="form-btn"> Make All Recorded </Link>
 
 			<DataTable
 				columns={columns}

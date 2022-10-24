@@ -6,6 +6,7 @@ import { DashboardLayout } from "../../../components/Layout";
 import TopBar from '../../global/TopBar';
 import PropertyTopBar from '../PropertyTopBar';
 import './PropertyEdit';
+import { Link } from "react-router-dom";
 
 const PropertyEdit = () => {
 
@@ -15,8 +16,8 @@ const PropertyEdit = () => {
 	
 	const propertyTypes =  [
 		{value: '', text: '-- Select Property Type --'},
-		{value: 'Shared',   text: 'Shared'},
-		{value: 'Private',   text: 'Private'},
+		{value: 'Single_Unit',   text: 'Single Unit'},
+		{value: 'Multi_Unit',   text: 'Multi Unit'},
 		];
 		
    
@@ -168,7 +169,13 @@ const PropertyEdit = () => {
         }).catch((error) => {
 
 			swal("Failed", "Fail To Upload", "error");
-
+			if( error.response.data.message == "Unauthenticated." )
+			{
+				localStorage.removeItem('access_token' );
+				window.location.href = "/auth/login";
+			}else{
+				console.log("Not Match");
+			}
 			console.log(error.response.data.errors);
 
 			console.log(error.response.status);
@@ -187,28 +194,27 @@ const PropertyEdit = () => {
 					<h2 className="large-heading mb-5 theme-page-heading">Edit Property : {name} </h2>
 					</div>
 					<form noValidate onSubmit={handleSubmit}>
-						<div className="form-outline">
-							<label className="form-label themeLabel">Property Name<sup>*</sup></label>
-							<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
-						</div>
-					
-						<div className="form-outline">
-							<label className="form-label themeLabel">Type <sup>*</sup></label>
-							<select  name="type" className="form-control" value={type} onChange={e => setType(e.target.value)}>
-								{ propertyTypes != '' && propertyTypes.map(option => (
-								<option key={option.id} value={option.text}>
-									{option.text}
-								</option>
-								))}
-							</select>
-						</div>
-						<div className="form-outline">
-							<label className="form-label themeLabel">Rent Amount<sup>*</sup></label>
-							<input type="number" name="rent_amount" className="form-control"  value={rent_amount}  onChange={e => setRentAmount(e.target.value)} />
-						</div>
-						<div className="form-outline">
-							<label className="form-label themeLabel">Size<sup>*</sup></label>
-							<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
+						<div className="form-oneline">
+							<div className="form-outline">
+								<label className="form-label themeLabel">Property Name<sup>*</sup></label>
+								<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
+							</div>
+						
+							<div className="form-outline">
+								<label className="form-label themeLabel">Type <sup>*</sup></label>
+								<select  name="type" className="form-control" value={type} onChange={e => setType(e.target.value)}>
+									{ propertyTypes != '' && propertyTypes.map(option => (
+									<option key={option.id} value={option.text}>
+										{option.text}
+									</option>
+									))}
+								</select>
+							</div>
+
+							<div className="form-outline">
+								<label className="form-label themeLabel">Size<sup>*</sup></label>
+								<input type="number" name="size" className="form-control"  value={size} onChange={e => setSize(e.target.value)} />
+							</div>
 						</div>
 						
 						<div className="form-outline address">

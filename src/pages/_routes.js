@@ -13,7 +13,10 @@ import PaymentEdit from "./payment/edit/PaymentEdit";
 import PaymentDelete from "./payment/PaymentDelete";
 
 import Logout from "./Logout";
-import PaymentList from "./payment/PaymentList";
+import PaymentList from "./payment/PaymentListPending";
+import PaymentListPending from "./payment/PaymentListPending";
+import PaymentListRecorded from "./payment/PaymentListRecorded";
+import PaymentListReport from "./payment/PaymentListReport";
 import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
 import PropertyEdit from "./property/edit/PropertyEdit";
@@ -141,25 +144,39 @@ return (
 
 		{/* Payment  Start   */}
 
-		<Route path="/payment/list">
-			<PaymentList />
+		<Route exact  path="/payment/list">
+			<PaymentListReport />
 		</Route> 
 
 
-		<Route path="/payment/add">
+		<Route exact  path="/payment/report">
+			<PaymentListReport />
+		</Route> 
+		
+
+		<Route exact  path="/payment/add">
 			<PaymentAdd />
 		</Route>
 
 			
-		<Route path="/payment/delete/:id">
+		<Route exact  path="/payment/delete/:id">
 			<PaymentDelete />
 		</Route>
 
 
-		<Route path="/payment/:id">
+		<Route exact  path="/payment/:id">
 			<PaymentEdit />
 		</Route>
 		
+		<Route exact  path="/payment/list/pending">
+			<PaymentListPending />
+		</Route> 
+
+		<Route exact  path="/payment/list/recorded">
+			<PaymentListRecorded />
+		</Route> 
+
+
 		{/* Payment End  */}
 
 		<Route path="/auth/login">
@@ -171,14 +188,13 @@ return (
 		</Route>
 
 		<Route path="/settings">
-		<SettingsPage />
+			<SettingsPage />
 		</Route>
-
-
 		
 		<Route path="/">
-		<HomePage />
+			<PaymentListReport />
 		</Route>
+
 	</Switch>
 
 	</BrowserRouter>

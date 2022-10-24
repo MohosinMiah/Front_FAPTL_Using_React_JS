@@ -84,19 +84,19 @@ import './PropertyList.css';
 		selector: row =>  row.rent_amount,
 	},
 	{
+		name: 'City',
+		selector: row => row.city,
+		
+    },
+	{
 		name: 'State',
 		selector: row => row.state,
 		
     },
 	{
-		name: 'IsActive',
-		selector: row => row.isActive,
-		
-    },
-	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={"/property/" + row.id} className="theme-btn-edit" >Edit</Link>  || <Link to={"/property/delete/" + row.id} className="theme-btn-edit red">Delete</Link></div>
+			return <div><Link to={"/property/" + row.id} className="theme-btn-edit" >Edit</Link>  </div>
 		}
 	  }
 ];
@@ -114,7 +114,19 @@ const data = properties;
           console.log(res.data);
        
         }).catch((error) => {
-          console.log(error);
+
+			console.log( error);
+			console.log( typeof( error.response.data.message ) );
+			console.log( error.response.data.message );
+			if( error.response.data.message == "Unauthenticated." )
+			{
+				console.log( "MOHOSIN 2 " );
+				localStorage.removeItem('access_token' );
+				window.location.href = "/auth/login";
+			}else{
+				console.log("Not Match");
+			}
+
       });
 
     }

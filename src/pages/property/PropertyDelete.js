@@ -23,6 +23,13 @@ const PropertyDelete = () => {
 
         }).catch((error) => {
             swal("Failed", "Fail To Delete", "error");
+            if( error.response.data.message == "Unauthenticated." )
+            {
+              localStorage.removeItem('access_token' );
+              window.location.href = "/auth/login";
+            }else{
+              console.log("Not Match");
+            }
       });
 
     }

@@ -5,8 +5,9 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import swal from 'sweetalert';
-import { DashboardLayout } from '../components/Layout';
-import TopBar from './global/TopBar';
+import { DashboardLayout } from '../../components/Layout';
+import TopBar from '../global/TopBar';
+import './PaymentList.css';
 
     
   const TextField = styled.input`

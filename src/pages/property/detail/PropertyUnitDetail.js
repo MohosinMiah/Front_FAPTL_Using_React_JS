@@ -106,7 +106,7 @@ import TopBar from '../../global/TopBar';
 	{
 		name: "Actions",
 		selector: row =>{
-			return <div><Link to={ "/propertyunit/" + row.id + "/copy" } className="copy"  >Copy</Link> || <Link to={"/propertyunit/" + row.id} className="theme-btn-edit" >Edit</Link>  || <Link to={"/propertyunit/delete/" + row.id}  className="red"  >Delete</Link> </div>
+			return <div><Link to={ "/propertyunit/" + row.id + "/copy" } className="copy"  >Copy</Link> || <Link to={"/propertyunit/" + row.id} className="theme-btn-edit" >Edit</Link> </div>
 		}
 	  }
 ];
@@ -141,6 +141,17 @@ const data = properties;
 			setProperty( res.data );	
 		}).catch((error) => {
 			console.log(error);
+
+			if( error.response.data.message == "Unauthenticated." )
+			{
+				localStorage.removeItem('access_token' );
+				window.location.href = "/auth/login";
+			}
+			else
+			{
+				console.log("Not Match");
+			}
+
 		});
 	}
 

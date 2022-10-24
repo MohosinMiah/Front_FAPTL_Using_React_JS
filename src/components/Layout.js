@@ -1,8 +1,9 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BodyWrapper from "./BodyWrapper";
 import { NavSidebar } from "./NavSidebar";
+import axios from 'axios';
 
 export const DashboardLayout = ({ children }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -12,9 +13,41 @@ export const DashboardLayout = ({ children }) => {
 	const [paymentActive, setPaymentActive] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	var token = localStorage.getItem('access_token');
+	const [ isloginSuccess, setIsLoginSuccess ] = useState(false);
+	useEffect(() => {
+        fetchProperty();
+      }, []);
+
+      const fetchProperty = () => {
+        const api = 'http://api.americanbestit.com/api/v1/properties';
+        const token = localStorage.getItem('access_token');
+        axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+        .then(res => {
+		  setIsLoginSuccess(true);
+        }).catch((error) => {
+			console.log( error);
+			console.log( typeof( error.response.data.message ) );
+			console.log( error.response.data.message );
+
+			if( error.response.data.message == "Unauthenticated." )
+			{
+				console.log( "MOHOSIN 2 " );
+				localStorage.removeItem('access_token' );
+				window.location.href = "/auth/login";
+			
+			}else{
+				console.log("Not Match");
+			}
+
+      });
+
+    }
+
 	return (
 		<BodyWrapper>
-			<NavSidebar />
+				<NavSidebar />
+		{ isloginSuccess == true &&
+		
 			<div className="dvRight">
 				<header>
 					<div className="mobile-top">
@@ -36,12 +69,18 @@ export const DashboardLayout = ({ children }) => {
 				</header>
 				{children}
 			</div>
+		}
+
+		{ isloginSuccess == true &&
 			<aside className={isMenuOpen ? 'dvLeft open': 'dvLeft'}>
-				<div className="dvlogo text-center"><a href="index"> <img src="/logo.png" alt="For A Place To Live Logo" /></a></div>
+				<div className="dvlogo text-center"><a href="/"> <img src="/logo.png" alt="For A Place To Live Logo" /></a></div>
 				<nav className="navigation" id="menubar">
 					<ul className="nav flex-column flex-nowrap" id="ulmenu">
 						<li className="nav-item">
-							<Link to={"/"} className="nav-link" >Dashboard</Link>
+							<Link to={"/payment/add"} className="nav-link" >Collect Payments</Link>
+						</li>
+						<li className="nav-item">
+							<Link to={"/"} className="nav-link" >Report</Link>
 						</li>
 						<li className="nav-item mainDropdown">
 							<Link to={"/property/list"} className="nav-link collapsed">Properties</Link>
@@ -83,20 +122,13 @@ export const DashboardLayout = ({ children }) => {
 								</ul>
 							</div>
 						</li>
-
-						<li className="nav-item mainDropdown">
-							<Link to={"/payment/list"} className="nav-link collapsed" >Payment</Link>
-							{/* <span data-toggle="collapse" data-target_="#payment"   onClick={() => setPaymentActive(!paymentActive)}  className={paymentActive ? 'fa fa-plus minus' : 'fa fa-plus sub'} aria-expanded="false"></span> */}
-							<span onClick={() => setPaymentActive(!paymentActive)} className="menuExpand"> {paymentActive ?   '-' : '+'  }</span>
-
-							<div className={paymentActive ? 'collapse show' : 'collapse'}  id="payment">
-								<ul className="flex-column nav">
-									<li className="nav-item">
-										<Link to={"/payment/add"} className="nav-link collapsed" >Add Payment</Link>
-									</li>
-								</ul>
-							</div>
+						<li className="nav-item">
+							<Link to={"/payment/list/pending"} className="nav-link collapsed" >Pending Payments</Link>
 						</li>
+						<li className="nav-item">
+							<Link to={"/payment/list/recorded"} className="nav-link collapsed" >Recorded Payments</Link>
+						</li>
+						
 						{token === null &&  <li className="nav-item"><Link to={"/auth/login"} className="nav-link collapsed">Login</Link></li> }
 						{token !== null &&  <li className="nav-item"><Link to={"/logout"} className="nav-link collapsed">Logout</Link></li> }
 					</ul>
@@ -105,8 +137,7 @@ export const DashboardLayout = ({ children }) => {
 				<Link to={"/settings"} className="nav-link collapsed">Settings</Link>
 				</div>
 			</aside>
-			
-	
+		}
 		</BodyWrapper>
 	);
 };

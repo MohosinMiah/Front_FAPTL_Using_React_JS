@@ -4,10 +4,9 @@ import React, { useState } from "react";
 import { Navigation } from "react-minimal-side-navigation";
 import { useHistory, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import "./NavSidebar.css";
+
 export const NavSidebar = () => {
 	const history = useHistory();
 	const location = useLocation();

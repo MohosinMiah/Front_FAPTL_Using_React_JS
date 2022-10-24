@@ -1,3 +1,4 @@
+
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
@@ -5,8 +6,9 @@ import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import swal from 'sweetalert';
-import { DashboardLayout } from '../components/Layout';
-import TopBar from './global/TopBar';
+import { DashboardLayout } from '../../components/Layout';
+import TopBar from '../global/TopBar';
+import './PaymentList.css';
 
     
   const TextField = styled.input`
@@ -72,15 +74,7 @@ import TopBar from './global/TopBar';
 	const [units, setUnits] = useState('');
 	const [tenants, setTenants] = useState('');
 	
-	const [property_id, setPropertyID]         = useState( '' );
-	const [unit_id, setUnitID]                 = useState( '' );
-	const [tenant_id, setTenantID]             = useState( '' );
-	
-	const [paymentStartDate, setpaymentStartDate]         = useState( '' );
-	const [paymentEndDate, setpaymentEndDate]             = useState( '' );
-	
-	const [status, setStatus]             = useState( '' );
-	
+
 
 	// Selected Option Dropdown Types
 
@@ -140,6 +134,14 @@ const fetchTenants = async () => {
 }
 
 
+const [property_id, setPropertyID]         = useState( '' );
+const [unit_id, setUnitID]                 = useState( '' );
+const [tenant_id, setTenantID]             = useState( '' );
+
+const [paymentStartDate, setpaymentStartDate]         = useState( '' );
+const [paymentEndDate, setpaymentEndDate]             = useState( '' );
+
+const [status, setStatus]             = useState( '' );
 
 
 
@@ -315,47 +317,8 @@ const propertyIDHandleChange = ( e ) => {
 		<TopBar />
 		<div className="padding-top-bottom">
 			<div className="container">
-			<h2 className="large-heading mb-5 theme-page-heading">Payment Report</h2>
-				<Link to={"/payment/add"} className="form-btn"> Collect New Payment</Link>
-				<div className="padding-bottom-style" ></div>
-				<form noValidate onSubmit={handleSubmit}>
-					<div className="form-oneline" >
-						<div className="form-outline">
-							<label className="form-label">Select Property</label>
-							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
-								{ properties != '' && properties.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
-								</option>
-								))}
-							</select>
-						</div>
-	
-						<div className="form-outline">
-							<label className="form-label">Select Property  Unit</label>
-							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
-								{ units != '' && units.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.id} - {option.name}
-								</option>
-								))}
-							</select>
-						</div>
-
-						<div className="form-outline">
-							<label className="form-label">From Date</label>
-							<input type="date" name="paymentStartDate" className="form-control" value={paymentStartDate} onChange={e => setpaymentStartDate(e.target.value)} />
-						</div>
-
-						<div className="form-outline">
-							<label className="form-label">To Date</label>
-							<input type="date" name="paymentEndDate" className="form-control" value={paymentEndDate} onChange={e => setpaymentEndDate(e.target.value)} />
-						</div>
-					</div>
-						<button type="submit" className="form-btn-submit">Filter</button>
-						<button onClick={reSetFilter} className="form-btn-submit">Reset</button>
-				</form>
-
+			<h2 className="large-heading mb-5 theme-page-heading">New Recorded Payment List</h2>
+				<Link to={"/payment/add"} className="form-btn"> Make All Deposited </Link>
 			<DataTable
 				columns={columns}
 				data={filteredItems}
