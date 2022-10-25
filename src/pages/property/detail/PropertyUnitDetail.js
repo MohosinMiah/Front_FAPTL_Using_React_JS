@@ -212,12 +212,13 @@ const data = properties;
 						<td>{property.isFeatured != null && property.isFeatured}</td>
 					</tr>
 					<tr>
-						
-							<Link to={"/propertyunit/"+ id + "/add/"}  className="theme-btn "> Add New Unit</Link>
-						
-							<Link to={"/propertyunit/list"} className="theme-btn" > All Units</Link>
-						
-							<Link to={"/property/list"} className="theme-btn "> Property List</Link>
+					{
+						property.type == "Multi Unit" &&
+						<Link to={"/propertyunit/"+ id + "/add/"}  className="theme-btn "> Add New Unit</Link>
+					}
+						<Link to={"/propertyunit/list"} className="theme-btn" > All Units</Link>
+					
+						<Link to={"/property/list"} className="theme-btn "> Property List</Link>
 					
 					
 					</tr>

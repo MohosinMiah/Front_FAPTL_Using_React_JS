@@ -79,10 +79,7 @@ import './PropertyList.css';
 		name: 'Type',
 		selector: row =>  row.type,
 	},
-	{
-		name: 'Rent Amount',
-		selector: row =>  row.rent_amount,
-	},
+	
 	{
 		name: 'City',
 		selector: row => row.city,
@@ -93,6 +90,10 @@ import './PropertyList.css';
 		selector: row => row.state,
 		
     },
+	{
+		name: 'Zip Code',
+		selector: row =>  row.zip,
+	},
 	{
 		name: "Actions",
 		selector: row =>{

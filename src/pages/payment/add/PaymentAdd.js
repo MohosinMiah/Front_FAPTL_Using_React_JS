@@ -35,10 +35,10 @@ const PaymentAdd = () => {
 	const [tenant_id, setTenantID]             = useState( '' );
 
 	const [payment_amount, setPaymentAmount]         = useState( '' );
-	const [payment_purpose, setPaymentPurpose] = useState( '' );
+	const [payment_purpose, setPaymentPurpose] = useState( 'Rent' );
 	const [payment_date, setPaymentDate]         = useState( '' );
 	const [payment_note, setPaymentNote]         = useState( '' );
-	const [status, setStatus]             = useState( '' );
+	const [status, setStatus]             = useState( 'PENDING' );
 
 useEffect(() => {
 	fetchProperties();

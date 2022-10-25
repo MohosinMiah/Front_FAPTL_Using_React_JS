@@ -305,7 +305,7 @@ const fetchTenants = async () => {
 							<textarea name="payment_note"  value={payment_note} onChange={e => setPaymentNote(e.target.value)} className="form-control"></textarea>
 					</div>
 
-						<button type="submit" className="form-btn">Add payment</button>
+						<button type="submit" className="form-btn">Update payment</button>
 						</form>	
 				</div>
 			</div>

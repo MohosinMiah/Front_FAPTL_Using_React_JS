@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import TopBar from '../../global/TopBar';
-import PropertyTopBar from '../PropertyTopBar';
 import './PropertyEdit';
-import { Link } from "react-router-dom";
 
 const PropertyEdit = () => {
 
@@ -187,7 +185,14 @@ const PropertyEdit = () => {
   return (
     <DashboardLayout>
 			<TopBar />
-			<PropertyTopBar/>
+			{
+				property.type == "Multi Unit" &&
+				<Link to={"/propertyunit/"+ id + "/add/"}  className="theme-btn "> Add New Unit</Link>
+			}
+				<Link to={"/propertyunit/list"} className="theme-btn" > All Units</Link>
+			
+				<Link to={"/property/list"} className="theme-btn "> Property List</Link>
+					
 			<div className="padding-top-bottom">
 				<div className="container">
 				<div className="">

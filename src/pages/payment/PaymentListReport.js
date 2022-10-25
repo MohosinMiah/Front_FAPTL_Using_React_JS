@@ -82,6 +82,7 @@ import './PaymentList.css';
 	
 	const [status, setStatus]             = useState( '' );
 	
+	const [totalPaidAmount, setTotalPaidAmount] = useState( 0 );
 
 	// Selected Option Dropdown Types
 
@@ -102,9 +103,31 @@ import './PaymentList.css';
 
 		
 useEffect(() => {
+
 	fetchProperties();
 	fetchTenants();
+	fetchTotalPaidAmointGET();
+	fetchPayments();
 }, []);
+
+// Load fetch Total Paid Amoint 
+const fetchTotalPaidAmointGET = async () => {
+	const api = 'http://127.0.0.1:8000/api/v1/payments/total_paidamount/all_get'; 
+	const token = localStorage.getItem('access_token');
+	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		console.log("GET : Total Paid Amount: " );
+		console.log( res.data.total_amount );
+		setTotalPaidAmount( res.data.total_amount );	
+
+	}).catch((error) => {
+
+	console.log(error);
+});
+
+}
+
+
 
 // Load Property Lists
 const fetchProperties = async () => {
@@ -153,6 +176,7 @@ const handleSubmit = async (e) => {
 	try {
 		
 		filterPaymentList();
+		fetchTotalPaidAmointPOST();
 	} catch (error) {
 
 	}
@@ -184,6 +208,39 @@ const filterPaymentList = () => {
 		}).catch((error) => {
 
 			swal("Failed", "PPayment Enter Required Field Data.", "error");
+
+			console.log(error.response.data.errors);
+
+			console.log(error.response.status);
+			console.log(error.response.headers);
+		});
+}
+
+
+const fetchTotalPaidAmointPOST = () => {
+
+	const api = 'http://127.0.0.1:8000/api/v1/payments/total_paidamount/all_post';
+	const token = localStorage.getItem('access_token');
+	axios({
+		method: 'post',
+		url: api,
+		data: {
+			property_id: property_id,
+			unit_id: unit_id,
+			tenant_id: tenant_id,
+			paymentStartDate: paymentStartDate,
+			paymentEndDate: paymentEndDate,
+			status: status,
+		},
+		headers: { "Authorization": `Bearer ${token}` }
+	})
+		.then(res => {
+			console.log("POST : Total Paid  Amount: " );
+		console.log( res.data.total_amount );
+		setTotalPaidAmount( res.data.total_amount );
+			
+		}).catch((error) => {
+
 
 			console.log(error.response.data.errors);
 
@@ -278,9 +335,7 @@ const propertyIDHandleChange = ( e ) => {
 		fetchPayments();
 	}
 
-    useEffect(() => {
-        fetchPayments();
-      }, []);
+  
       const fetchPayments = () => {
         const api = 'http://127.0.0.1:8000/api/v1/payments'; 
         const token = localStorage.getItem('access_token');
@@ -324,7 +379,7 @@ const propertyIDHandleChange = ( e ) => {
 					<div className="form-oneline" >
 					
 						<div className="form-outline">
-							<label className="form-label">Select Property</label>
+							<label className="form-label">Select Tenant</label>
 							<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
 								{ tenants != '' && tenants.map(option => (
 								<option key={option.id} value={option.id}>
@@ -381,18 +436,18 @@ const propertyIDHandleChange = ( e ) => {
 					</div>
 						<button type="submit" className="form-btn-submit">Filter</button>
 						<button onClick={reSetFilter} className="form-btn-submit">Reset</button>
+						<h3>Total Paid Amount : <strong>{ totalPaidAmount } USDT </strong></h3>
 				</form>
-
-			<DataTable
-				columns={columns}
-				data={filteredItems}
-				pagination
-				paginationPerPage={30}
-				paginationRowsPerPageOptions={[10, 25, 50, 100]}
-				paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-				subHeader
-				subHeaderComponent={subHeaderComponentMemo}
-				persistTableHead
+				<DataTable
+					columns={columns}
+					data={filteredItems}
+					pagination
+					paginationPerPage={30}
+					paginationRowsPerPageOptions={[10, 25, 50, 100]}
+					paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+					subHeader
+					subHeaderComponent={subHeaderComponentMemo}
+					persistTableHead
 				/>
 			</div>
 		</div>
