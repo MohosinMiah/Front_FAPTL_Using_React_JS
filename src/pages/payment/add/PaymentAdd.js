@@ -206,7 +206,7 @@ const propertyIDHandleChange = ( e ) => {
 				<div className="form-oneline" >
 
 					<div className="form-outline">
-						<label className="form-label">Select Property  Unit<sup>*</sup></label>
+						<label className="form-label">Select Property  Unit</label>
 						<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 							{ units != '' && units.map(option => (
 							<option key={option.id} value={option.id}>

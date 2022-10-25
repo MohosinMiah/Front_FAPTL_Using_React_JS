@@ -260,6 +260,19 @@ const fetchTenants = async () => {
 					<form noValidate onSubmit={handleSubmit}>
 						
 					<div className="form-oneline">
+
+					<div className="form-outline">
+							<label className="form-label themeLabel">Select Tenant<sup>*</sup></label>
+							<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
+								{ tenants != '' && tenants.map(option => (
+								<option key={option.id} value={option.id}>
+									{option.name}
+								</option>
+								))}
+							</select>
+						</div>
+
+
 						<div className="form-outline">
 							<label className="form-label themeLabel">Select Property<sup>*</sup></label>
 							<select  name="property_id" className="form-control"  value={property_id} onChange={propertyIDHandleChange}>
@@ -272,7 +285,7 @@ const fetchTenants = async () => {
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Select Property  Unit<sup>*</sup></label>
+							<label className="form-label themeLabel">Select Property  Unit</label>
 							<select  name="unit_id" className="form-control"  value={unit_id} onChange={e => setUnitID(e.target.value)}>
 								{ units != '' && units.map(option => (
 								<option key={option.id} value={option.id}>
@@ -282,16 +295,6 @@ const fetchTenants = async () => {
 							</select>
 						</div>
 
-						<div className="form-outline">
-							<label className="form-label themeLabel">Select Tenant<sup>*</sup></label>
-							<select  name="tenant_id" className="form-control"  value={tenant_id} onChange={e => setTenantID(e.target.value)}>
-								{ tenants != '' && tenants.map(option => (
-								<option key={option.id} value={option.id}>
-									{option.name}
-								</option>
-								))}
-							</select>
-						</div>
 					</div>
 
 					<div className="form-oneline">
