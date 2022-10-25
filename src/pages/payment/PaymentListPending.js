@@ -232,6 +232,13 @@ const propertyIDHandleChange = ( e ) => {
         name: 'ID',
         selector: row => row.id,
     },
+
+	{
+		name: 'Tenant Name',
+        selector: row => row.tenant.name,
+	},
+
+	
 	{
 		name: 'Property Name',
         selector: row => row.property.name,
@@ -242,10 +249,6 @@ const propertyIDHandleChange = ( e ) => {
 		name: 'Utit Name',
         selector: row => row.property_unit.name,
 	},	
-	{
-		name: 'Tenant Name',
-        selector: row => row.tenant.name,
-	},
 
 
 
@@ -318,7 +321,7 @@ const propertyIDHandleChange = ( e ) => {
 		<div className="padding-top-bottom">
 			<div className="container">
 			<h2 className="large-heading mb-5 theme-page-heading">New Pending Payment List</h2>
-			<Link to={"/payment/add"} className="form-btn"> Make All Recorded </Link>
+			{/* <Link to={"/payment/add"} className="form-btn"> Make All Recorded </Link> */}
 
 			<DataTable
 				columns={columns}

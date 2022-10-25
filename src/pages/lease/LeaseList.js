@@ -73,17 +73,24 @@ import './LeaseList.css';
         name: 'ID',
         selector: row => row.id,
     },
-	{
-		name: 'Property Name',
-        selector: row => row.property.name,
+
 		
-	},
-	
 	{
 		name: 'Tenant Name',
         selector: row => row.tenant.name,
 	},
 
+	{
+		name: 'Property Name',
+        selector: row => row.property.name,
+		
+	},
+
+	{
+		name: 'Property Unit',
+		selector: row => row.property_unit.name,
+		
+    },
 	{
 		name: 'Lease Start',
         selector: row => row.lease_start,
@@ -98,11 +105,7 @@ import './LeaseList.css';
         selector: row => row.rent_amount,
     },
 
-	{
-		name: 'IsActive',
-		selector: row => row.isActive,
-		
-    },
+
 	{
 		name: "Actions",
 		selector: row => {
@@ -152,8 +155,8 @@ const data = leases;
 			<div className="padding-top-bottom">
 				<div className="container">
 					<div className="">
-						<h1 className="large-heading mb-5 theme-page-heading">Tenant List</h1>
-						<Link to={"/tenant/add"} className="theme-btn"> Add New Tenant</Link>
+						<h1 className="large-heading mb-5 theme-page-heading">Lease List</h1>
+						<Link to={"/lease/add"} className="theme-btn"> Add New Lease</Link>
 						
 					</div>
 			<DataTable

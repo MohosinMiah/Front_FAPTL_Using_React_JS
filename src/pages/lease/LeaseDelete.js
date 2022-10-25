@@ -8,9 +8,9 @@ const LeaseDelete = () => {
 
 	let { id } = useParams();
     useEffect(() => {
-        deleteProperty();
+        deleteLease();
       }, []);
-      const deleteProperty = async () => {
+      const deleteLease = async () => {
         const api = 'http://127.0.0.1:8000/api/v1/leases/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })

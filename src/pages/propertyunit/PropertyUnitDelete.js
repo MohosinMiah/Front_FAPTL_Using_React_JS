@@ -8,9 +8,9 @@ const PropertyUnitDelete = () => {
 
 	let { id } = useParams();
     useEffect(() => {
-        deleteProperty();
+        deletePropertyUnit();
       }, []);
-      const deleteProperty = async () => {
+      const deletePropertyUnit = async () => {
         const api = 'http://127.0.0.1:8000/api/v1/propertyunits/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.delete(api , { headers: {"Authorization" : `Bearer ${token}`} })

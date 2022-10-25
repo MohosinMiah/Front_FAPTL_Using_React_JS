@@ -1,29 +1,29 @@
 
 import axios from 'axios';
 import { useEffect } from "react";
-import { Redirect, useParams } from "react-router-dom";
-
+import { Redirect } from "react-router-dom";
 import swal from 'sweetalert';
-const PaymentStatusChangeDeposited = () => {
 
-	let { id } = useParams();
+
+const PaymentStatusChangeAllDeposited = () => {
+
 
     useEffect(() => { 
-        updateDepositedStatus();
+        deleteAllRecordedToDeposited();
       }, []);
-      const updateDepositedStatus = async () => {
-        const api = 'http://127.0.0.1:8000/api/v1/payment/change/deposited/'+id; 
+      const deleteAllRecordedToDeposited = async () => {
+        const api = 'http://127.0.0.1:8000/api/v1/payments/mark/all/deposited'; 
         const token = localStorage.getItem('access_token');
         await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
           console.log(res.data);
-          swal("Success", "Payment Deposited", "success", {
-			buttons: false,
-			timer: 2000,
+          swal("Success", "All Pending Payment Status Changed To Deposited", "success", {
+        buttons: false,
+        timer: 2000,
 			})
 
         }).catch((error) => {
-            swal("Failed", "Fail To Deposited", "error");
+            swal("Failed", "Fail To Mark Deposited", "error");
       });
 
     }
@@ -42,4 +42,4 @@ const PaymentStatusChangeDeposited = () => {
   )
 }
 
-export default PaymentStatusChangeDeposited;
+export default PaymentStatusChangeAllDeposited;

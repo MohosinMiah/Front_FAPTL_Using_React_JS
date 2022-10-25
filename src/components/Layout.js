@@ -136,9 +136,7 @@ export const DashboardLayout = ({ children }) => {
 						{token !== null &&  <li className="nav-item"><Link to={"/logout"} className="nav-link collapsed">Logout</Link></li> }
 					</ul>
 				</nav>
-				<div className="settings-bottom">
-				<Link to={"/settings"} className="nav-link collapsed">Settings</Link>
-				</div>
+
 			</aside>
 		}
 		</BodyWrapper>

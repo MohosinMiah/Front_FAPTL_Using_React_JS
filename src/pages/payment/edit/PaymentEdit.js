@@ -166,7 +166,7 @@ const fetchTenants = async () => {
 			})
 		.then(res => {
 			console.log(res.data);
-			swal("Success", "Lease Updated", "success", {
+			swal("Success", "Payment Updated", "success", {
 			buttons: false,
 			timer: 2000,
 			})

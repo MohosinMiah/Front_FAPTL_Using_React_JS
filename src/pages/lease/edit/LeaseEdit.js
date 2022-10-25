@@ -319,24 +319,24 @@ const fetchTenants = async () => {
 					<div className="form-oneline">
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Invoice Start Date<sup>*</sup></label>
+							<label className="form-label themeLabel">Invoice Start Date</label>
 							<input type="date" name="invoice_starting_date" className="form-control" value={invoice_starting_date} onChange={e => setInvoiceStartingDate(e.target.value)} />
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Invoice Amount<sup>*</sup></label>
+							<label className="form-label themeLabel">Invoice Amount</label>
 							<input type="number" name="invoice_amount" className="form-control" placeholder="Invoice Amount, Ex. 500 " value={invoice_amount} onChange={e => setInvoiceAmount(e.target.value)} />
 						</div>
 
 
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Prorated Rent<sup>*</sup></label>
+							<label className="form-label themeLabel">Prorated Rent</label>
 							<input type="number" name="prorated_amount" className="form-control" placeholder="Prorated Amount, Ex. 500 " value={prorated_amount} onChange={e => setProratedAmount(e.target.value)} />
 						</div>
 
 						<div className="form-outline">
-							<label className="form-label themeLabel">Prorated Start Date<sup>*</sup></label>
+							<label className="form-label themeLabel">Prorated Start Date</label>
 							<input type="date" name="prorated_starting_date" className="form-control" value={prorated_starting_date} onChange={e => setProratedStartingDate(e.target.value)} />
 						</div>
 					</div>

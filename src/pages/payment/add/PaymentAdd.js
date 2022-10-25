@@ -36,7 +36,7 @@ const PaymentAdd = () => {
 
 	const [payment_amount, setPaymentAmount]         = useState( '' );
 	const [payment_purpose, setPaymentPurpose] = useState( 'Rent' );
-	const [payment_date, setPaymentDate]         = useState( '' );
+	const [payment_date, setPaymentDate]         = useState( new Date().toISOString().split("T")[0] );
 	const [payment_note, setPaymentNote]         = useState( '' );
 	const [status, setStatus]             = useState( 'PENDING' );
 

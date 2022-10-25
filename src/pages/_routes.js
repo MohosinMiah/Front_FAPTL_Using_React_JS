@@ -17,6 +17,7 @@ import Logout from "./Logout";
 import PaymentListPending from "./payment/PaymentListPending";
 import PaymentListRecorded from "./payment/PaymentListRecorded";
 import PaymentListReport from "./payment/PaymentListReport";
+import PaymentStatusChangeAllDeposited from "./payment/status/PaymentStatusChangeAllDeposited";
 import PaymentStatusChangeRecorded from './payment/status/PaymentStatusChangeRecorded';
 import PropertyAdd from "./property/add/PropertyAdd";
 import PropertyUnitDetail from "./property/detail/PropertyUnitDetail";
@@ -101,10 +102,10 @@ return (
 
 		{/* Property Tenant  Start   */}
 
-		<Route path="/tenant/list">
+		<Route exact path="/tenant/list">
 			<TenantList />
 		</Route>
-		<Route path="/tenant/add">
+		<Route exact path="/tenant/add">
 			<TenantAdd />
 		</Route>
 
@@ -123,10 +124,10 @@ return (
 
 		{/* Lease  Start   */}
 
-		<Route path="/lease/list">
+		<Route exact path="/lease/list">
 			<LeaseList />
 		</Route>
-		<Route path="/lease/add">
+		<Route exact path="/lease/add">
 			<LeaseAdd />
 		</Route>
 
@@ -144,7 +145,8 @@ return (
 
 
 		{/* Payment  Start   */}
-
+	
+		
 		<Route exact  path="/payment/list">
 			<PaymentListReport />
 		</Route> 
@@ -179,6 +181,7 @@ return (
 			<PaymentStatusChangeDeposited />
 		</Route>
 		
+
 		
 		<Route exact  path="/payment/list/pending">
 			<PaymentListPending />
@@ -187,7 +190,10 @@ return (
 		<Route exact  path="/payment/list/recorded">
 			<PaymentListRecorded />
 		</Route> 
-
+		
+		<Route exact path="/payment/mark/all/deposited">
+			<PaymentStatusChangeAllDeposited />
+		</Route>
 
 		{/* Payment End  */}
 
