@@ -140,17 +140,20 @@ const PropertyAdd =  () => {
 						</select>
 					</div> */}
 					<div className="form-outline">
-						<label className="form-label">Name<sup>*</sup></label>
+						<label className="form-label">Unit<sup>*</sup></label>
 						<input type="text" name="name" className="form-control" onChange={e => setName(e.target.value)} />
 					</div>
-					<div className="form-outline">
-						<label className="form-label">Floor<sup>*</sup></label>
-						<input type="number" name="floor" className="form-control" onChange={e => setFloor(e.target.value)} />
-					</div>
+
 					<div className="form-outline">
 						<label className="form-label">Rent Amount<sup>*</sup></label>
 						<input type="number" name="rent" className="form-control" onChange={e => setRent(e.target.value)} />
 					</div>
+					
+					<div className="form-outline">
+						<label className="form-label">Floor</label>
+						<input type="number" name="floor" className="form-control" onChange={e => setFloor(e.target.value)} />
+					</div>
+	
 					{/* <div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
 						<select  name="unit_type" className="form-control"   value={unit_type} onChange={e => setUnitType(e.target.value)} required>
@@ -163,11 +166,11 @@ const PropertyAdd =  () => {
 
 					</div> */}
 					<div className="form-outline">
-						<label className="form-label">Size<sup>*</sup></label>
+						<label className="form-label">Size</label>
 						<input type="number" name="size" className="form-control" onChange={e => setSize(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Total Room<sup>*</sup></label>
+						<label className="form-label">Total Room</label>
 						<input type="number" name="total_room" className="form-control" onChange={e => setTotalRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
@@ -183,10 +186,6 @@ const PropertyAdd =  () => {
 						<input type="number" name="balcony" className="form-control" onChange={e => setBalcony(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Note</label>
-						<textarea name="note" className="form-control" onChange={e => setNote(e.target.value)} ></textarea>
-					</div>
-					<div className="form-outline">
 						<label className="form-label">Is Available</label>
 						<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
 							{isAvailables.map(option => (
@@ -196,6 +195,11 @@ const PropertyAdd =  () => {
 							))}
 						</select>
 					</div>
+					<div className="form-oneline">
+						<label className="form-label">Note</label>
+						<textarea name="note" className="form-control" onChange={e => setNote(e.target.value)} ></textarea>
+					</div>
+
 					{/* <div className="form-outline">
 						<label className="form-label">Is Featured</label>
 						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
@@ -206,7 +210,7 @@ const PropertyAdd =  () => {
 							))}
 						</select>
 					</div> */}
-					<div className="form-outline">
+					{/* <div className="form-outline">
 						<label className="form-label">Is Active</label>
 						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
 							{isActives.map(option => (
@@ -215,7 +219,7 @@ const PropertyAdd =  () => {
 							</option>
 							))}
 						</select>
-					</div>
+					</div> */}
 					
 					<button type="submit" className="form-btn">Add Property Unit</button>
 				</form>

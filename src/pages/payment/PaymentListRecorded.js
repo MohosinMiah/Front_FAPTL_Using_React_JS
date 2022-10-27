@@ -230,7 +230,9 @@ const propertyIDHandleChange = ( e ) => {
   const columns = [
     {
         name: 'ID',
-        selector: row => row.id,
+		selector: row => {
+			return <div>{ row.id } { row.payment_note && '🐱‍💻' }</div>
+		}
     },
 
 	{
@@ -272,7 +274,7 @@ const propertyIDHandleChange = ( e ) => {
 	{
 		name: "Actions",
 		selector: row => {
-			return <div> <Link to={"/payment/status/deposited/" + row.id} className="theme-btn-edit red">PD</Link> || <Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link> </div>
+			return <div> <Link to={"/payment/status/deposited/" + row.id} className="theme-btn-edit red">DP</Link> || <Link to={"/payment/" + row.id} className="theme-btn-edit">Edit</Link> </div>
 		}
 	  }
 ];

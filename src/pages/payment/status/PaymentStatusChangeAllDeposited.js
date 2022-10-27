@@ -1,15 +1,19 @@
 
 import axios from 'axios';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Bars } from 'react-loader-spinner';
 import { Redirect } from "react-router-dom";
 import swal from 'sweetalert';
 
 
 const PaymentStatusChangeAllDeposited = () => {
 
+  const [ spinner, setSpinner ] = useState(true);
 
     useEffect(() => { 
         deleteAllRecordedToDeposited();
+        setTimeout(() => setSpinner(false), 2000)
+
       }, []);
       const deleteAllRecordedToDeposited = async () => {
         const api = 'http://127.0.0.1:8000/api/v1/payments/mark/all/deposited'; 
@@ -37,7 +41,21 @@ const PaymentStatusChangeAllDeposited = () => {
   return(
 
         <div>
-            { <Redirect to={"/payment/list/recorded"} />}
+          { spinner && 
+				<div className="spinner-container">
+				<div className="loading-spinner">
+					<Bars
+						height="200"
+						width="400"
+						color="#4fa94d"
+						ariaLabel="bars-loading"
+						wrapperStyle={{}}
+						wrapperClass=""
+						visible={true}
+					/>
+					</div>
+				</div> }
+             { !spinner &&<Redirect to={"/payment/list/recorded"} />}
         </div>
   )
 }

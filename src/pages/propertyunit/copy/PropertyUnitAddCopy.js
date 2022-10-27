@@ -170,17 +170,18 @@ const PropertyUnitAddCopy =  () => {
 						</select>
 					</div> */}
 					<div className="form-outline">
-						<label className="form-label">Name</label>
+						<label className="form-label">Unit</label>
 						<input type="text" name="name" className="form-control" value={name} onChange={e => setName(e.target.value)} />
-					</div>
-					<div className="form-outline">
-						<label className="form-label">Floor<sup>*</sup></label>
-						<input type="number" name="floor" className="form-control" value={floor} onChange={e => setFloor(e.target.value)} />
 					</div>
 					<div className="form-outline">
 						<label className="form-label">Rent Amount<sup>*</sup></label>
 						<input type="number" name="rent" className="form-control" value={rent} onChange={e => setRent(e.target.value)} />
 					</div>
+					<div className="form-outline">
+						<label className="form-label">Floor</label>
+						<input type="number" name="floor" className="form-control" value={floor} onChange={e => setFloor(e.target.value)} />
+					</div>
+
 					{/* <div className="form-outline">
 						<label className="form-label">Unit Type<sup>*</sup></label>
 						<select  name="unit_type" className="form-control"  value={unit_type} onChange={e => setUnitType(e.target.value)} required>
@@ -193,11 +194,11 @@ const PropertyUnitAddCopy =  () => {
 
 					</div> */}
 					<div className="form-outline">
-						<label className="form-label">Size<sup>*</sup></label>
+						<label className="form-label">Size</label>
 						<input type="number" name="size" className="form-control" value={size} onChange={e => setSize(e.target.value)} />
 					</div>
 					<div className="form-outline">
-						<label className="form-label">Total Room<sup>*</sup></label>
+						<label className="form-label">Total Room</label>
 						<input type="number" name="total_room" className="form-control" value={total_room} onChange={e => setTotalRoom(e.target.value)} />
 					</div>
 					<div className="form-outline">
@@ -212,10 +213,7 @@ const PropertyUnitAddCopy =  () => {
 						<label className="form-label">balcony</label>
 						<input type="number" name="balcony" className="form-control"  value={balcony}  onChange={e => setBalcony(e.target.value)} />
 					</div>
-					<div className="form-outline">
-						<label className="form-label">Note</label>
-						<textarea name="note"  className="form-control"   onChange={e => setNote(e.target.value)} value={note} >  </textarea>
-					</div>
+
 					<div className="form-outline">
 						<label className="form-label">Is Available</label>
 						<select  name="isAvailable" className="form-control"  value={isAvailable} onChange={e => setIsAvailable(e.target.value)}>
@@ -226,6 +224,12 @@ const PropertyUnitAddCopy =  () => {
 							))}
 						</select>
 					</div>
+
+					<div className="form-oneline">
+						<label className="form-label">Note</label>
+						<textarea name="note"  className="form-control"   onChange={e => setNote(e.target.value)} value={note} >  </textarea>
+					</div>
+
 					{/* <div className="form-outline">
 						<label className="form-label">Is Featured</label>
 						<select  name="isFeatured" className="form-control"  value={isFeatured} onChange={e => setIsFeatured(e.target.value)}>
@@ -236,16 +240,7 @@ const PropertyUnitAddCopy =  () => {
 							))}
 						</select>
 					</div> */}
-					<div className="form-outline">
-						<label className="form-label">Is Active</label>
-						<select  name="isActive" className="form-control"  value={isActive} onChange={e => setIsActive(e.target.value)}>
-						{isActives != ''  && isActives.map(option => (
-							<option key={option.value} value={option.value}>
-								{option.text}
-							</option>
-							))}
-						</select>
-					</div>
+			
 					
 					<button type="submit" className="form-btn">Add Property Unit</button>
 				</form>

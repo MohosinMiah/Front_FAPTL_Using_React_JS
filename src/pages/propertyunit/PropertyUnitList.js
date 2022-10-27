@@ -70,7 +70,7 @@ import './PropertyUnitList.css';
 
   const columns = [
 	{
-		name: 'Name',
+		name: 'Unit',
 		selector: row =>  row.name,
 		
 	},
@@ -87,11 +87,7 @@ import './PropertyUnitList.css';
 		selector: row => row.total_room,
 		
     },
-	{
-		name: 'IsActive',
-		selector: row => row.isActive,
-		
-    },
+
 	{
 		name: "Actions",
 		selector: row =>{

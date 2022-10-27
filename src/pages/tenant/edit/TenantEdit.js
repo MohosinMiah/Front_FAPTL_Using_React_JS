@@ -5,7 +5,6 @@ import swal from 'sweetalert';
 import { DashboardLayout } from "../../../components/Layout";
 import TopBar from '../../global/TopBar';
 import './TenantEdit';
-import { Link } from "react-router-dom";
 
 const TenantEdit = () => {
 
