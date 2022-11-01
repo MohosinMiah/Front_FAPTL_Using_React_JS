@@ -12,7 +12,7 @@ const Logout = () => {
         logout();
       }, []);
       const logout = async () => {
-        const api = 'http://127.0.0.1:8000/api/v1/logout'; 
+        const api = 'https://api.americanbestit.com/api/v1/logout'; 
         const token = localStorage.getItem('access_token');
         await axios.post(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

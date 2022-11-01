@@ -12,10 +12,10 @@ const PaymentStatusChangeDeposited = () => {
 
     useEffect(() => { 
         updateDepositedStatus();
-        setTimeout(() => setSpinner(false), 1000)
+        setTimeout(() => setSpinner(false), 2000)
       }, []);
       const updateDepositedStatus = async () => {
-        const api = 'http://127.0.0.1:8000/api/v1/payment/change/deposited/'+id; 
+        const api = 'https://api.americanbestit.com/api/v1/payment/change/deposited/'+id; 
         const token = localStorage.getItem('access_token');
         await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

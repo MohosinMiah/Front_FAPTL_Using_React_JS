@@ -99,7 +99,7 @@ useEffect(() => {
 
 // Load Property Lists
 const fetchProperties = async () => {
-	const api = 'http://127.0.0.1:8000/api/v1/properties'; 
+	const api = 'https://api.americanbestit.com/api/v1/properties'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -117,7 +117,7 @@ const fetchProperties = async () => {
 	
 // Load Tenant Lists
 const fetchTenants = async () => {
-	const api = 'http://127.0.0.1:8000/api/v1/tenants'; 
+	const api = 'https://api.americanbestit.com/api/v1/tenants'; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -161,7 +161,7 @@ const handleSubmit = async (e) => {
 
 const filterPaymentList = () => {
 
-	const api = 'http://127.0.0.1:8000/api/v1/payments/search';
+	const api = 'https://api.americanbestit.com/api/v1/payments/search';
 	const token = localStorage.getItem('access_token');
 	axios({
 		method: 'post',
@@ -193,7 +193,7 @@ const filterPaymentList = () => {
 
 // Load Property Unit List Based On Property ID
 const fetchUnitsByPropertyID = async ( propertyID ) => {
-	const api = 'http://127.0.0.1:8000/api/v1/payment/unit_list/property/' + propertyID; 
+	const api = 'https://api.americanbestit.com/api/v1/payment/unit_list/property/' + propertyID; 
 	const token = localStorage.getItem('access_token');
 	await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 	.then(res => {
@@ -287,7 +287,7 @@ const propertyIDHandleChange = ( e ) => {
         fetchPayments();
       }, []);
       const fetchPayments = () => {
-        const api = 'http://127.0.0.1:8000/api/v1/payments/list/pending'; 
+        const api = 'https://api.americanbestit.com/api/v1/payments/list/pending'; 
         const token = localStorage.getItem('access_token');
         axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {

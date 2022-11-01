@@ -64,7 +64,7 @@ const PropertyUnitAddCopy =  () => {
 	  }, []);
 	  
 	  const fetchPropertyUnit = async () => {
-		const api = 'http://127.0.0.1:8000/api/v1/propertyunits/'+property_id; 
+		const api = 'https://api.americanbestit.com/api/v1/propertyunits/'+property_id; 
 		const token = localStorage.getItem('access_token');
 		await axios.get(api , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -107,7 +107,7 @@ const PropertyUnitAddCopy =  () => {
 	// Handle Submotted data
       const addPropertyUnit = () => {
 
-		const api = 'http://127.0.0.1:8000/api/v1/propertyunits'; 
+		const api = 'https://api.americanbestit.com/api/v1/propertyunits'; 
         const token = localStorage.getItem('access_token');
         axios({
             method: 'post',
